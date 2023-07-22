@@ -32,7 +32,7 @@ class Golem extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
 
         this.x = 100 + Math.random() * 500;
-        this.speed = 0.15 + Math.random() * 0.25;
+        this.speed = 0.15 + Math.random() * 0.4;
         this.animate();
     }
 
@@ -46,6 +46,7 @@ class Golem extends MovableObject {
             let path = this.IMAGES_WALKING[i];
             this.img = this.imageCache[path];
             this.currentImage++;
+            this.otherDirection = true;
         }, 200);
     }
 

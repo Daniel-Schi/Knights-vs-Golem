@@ -3,7 +3,7 @@ class Character extends MovableObject {
     y = 259;
     width = 150;
     height = 150;
-    speed = 1;
+    speed = 2;
     IMAGES_WALKING = [
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_000.png',
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_001.png',
@@ -30,12 +30,13 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.world.keyboard.RIGHT) {
                 this.x += this.speed;
+                this.otherDirection = false;
             }
             if (this.world.keyboard.LEFT) {
                 this.x -= this.speed;
+                this.otherDirection = true;
             }
-
-
+            this.world.camera_x = -this.x;
         }, 1000 / 60);
 
 
