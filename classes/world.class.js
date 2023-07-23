@@ -10,11 +10,35 @@ class World {
         new Clouds()
     ];
     backgroundObject = [
-        new BackgroundObject('img/battleground/PNG/3/bridge.png', 0),
-        new BackgroundObject('img/battleground/PNG/3/clouds 2.png', 0)
-    ];
-    tower = [
-        new Tower()
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Sky.png', -719, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/BG.png', -719, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Middle.png', -719, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Foreground.png', -719, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_01.png', -719, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_02.png', -719, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', -719, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Sky.png', 0, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/BG.png', 0, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Middle.png', 0, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Foreground.png', 0, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_01.png', 0, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_02.png', 0, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 0, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Sky.png', 719, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/BG.png', 719, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Middle.png', 719, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Foreground.png', 719, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_01.png', 719, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_02.png', 719, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Sky.png', 719 * 2, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/BG.png', 719 * 2, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Middle.png', 719 * 2, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Foreground.png', 719 * 2, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_01.png', 719 * 2, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_02.png', 719 * 2, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719 * 2, 0),
+
     ];
     canvas;
     ctx;
@@ -40,11 +64,11 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);
 
-        this.addObjectsToMap(this.tower);
-        this.addObjectsToMap(this.clouds);
+        // this.addObjectsToMap(this.tower);
         this.addObjectsToMap(this.backgroundObject);
-        this.addObjectsToMap(this.enemies);
         this.addToMap(this.character);
+        this.addObjectsToMap(this.enemies);
+        this.addObjectsToMap(this.clouds);
 
         this.ctx.translate(-this.camera_x, 0);
 
@@ -70,7 +94,7 @@ class World {
             mo.x = mo.x * - 1;
         }
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
-        if(mo.otherDirection) {
+        if (mo.otherDirection) {
             mo.x = mo.x * - 1;
             this.ctx.restore();
         }
