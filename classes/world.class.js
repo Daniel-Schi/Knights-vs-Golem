@@ -1,45 +1,6 @@
 class World {
     character = new Character();
-    enemies = [
-        new Golem,
-        new Golem,
-        new Golem,
-        new Golem,
-    ]
-    clouds = [
-        new Clouds()
-    ];
-    backgroundObject = [
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Sky.png', -719, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/BG.png', -719, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Middle.png', -719, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Foreground.png', -719, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_01.png', -719, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_02.png', -719, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', -719, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Sky.png', 0, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/BG.png', 0, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Middle.png', 0, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Foreground.png', 0, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_01.png', 0, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_02.png', 0, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 0, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Sky.png', 719, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/BG.png', 719, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Middle.png', 719, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Foreground.png', 719, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_01.png', 719, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_02.png', 719, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Sky.png', 719 * 2, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/BG.png', 719 * 2, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Middle.png', 719 * 2, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Foreground.png', 719 * 2, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_01.png', 719 * 2, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_02.png', 719 * 2, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719 * 2, 0),
-
-    ];
+    level = level1;
     canvas;
     ctx;
     keyboard;
@@ -65,10 +26,11 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         // this.addObjectsToMap(this.tower);
-        this.addObjectsToMap(this.backgroundObject);
+        this.addObjectsToMap(this.level.backgroundObject);
         this.addToMap(this.character);
-        this.addObjectsToMap(this.enemies);
-        this.addObjectsToMap(this.clouds);
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.bottle);
 
         this.ctx.translate(-this.camera_x, 0);
 
