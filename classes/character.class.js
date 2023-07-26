@@ -1,6 +1,6 @@
 class Character extends MovableObject {
 
-    y = 290;
+    y = 190;
     width = 150;
     height = 150;
     speed = 1.5;
@@ -23,7 +23,7 @@ class Character extends MovableObject {
     constructor() {
         super().loadImage('img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_000.png');
         this.loadImages(this.IMAGES_WALKING);
-
+        this.applyGravity();
         this.animate();
     }
 

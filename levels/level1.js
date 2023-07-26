@@ -48,7 +48,7 @@ const level1 = new Level(
 
     ],
     [
-        new Bottle('img/bottle-icons/PNG/background/50.png'),
+        new Bottle('img/bottle-icons/PNG/background/1.png'),
         new Bottle('img/bottle-icons/PNG/background/50.png'),
         new Bottle('img/bottle-icons/PNG/background/50.png'),
         new Bottle('img/bottle-icons/PNG/background/50.png'),
