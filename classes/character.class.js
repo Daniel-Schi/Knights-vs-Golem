@@ -57,7 +57,7 @@ class Character extends MovableObject {
     ];
     world;
     walking_sound = new Audio('audio/walking-snow.wav');
-    hut_sound = new Audio('audio/enemies.wav');
+    hut_sound = new Audio('audio/hurt.wav');
 
         constructor() {
     super().loadImage('img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_000.png');
