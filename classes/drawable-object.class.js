@@ -14,19 +14,19 @@ class DrawableObject {
     }
 
 
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();
             img.src = path;
             this.imageCache[path] = img;
-        });
+        }); 
     }
-    
+
+
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+
 
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Golem) {

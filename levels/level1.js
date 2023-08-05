@@ -1,12 +1,12 @@
 const level1 = new Level(
     [
-        new Golem,
-        new Golem,
-        new Golem,
-        new Golem,
-        new Endboss,
+        new Golem(),
+        new Golem(),
+        new Golem(),
+        new Golem(),
+        new Endboss()
     ],
-    [
+    [ 
         new Clouds()
     ],
     [
@@ -44,20 +44,14 @@ const level1 = new Level(
         new BackgroundObject('img/background-Winter/BG_01/Layers/Foreground.png', 719 * 3, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_01.png', 719 * 3, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_02.png', 719 * 3, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719 * 3, 0),
+        new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719 * 3, 0)
 
     ],
     [
-        new Bottle('img/bottle-icons/PNG/background/1.png'),
-        new Bottle('img/bottle-icons/PNG/background/50.png'),
-        new Bottle('img/bottle-icons/PNG/background/50.png'),
-        new Bottle('img/bottle-icons/PNG/background/50.png'),
-        new Bottle('img/bottle-icons/PNG/background/50.png'),
-        new Bottle('img/bottle-icons/PNG/background/50.png'),
-        new Bottle('img/bottle-icons/PNG/background/50.png'),
-        new Bottle('img/bottle-icons/PNG/background/50.png'),
-        new Bottle('img/bottle-icons/PNG/background/50.png'),
-        new Bottle('img/bottle-icons/PNG/background/50.png'),
-        new Bottle('img/bottle-icons/PNG/background/50.png'),
-    ]
+        new Sword('img/icons-weapons/PNG/daggers (5).png'),
+        new Sword('img/icons-weapons/PNG/daggers (5).png'),
+        new Sword('img/icons-weapons/PNG/daggers (5).png'),
+        new Sword('img/icons-weapons/PNG/daggers (5).png'),
+        new Sword('img/icons-weapons/PNG/daggers (5).png')
+    ],
 );

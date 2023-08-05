@@ -3,7 +3,7 @@ class Character extends MovableObject {
     y = 190;
     width = 150;
     height = 150;
-    speed = 1.5;
+    speed = 3;
     IMAGES_WALKING = [
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_000.png',
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_001.png',
@@ -105,7 +105,9 @@ animate() {
         }
     }, 50);
 
+    
 }
+
 
 jump() {
     this.speedY = 20;

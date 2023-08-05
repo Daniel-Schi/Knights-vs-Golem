@@ -11,7 +11,7 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.draw();
+        this.draw(); 
         this.setWorld();
         this.checkCollisions();
     }
@@ -26,8 +26,9 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy)) {
+                    console.log('Collision with Character', enemy); 
                     this.character.hit();
-                    console.log('Collision with Character and Energy', this.character.energy);
+                    this.statusBar.setPercentage(this.character.energy);
                 }
             })
         }, 100);
@@ -38,14 +39,17 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x, 0);
-
-        // this.addObjectsToMap(this.tower);
         this.addObjectsToMap(this.level.backgroundObject);
-        this.addToMap(this.character);
+
+        this.ctx.translate(-this.camera_x, 0);
+        // ------ Space for fixed objects ------
         this.addToMap(this.statusBar);
+        this.ctx.translate(this.camera_x, 0);
+
+        this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.bottle);
+        this.addObjectsToMap(this.level.sword);
 
         this.ctx.translate(-this.camera_x, 0);
 

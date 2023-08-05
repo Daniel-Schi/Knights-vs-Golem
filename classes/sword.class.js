@@ -1,7 +1,7 @@
-class Bottle extends MovableObject {
+class Sword extends MovableObject {
 
-    width = 20;
-    height = 20;
+    width = 50;
+    height = 80;
 
     constructor(imagePath) {
         super();

@@ -1,8 +1,7 @@
 class StatusBar extends DrawableObject {
 
-
     IMAGES = [
-        'img/status-bar/4. Marcadores/orange/0_copia.png',
+        'img/status-bar/4. Marcadores/orange/0_  copia.png',
         'img/status-bar/4. Marcadores/orange/20_ copia 2.png',
         'img/status-bar/4. Marcadores/orange/40_  copia.png',
         'img/status-bar/4. Marcadores/orange/60_  copia.png',

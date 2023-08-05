@@ -45,7 +45,7 @@ class MovableObject extends DrawableObject {
 
 
     isColliding(mo) {
-        return this.x +this.width > mo.x &&
+        return this.x + this.width > mo.x &&
         this.y + this.height > mo.y &&
         this.x < mo.x &&
         this.y < mo.y + mo.height;
@@ -58,14 +58,12 @@ class MovableObject extends DrawableObject {
     moveRight() {
         this.x += this.speed;
         this.otherDirection = false;
-
     }
 
 
     moveLeft() {
         this.x -= this.speed;
         this.otherDirection = true;
-
     }
 
 
@@ -73,6 +71,6 @@ class MovableObject extends DrawableObject {
         let i = this.currentImage % images.length;
         let path = images[i];
         this.img = this.imageCache[path];
-        this.currentImage++;
+        this.currentImage++; 
     }
 }
