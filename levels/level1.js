@@ -47,11 +47,7 @@ const level1 = new Level(
         new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719 * 3, 0)
 
     ],
-    [
-        new Sword('img/icons-weapons/PNG/daggers (5).png'),
-        new Sword('img/icons-weapons/PNG/daggers (5).png'),
-        new Sword('img/icons-weapons/PNG/daggers (5).png'),
-        new Sword('img/icons-weapons/PNG/daggers (5).png'),
-        new Sword('img/icons-weapons/PNG/daggers (5).png')
-    ],
+    // [
+    //     new ThrowableObject(),
+    // ],
 );

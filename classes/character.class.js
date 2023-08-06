@@ -4,6 +4,7 @@ class Character extends MovableObject {
     width = 150;
     height = 150;
     speed = 3;
+
     IMAGES_WALKING = [
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_000.png',
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_001.png',
@@ -43,6 +44,10 @@ class Character extends MovableObject {
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__DIE_009.png'
     ];
 
+    IMAGES_REALLYDEAD = [
+        'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__DIE_009.png'
+    ];
+
     IMAGES_HURT = [
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__HURT_000.png',
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__HURT_001.png',
@@ -59,57 +64,60 @@ class Character extends MovableObject {
     walking_sound = new Audio('audio/walking-snow.wav');
     hut_sound = new Audio('audio/hurt.wav');
 
-        constructor() {
-    super().loadImage('img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_000.png');
-    this.loadImages(this.IMAGES_WALKING);
-    this.loadImages(this.IMAGES_JUMPING);
-    this.loadImages(this.IMAGES_DEAD);
-    this.loadImages(this.IMAGES_HURT);
-    this.applyGravity();
-    this.animate();
-    this.isJumping = false;
-}
+    constructor() {
+        super().loadImage('img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_000.png');
+        this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_JUMPING);
+        this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_REALLYDEAD);
+        this.loadImages(this.IMAGES_HURT);
+        this.applyGravity();
+        this.animate();
+        this.isJumping = false;
+    }
 
-animate() {
-    setInterval(() => {
-        this.walking_sound.pause();
-        if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-            this.moveRight();
-            this.walking_sound.play();
-        }
-        if (this.world.keyboard.LEFT && this.x > -500) {
-            this.moveLeft();
-            this.walking_sound.play();
-        }
-        this.world.camera_x = -this.x + 50;
-
-        if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-            this.jump();
-        }
-    }, 1000 / 60);
-
-
-    setInterval(() => {
-        if (this.isDead()) {
-            this.playAnimation(this.IMAGES_DEAD);
-        } else if (this.isHurt()) {
-            this.playAnimation(this.IMAGES_HURT);
-            this.hut_sound.play();
-        } else if (this.isAboveGround()) {
-            this.playAnimation(this.IMAGES_JUMPING);
-        } else {
-
-            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                this.playAnimation(this.IMAGES_WALKING);
+    animate() {
+        setInterval(() => {
+            this.walking_sound.pause();
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+                this.moveRight();
+                this.walking_sound.play();
             }
-        }
-    }, 50);
+            if (this.world.keyboard.LEFT && this.x > -500) {
+                this.moveLeft();
+                this.walking_sound.play();
+            }
+            this.world.camera_x = -this.x + 50;
 
+            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+                this.jump();
+            }
+        }, 1000 / 60);
+
+
+        setInterval(() => {
+            if (this.isReallyDead()) {
+                this.loadAnimation(this.IMAGES_REALLYDEAD);
+            } else if (this.isDead()) {
+                this.playAnimation(this.IMAGES_DEAD);
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
+                this.hut_sound.play();
+            } else if (this.isAboveGround()) {
+                this.playAnimation(this.IMAGES_JUMPING);
+            } else {
+
+                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                    this.playAnimation(this.IMAGES_WALKING);
+                }
+            }
+        }, 50);
+
+
+    }
     
-}
-
-
-jump() {
-    this.speedY = 20;
-}
+   
+    jump() {
+        this.speedY = 20;
+    }
 }

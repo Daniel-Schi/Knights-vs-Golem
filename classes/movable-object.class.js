@@ -1,12 +1,12 @@
 class MovableObject extends DrawableObject {
-    
+
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
     acceleration = 1;
     energy = 100;
     lastHit = 0;
- 
+
 
 
     applyGravity() {
@@ -20,9 +20,9 @@ class MovableObject extends DrawableObject {
 
     hit() {
         this.energy -= 2;
-        if(this.energy < 0) {
+        if (this.energy < 0) {
             this.energy = 0;
-        }else {
+        } else {
             this.lastHit = new Date().getTime();
         }
     }
@@ -39,16 +39,44 @@ class MovableObject extends DrawableObject {
     }
 
 
+    isReallyDead() {
+        return this.energy === 0;
+    }
+
     isAboveGround() {
-        return this.y < 290;
+        if (this instanceof ThrowableObject) { // Throwable Object should always fall
+            return true;
+        } else {
+            return this.y < 290;
+        }
     }
 
 
+    loadAnimation(images) {
+        let animationImages = images.map((path) => {
+            const img = new Image();
+            img.src = path;
+            return img;
+        });
+        let frame = 0;
+        const animateFrame = () => {
+            this.img = animationImages[frame];
+            frame = (frame + 1) % animationImages.length;
+        };
+        const animationInterval = setInterval(animateFrame, 100);
+        setTimeout(() => {
+            clearInterval(animationInterval);
+            // Nur das letzte Bild der Animation beibehalten
+            this.img = this.imageCache[images[images.length - 1]];
+        }, 1000);
+    }
+    
+
     isColliding(mo) {
         return this.x + this.width > mo.x &&
-        this.y + this.height > mo.y &&
-        this.x < mo.x &&
-        this.y < mo.y + mo.height;
+            this.y + this.height > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.height;
         // return (this.x + this.width) >= mo.x && this.x <= (mo.x + mo.width) &&
         //     (this.y + this.offsetY + this.height) >= mo.y &&
         //     (this.y + this.offsetY) <= (mo.y + mo.height) &&
@@ -71,6 +99,6 @@ class MovableObject extends DrawableObject {
         let i = this.currentImage % images.length;
         let path = images[i];
         this.img = this.imageCache[path];
-        this.currentImage++; 
+        this.currentImage++;
     }
 }
