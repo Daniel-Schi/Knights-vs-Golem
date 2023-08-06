@@ -62,7 +62,8 @@ class Character extends MovableObject {
     ];
     world;
     walking_sound = new Audio('audio/walking-snow.wav');
-    hut_sound = new Audio('audio/hurt.wav');
+    hurt_sound = new Audio('audio/hurt1.wav');
+    jump_sound = new Audio('audio/jump.wav');
 
     constructor() {
         super().loadImage('img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_000.png');
@@ -88,9 +89,9 @@ class Character extends MovableObject {
                 this.walking_sound.play();
             }
             this.world.camera_x = -this.x + 50;
-
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
+                this.jump_sound.play();
             }
         }, 1000 / 60);
 
@@ -102,21 +103,18 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-                this.hut_sound.play();
+                this.hurt_sound.play();
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else {
-
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }
         }, 50);
-
-
     }
-    
-   
+
+
     jump() {
         this.speedY = 20;
     }

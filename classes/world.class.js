@@ -54,7 +54,7 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObject);
-
+        this.addObjectsToMap(this.level.clouds);
         this.ctx.translate(-this.camera_x, 0);
         // ------ Space for fixed objects ------
         this.addToMap(this.statusBar);
@@ -62,7 +62,7 @@ class World {
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.level.clouds);
+        
         this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0);

@@ -1,7 +1,7 @@
 class Endboss extends MovableObject {
     width = 300;
     height = 400;
-    y = 60;
+    y = 65;
 
     IMAGES_WALKING = [
         'img/golems-sprites/Golem_3/PNG/PNG Sequences/Run Throwing/0_Golem_Run Throwing_000.png',
@@ -18,16 +18,19 @@ class Endboss extends MovableObject {
         'img/golems-sprites/Golem_3/PNG/PNG Sequences/Run Throwing/0_Golem_Run Throwing_011.png'
     ];
 
-    constructor (){
+    constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
-        this.x = 2500;
-
+        this.x = 3500;
+    
         this.animate();
     }
 
     animate() {
-        this.moveLeft();
+        setInterval(() => {
+            this.moveLeft();
+        }, 1000 / 60);
+
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
             this.otherDirection = true;
