@@ -77,5 +77,12 @@ const level1 = new Level(
         new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719 * 5, 0)
 
     ],
-
+    [
+        new Swords(),
+        new Swords(),
+        new Swords(),
+        new Swords(),
+        new Swords(),
+        new Swords()
+    ],
 );

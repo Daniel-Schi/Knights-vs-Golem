@@ -8,6 +8,7 @@ class World {
     statusBarCharacter = new StatusBarCharacter();
     statusBarSword = new StatusBarSword();
     throwableObjects = [];
+    
 
 
     constructor(canvas, keyboard) {
@@ -63,6 +64,7 @@ class World {
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies); 
+        this.addObjectsToMap(this.level.swords); 
         this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);
 
