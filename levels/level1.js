@@ -4,6 +4,10 @@ const level1 = new Level(
         new Golem(),
         new Golem(),
         new Golem(),
+        new GolemSmall(),
+        new GolemSmall(),
+        new GolemSmall(),
+        new GolemSmall(),
         new Endboss()
     ],
     [

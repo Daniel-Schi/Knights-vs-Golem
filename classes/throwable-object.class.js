@@ -14,9 +14,7 @@ throw_sound = new Audio('audio/throw.wav');
     throw() {
         this.speedY = 12;
         this.applyGravity();
-        setInterval(() => {
-            
-            
+        setInterval(() => { 
             this.x += 5;
             this.throw_sound.play();
             

@@ -1,5 +1,7 @@
 class Golem extends MovableObject {
-    y= 340;
+    width = 120;
+    height = 100;
+    y= 325;
     IMAGES_WALKING = [
         'img/golems-sprites/Golem_2/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png',
         'img/golems-sprites/Golem_2/PNG/PNG Sequences/Walking/0_Golem_Walking_001.png',

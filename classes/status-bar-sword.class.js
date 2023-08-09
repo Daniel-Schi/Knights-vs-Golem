@@ -1,27 +1,22 @@
-class StatusBar extends DrawableObject {
-
+class StatusBarSword extends DrawableObject {
+    x = 5;
+    y = 30;
+    width = 100;
+    height = 90;
     IMAGES = [
-        'img/status-bar/4. Marcadores/orange/0_  copia.png',
-        'img/status-bar/4. Marcadores/orange/20_ copia 2.png',
-        'img/status-bar/4. Marcadores/orange/40_  copia.png',
-        'img/status-bar/4. Marcadores/orange/60_  copia.png',
-        'img/status-bar/4. Marcadores/orange/80_  copia.png',
-        'img/status-bar/4. Marcadores/orange/100_  copia.png',
+        'img/status-bar/status-sword/sword-progress-bar-5.png',
+        'img/status-bar/status-sword/sword-progress-bar-4.png',
+        'img/status-bar/status-sword/sword-progress-bar-3.png',
+        'img/status-bar/status-sword/sword-progress-bar-2.png',
+        'img/status-bar/status-sword/sword-progress-bar-1.png',
+        'img/status-bar/status-sword/sword-progress-bar-0.png'
     ];
-
-
-    percentage = 100;
 
     constructor() {
         super();
         this.loadImages(this.IMAGES);
-        this.x = 5;
-        this.y = 5;
-        this.width = 90;
-        this.height = 30;
         this.setPercentage(100);
     }
-
 
     setPercentage(percentage) {
         this.percentage = percentage;
@@ -44,5 +39,4 @@ class StatusBar extends DrawableObject {
             return 0;
         }
     }
-
 }

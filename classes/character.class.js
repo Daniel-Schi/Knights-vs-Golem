@@ -1,9 +1,9 @@
 class Character extends MovableObject {
 
     y = 190;
-    width = 150;
+    width = 170;
     height = 150;
-    speed = 3;
+    speed = 5;
 
     IMAGES_WALKING = [
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_000.png',
@@ -116,6 +116,6 @@ class Character extends MovableObject {
 
 
     jump() {
-        this.speedY = 20;
+        this.speedY = 30;
     }
 }
