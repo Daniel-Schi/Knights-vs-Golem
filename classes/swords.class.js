@@ -1,5 +1,5 @@
 class Swords extends MovableObject {
-    y = 80 + Math.random() * 120; // setzen der y-Position
+    y = 100 + Math.random() * 120; // setzen der y-Position
     x = 300 + Math.random() * 2000; // Setzen der x-Position zufällig zwischen 300 und 2200
     width = 60;
     height = 60;

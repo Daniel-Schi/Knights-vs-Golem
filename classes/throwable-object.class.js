@@ -13,12 +13,18 @@ throw_sound = new Audio('audio/throw.wav');
 
     throw() {
         this.speedY = 12;
-        this.applyGravity();
-        setInterval(() => { 
-            this.x += 5;
-            this.throw_sound.play();
-            
-        }, 25);
+        this.applyGravity();      
+        if (!this.isThrowing) { // Überprüfen, ob das Schwert bereits geworfen wurde
+            this.isThrowing = true; // Markieren, dass das Schwert geworfen wurde
+            this.throw_sound.play(); // Sound abspielen
+            setInterval(() => {
+                this.x += 5;
+            }, 25);
+    
+            setTimeout(() => {
+                this.isThrowing = false; // Zurücksetzen, um den Sound erneut abzuspielen, wenn erneut geworfen wird
+            }, 1000); 
+        }
     }
 
 }

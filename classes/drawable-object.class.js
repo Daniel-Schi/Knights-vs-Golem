@@ -29,7 +29,7 @@ class DrawableObject {
 
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Golem) {
+        if (this instanceof Character || this instanceof Golem || this instanceof GolemSmall) {
             ctx.beginPath();
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.lineWidth = 3;
