@@ -38,10 +38,17 @@ class World {
     checkThrowObjects() {
         if (this.keyboard.F && this.collectedSwords.length > 0) {
             let sword = new ThrowableObject(this.character.x + 75, this.character.y + 0);
+            
+            const characterOtherDirection = this.character.otherDirection;
+            if (!characterOtherDirection) { // neue Flasche mit Abwurfkoordinaten des Characters
+                this.sword = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+            }
+            if (characterOtherDirection) { // neue Flasche mit Abwurfkoordinaten des Characters wenn Richtung gedreht
+                this.sword = new ThrowableObject(this.character.x - 50, this.character.y + 100);
+            }
             this.throwableObjects.push(sword);
-
-            this.collectedBottles.pop(); // Nach Abwurf einen Wert aus Array entfernen
-            this.statusBarBottles.setBottles(this.collectedBottles.length); // Wert an StatusBarBottles übergeben
+            this.collectedSwords.pop(); // Nach Abwurf einen Wert aus Array entfernen
+            this.statusBarSword.setSwords(this.collectedSwords.length); // Wert an StatusBarBottles übergeben
         }
     }
 

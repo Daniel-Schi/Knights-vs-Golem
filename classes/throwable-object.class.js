@@ -1,8 +1,9 @@
 class ThrowableObject extends MovableObject {
 
-throw_sound = new Audio('audio/throw.wav');
+    throw_sound = new Audio('audio/throw.wav');
+    throwInterval;
 
-    constructor(x, y) {
+    constructor(x, y,) {
         super().loadImage('img/icons-weapons/PNG/daggers (5).png');
         this.x = x;
         this.y = y;
@@ -12,19 +13,42 @@ throw_sound = new Audio('audio/throw.wav');
     }
 
     throw() {
-        this.speedY = 12;
-        this.applyGravity();      
-        if (!this.isThrowing) { // Überprüfen, ob das Schwert bereits geworfen wurde
-            this.isThrowing = true; // Markieren, dass das Schwert geworfen wurde
-            this.throw_sound.play(); // Sound abspielen
-            setInterval(() => {
-                this.x += 5;
-            }, 25);
-    
-            setTimeout(() => {
-                this.isThrowing = false; // Zurücksetzen, um den Sound erneut abzuspielen, wenn erneut geworfen wird
-            }, 1000); 
+        this.speedY = 25;
+        this.applyGravity();
+        this.animate(); 
+    }
+
+    animate() {
+        if (!this.isThrowing) {
+            this.isThrowing = true;
+            this.throw_sound.play();
+            this.throwInterval = this.throwIntervalFunction();
+            this.setTimeout = this.setTimeoutFunction();
         }
     }
 
+    throwIntervalFunction() {
+        setInterval(() => {
+            const otherDirection = world.character.otherDirection;
+            if (this.y < 1025 && !otherDirection) {
+                this.x += 10;
+            }
+            if (this.y < 1025 && otherDirection) { 
+                this.x -= 10;
+            }
+        }, 25);
+    }
+
+    setTimeoutFunction() {
+        setTimeout(() => {
+            clearInterval(this.throwInterval);
+            this.isThrowing = false;
+        }, 1000);
+    }
+
 }
+
+
+
+
+

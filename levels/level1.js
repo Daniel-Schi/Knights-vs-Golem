@@ -82,7 +82,7 @@ const level1 = new Level(
         new Swords(),
         new Swords(),
         new Swords(),
-        new Swords(),
         new Swords()
+        
     ],
 );

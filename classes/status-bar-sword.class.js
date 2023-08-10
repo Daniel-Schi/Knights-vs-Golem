@@ -27,15 +27,15 @@ class StatusBarSword extends DrawableObject {
     }
 
     resolveImageIndex() {
-        if (this.swordAmount > 5) {
+        if (this.swordAmount >= 5) {
             return 5;
-        } else if (this.swordAmount > 4) {
+        } else if (this.swordAmount === 4) {
             return 4;
-        } else if (this.swordAmount > 3) {
+        } else if (this.swordAmount === 3) {
             return 3;
-        } else if (this.swordAmount > 2) {
+        } else if (this.swordAmount === 2) {
             return 2;
-        } else if (this.swordAmount > 1) {
+        } else if (this.swordAmount === 1) {
             return 1;
         } else {
             return 0;
