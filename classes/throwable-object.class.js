@@ -1,39 +1,41 @@
 class ThrowableObject extends MovableObject {
-
-    throw_sound = new Audio('audio/throw.wav');
     throwInterval;
 
-    constructor(x, y,) {
+    throw_sound = new Audio('audio/throw.wav');
+
+
+    constructor(x, y, otherDirection) {
         super().loadImage('img/icons-weapons/PNG/daggers (5).png');
         this.x = x;
         this.y = y;
         this.height = 60;
         this.width = 50;
         this.throw();
+        this.otherDirection = otherDirection;
     }
 
     throw() {
         this.speedY = 25;
         this.applyGravity();
-        this.animate(); 
+        this.animate();
     }
 
-    animate() {
+    animate(otherDirection) {
         if (!this.isThrowing) {
             this.isThrowing = true;
             this.throw_sound.play();
-            this.throwInterval = this.throwIntervalFunction();
+            this.throwInterval = this.throwIntervalFunction(otherDirection);
             this.setTimeout = this.setTimeoutFunction();
         }
     }
 
-    throwIntervalFunction() {
+    throwIntervalFunction(otherDirection) {
         setInterval(() => {
-            const otherDirection = world.character.otherDirection;
-            if (this.y < 1025 && !otherDirection) {
+            otherDirection = world.character.otherDirection;
+            if (!otherDirection) {
                 this.x += 10;
             }
-            if (this.y < 1025 && otherDirection) { 
+            if (otherDirection) {
                 this.x -= 10;
             }
         }, 25);
