@@ -1,6 +1,6 @@
 class StatusBarSword extends DrawableObject {
-    x = 10;
-    y = 40;
+    x = 5;
+    y = 30;
     width = 100;
     height = 90;
     IMAGES = [

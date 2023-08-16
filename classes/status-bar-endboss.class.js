@@ -1,27 +1,26 @@
-class StatusBarCharacter extends DrawableObject {
+class StatusBarEndboss extends DrawableObject {
+    x = 605;
+    y = -15;
+    width = 100;
+    height = 100;
 
     IMAGES = [
-        'img/status-bar/status-knight/progress-bar-0.png',
-        'img/status-bar/status-knight/progress-bar-1.png',
-        'img/status-bar/status-knight/progress-bar-2.png',
-        'img/status-bar/status-knight/progress-bar-3.png',
-        'img/status-bar/status-knight/progress-bar-4.png',
-        'img/status-bar/status-knight/progress-bar-5.png',
+        'img/status-bar/status-golem/Golem0.png',
+        'img/status-bar/status-golem/Golem1.png',
+        'img/status-bar/status-golem/Golem2.png',
+        'img/status-bar/status-golem/Golem3.png',
+        'img/status-bar/status-golem/Golem4.png',
+        'img/status-bar/status-golem/Golem5.png'
     ];
-
 
     percentage = 100;
 
     constructor() {
         super();
         this.loadImages(this.IMAGES);
-        this.x = 5;
-        this.y = -10;
-        this.width = 100;
-        this.height = 90;
+
         this.setPercentage(100);
     }
-
 
     setPercentage(percentage) {
         this.percentage = percentage;
@@ -44,5 +43,4 @@ class StatusBarCharacter extends DrawableObject {
             return 0;
         }
     }
-
 }

@@ -8,6 +8,7 @@ class World {
     sword;
     statusBarCharacter = new StatusBarCharacter();
     statusBarSword = new StatusBarSword();
+    statusBarEndboss = new StatusBarEndboss();
     throwableObjects = [];
     collectedSwords = [];
 
@@ -123,6 +124,7 @@ class World {
     addToFixedObjects() {
         this.addToMap(this.statusBarCharacter);
         this.addToMap(this.statusBarSword);
+        this.addToMap(this.statusBarEndboss);
     }
 
     /**
