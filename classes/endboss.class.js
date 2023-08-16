@@ -2,6 +2,10 @@ class Endboss extends MovableObject {
     width = 350;
     height = 400;
     y = 65;
+    offset_x = 0; // verschieben nach rechts
+    offset_y = 0; // verschieben nach unten
+    offset_width = 0; // verschieben der Box nach links
+    offset_height = 0; //verschieben der Box nach oben
 
     IMAGES_WALKING = [
         'img/golems-sprites/Golem_3/PNG/PNG Sequences/Run Throwing/0_Golem_Run Throwing_000.png',
@@ -30,7 +34,7 @@ class Endboss extends MovableObject {
         setInterval(() => {
             this.moveLeft();
         }, 1000 / 60);
-
+ 
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
             this.otherDirection = true;

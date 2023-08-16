@@ -2,6 +2,11 @@ class GolemSmall extends MovableObject {
     width = 60;
     height = 60;
     y= 355;
+    offset_x = -20; // verschieben nach rechts
+    offset_y = 0; // verschieben nach unten
+    offset_width = -50; // verschieben der Box nach links
+    offset_height = 0; //verschieben der Box nach oben
+
     IMAGES_WALKING = [
         'img/golems-sprites/Golem_1/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png',
         'img/golems-sprites/Golem_1/PNG/PNG Sequences/Walking/0_Golem_Walking_001.png',
@@ -32,7 +37,7 @@ class GolemSmall extends MovableObject {
     constructor() {
         super().loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png');
         this.loadImages(this.IMAGES_WALKING);
-        this.x = 100 + Math.random() * 3000;
+        this.x = 200 + Math.random() * 3000;
         this.speed = 0.15 + Math.random() * 0.2;
         this.animate();
     }

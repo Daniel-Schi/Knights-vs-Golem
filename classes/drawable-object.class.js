@@ -19,7 +19,7 @@ class DrawableObject {
             let img = new Image();
             img.src = path;
             this.imageCache[path] = img;
-        }); 
+        });
     }
 
 
@@ -28,13 +28,5 @@ class DrawableObject {
     }
 
 
-    drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Golem || this instanceof GolemSmall) {
-            ctx.beginPath();
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.lineWidth = 3;
-            ctx.strokeStyle = 'blue';
-            ctx.stroke();
-        }
-    }
+   
 }

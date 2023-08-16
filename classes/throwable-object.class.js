@@ -34,9 +34,9 @@ class ThrowableObject extends MovableObject {
             otherDirection = world.character.otherDirection;
             if (!otherDirection) {
                 this.x += 10;
-            }
+            } 
             if (otherDirection) {
-                this.x -= 10;
+                this.x -= 10;             
             }
         }, 25);
     }

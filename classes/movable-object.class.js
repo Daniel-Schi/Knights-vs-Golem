@@ -58,7 +58,7 @@ class MovableObject extends DrawableObject {
     }
 
 
-    loadAnimation(images) {
+    playSingleAnimation(images) {
         let animationImages = images.map((path) => {
             const img = new Image();
             img.src = path;
@@ -78,18 +78,14 @@ class MovableObject extends DrawableObject {
     }
 
 
-    isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height;
+    isColliding(obj, reduceLeftDistance, reduceRightDistance, reduceUpperDistance, reduceLowerDistance) {
+        return (
+            this.x + this.width - this.offset_x >= obj.x + reduceLeftDistance &&
+            this.x + this.offset_width <= obj.x + obj.width - reduceRightDistance &&
+            this.y + this.height - this.offset_height >= obj.y + reduceUpperDistance &&
+            this.y + this.offset_y <= obj.y + obj.height - reduceLowerDistance
+        );
     }
-    // isColliding(mo) {
-    //     return this.x + this.width - this.offset.width > mo.x + mo.offset.x &&
-    //            this.y + this.height - this.offset.height > mo.y + mo.offset.y &&
-    //            this.x + this.offset.x < mo.x + mo.width - mo.offset.x &&
-    //            this.y + this.offset.y < mo.y + mo.height - mo.offset.y; 
-    // }
 
     moveRight() {
         this.x += this.speed;

@@ -32,6 +32,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
+            this.checkCollisionToCollectSwords();
         }, 100);
     }
 
@@ -46,18 +47,17 @@ class World {
 
 
     checkCollisions() {
-        this.checkCollisionToCollectSwords();
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy, 0, 0, 0, 0)) {
                 this.character.hit();
                 this.statusBarCharacter.setPercentage(this.character.energy);
             }
         });
     }
 
-    checkCollisionToCollectSwords () {
+    checkCollisionToCollectSwords() {
         this.level.swords.forEach((sword, index) => {
-            if (this.character.isColliding(sword)) {
+            if (this.character.isColliding(sword, 0, 0, 0, 0)) {
                 if (!this.collectedSwords.includes(sword)) { // wird nur ausgeführt, wenn Wert noch nicht vorhanden
                     this.collectedSwords.push(sword);
                     this.statusBarSword.setSwords(this.collectedSwords.length);
@@ -98,7 +98,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        this.drawFrame(mo);
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
@@ -134,5 +134,17 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.swords);
         this.addObjectsToMap(this.throwableObjects);
+    }
+
+
+    drawFrame(mo) {
+        if (mo instanceof Character || mo instanceof Golem || mo instanceof GolemSmall || mo instanceof Endboss) {
+            this.ctx.beginPath();
+            this.ctx.rect(mo.x, mo.y, mo.width, mo.height);
+            this.ctx.lineWidth = 3;
+            this.ctx.strokeStyle = 'blue';
+            this.ctx.stroke();
+
+        }
     }
 }

@@ -1,9 +1,12 @@
 class Character extends MovableObject {
-
     y = 190;
     width = 170;
     height = 150;
     speed = 5;
+    offset_x = 80; // verschieben nach rechts
+    offset_y = 10; // verschieben nach unten
+    offset_width = 90; // verschieben der Box nach links
+    offset_height = 20; //verschieben der Box nach oben
 
     IMAGES_WALKING = [
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_000.png',
@@ -98,7 +101,7 @@ class Character extends MovableObject {
 
         setInterval(() => {
             if (this.isReallyDead()) {
-                this.loadAnimation(this.IMAGES_REALLYDEAD);
+                this.playSingleAnimation(this.IMAGES_REALLYDEAD);
             } else if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
