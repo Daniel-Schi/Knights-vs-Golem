@@ -3,9 +3,9 @@ class Character extends MovableObject {
     width = 170;
     height = 150;
     speed = 5;
-    offset_x = 80; // verschieben nach rechts
+    offset_x = 70; // verschieben nach rechts
     offset_y = 10; // verschieben nach unten
-    offset_width = 90; // verschieben der Box nach links
+    offset_width = 70; // verschieben der Box nach links
     offset_height = 20; //verschieben der Box nach oben
 
     IMAGES_WALKING = [

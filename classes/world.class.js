@@ -6,6 +6,7 @@ class World {
     keyboard;
     camera_x = 0;
     sword;
+    endboss;
     statusBarCharacter = new StatusBarCharacter();
     statusBarSword = new StatusBarSword();
     statusBarEndboss = new StatusBarEndboss();
@@ -21,6 +22,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.endboss = this.level.endboss[0];
     }
 
 
@@ -34,6 +36,7 @@ class World {
             this.checkCollisions();
             this.checkThrowObjects();
             this.checkCollisionToCollectSwords();
+            this.checkCollisionsWithEndboss();
         }, 100);
     }
 
@@ -46,6 +49,14 @@ class World {
         }
     }
 
+    checkCollisionsWithEndboss() {
+        this.level.endboss.forEach((endboss) => {
+            if (this.character.isColliding(endboss, 100, 0, 300, 0)) {
+                this.character.hit();
+                this.statusBarCharacter.setPercentage(this.character.energy);
+            }
+        });
+    }
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
@@ -134,7 +145,9 @@ class World {
         this.addObjectsToMap(this.level.backgroundObject);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.level.swords);
+        this.addObjectsToMap(this.level.snow);
         this.addObjectsToMap(this.throwableObjects);
     }
 

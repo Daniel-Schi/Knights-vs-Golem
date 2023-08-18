@@ -2,9 +2,9 @@ class Golem extends MovableObject {
     width = 120;
     height = 100;
     y= 325;
-    offset_x = 40; // verschieben nach rechts
+    offset_x = 10; // verschieben nach rechts
     offset_y = 0; // verschieben nach unten
-    offset_width = 20; // verschieben der Box nach links
+    offset_width = 80; // verschieben der Box nach links
     offset_height = 0; //verschieben der Box nach oben
 
     IMAGES_WALKING = [

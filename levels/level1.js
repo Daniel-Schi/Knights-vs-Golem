@@ -7,8 +7,7 @@ const level1 = new Level(
         new GolemSmall(),
         new GolemSmall(),
         new GolemSmall(),
-        new GolemSmall(),
-        new Endboss()
+        new GolemSmall()        
     ],
     [
         new Clouds('img/battleground/PNG/Clouds_white/Shape8/clouds_shape8_4.png', -719, 0),
@@ -20,13 +19,22 @@ const level1 = new Level(
 
     ],
     [
+        new Snow('img/background-Winter/BG_01/Layers/Snow.png', -719, -3000),
+        new Snow('img/background-Winter/BG_01/Layers/Snow.png', 0, -3000),
+        new Snow('img/background-Winter/BG_01/Layers/Snow.png', 719, -3000),
+        new Snow('img/background-Winter/BG_01/Layers/Snow.png', 719 * 2, -3000),
+        new Snow('img/background-Winter/BG_01/Layers/Snow.png', 719 * 3, -3000),
+        new Snow('img/background-Winter/BG_01/Layers/Snow.png', 719 * 4, -3000),
+        new Snow('img/background-Winter/BG_01/Layers/Snow.png', 719 * 5, -3000)
+    ],
+    [
         new BackgroundObject('img/background-Winter/BG_01/Layers/Sky.png', -719, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/BG.png', -719, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Middle.png', -719, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Foreground.png', -719, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_01.png', -719, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_02.png', -719, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', -719, 0),
+        // new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', -719, 0),
 
         new BackgroundObject('img/background-Winter/BG_01/Layers/Sky.png', 0, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/BG.png', 0, 0),
@@ -34,7 +42,7 @@ const level1 = new Level(
         new BackgroundObject('img/background-Winter/BG_01/Layers/Foreground.png', 0, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_01.png', 0, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_02.png', 0, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 0, 0),
+        // new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 0, 0),
 
         new BackgroundObject('img/background-Winter/BG_01/Layers/Sky.png', 719, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/BG.png', 719, 0),
@@ -42,7 +50,7 @@ const level1 = new Level(
         new BackgroundObject('img/background-Winter/BG_01/Layers/Foreground.png', 719, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_01.png', 719, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_02.png', 719, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719, 0),
+        // new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719, 0),
 
         new BackgroundObject('img/background-Winter/BG_01/Layers/Sky.png', 719 * 2, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/BG.png', 719 * 2, 0),
@@ -50,7 +58,7 @@ const level1 = new Level(
         new BackgroundObject('img/background-Winter/BG_01/Layers/Foreground.png', 719 * 2, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_01.png', 719 * 2, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_02.png', 719 * 2, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719 * 2, 0),
+        // new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719 * 2, 0),
 
         new BackgroundObject('img/background-Winter/BG_01/Layers/Sky.png', 719 * 3, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/BG.png', 719 * 3, 0),
@@ -58,7 +66,7 @@ const level1 = new Level(
         new BackgroundObject('img/background-Winter/BG_01/Layers/Foreground.png', 719 * 3, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_01.png', 719 * 3, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_02.png', 719 * 3, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719 * 3, 0),
+        // new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719 * 3, 0),
 
         new BackgroundObject('img/background-Winter/BG_01/Layers/Sky.png', 719 * 4, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/BG.png', 719 * 4, 0),
@@ -66,7 +74,7 @@ const level1 = new Level(
         new BackgroundObject('img/background-Winter/BG_01/Layers/Foreground.png', 719 * 4, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_01.png', 719 * 4, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_02.png', 719 * 4, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719 * 4, 0),
+        // new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719 * 4, 0),
 
         new BackgroundObject('img/background-Winter/BG_01/Layers/Sky.png', 719 * 5, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/BG.png', 719 * 5, 0),
@@ -74,7 +82,7 @@ const level1 = new Level(
         new BackgroundObject('img/background-Winter/BG_01/Layers/Foreground.png', 719 * 5, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_01.png', 719 * 5, 0),
         new BackgroundObject('img/background-Winter/BG_01/Layers/Ground_02.png', 719 * 5, 0),
-        new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719 * 5, 0)
+        // new BackgroundObject('img/background-Winter/BG_01/Layers/Snow.png', 719 * 5, 0)
 
     ],
     [
@@ -83,6 +91,9 @@ const level1 = new Level(
         new Swords(),
         new Swords(),
         new Swords()
-        
+
+    ],
+    [
+        new Endboss()
     ],
 );
