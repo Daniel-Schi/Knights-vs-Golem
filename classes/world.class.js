@@ -60,7 +60,16 @@ class World {
     checkCollisionToEnemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy, 0, 0, 0, 0)) {
-                this.character.hit();
+                if (this.character.isAboveGround()) {
+                    if (!this.character.isDead()) {
+                        enemy.hit(100);
+                        this.character.jump();
+                    }
+                } else {
+                    if (!enemy.isDead() && !this.character.isHurt()) {
+                        this.character.hit(5);
+                    }
+                }
                 this.statusBarCharacter.setPercentage(this.character.energy);
             }
         });
@@ -71,9 +80,6 @@ class World {
             if (this.character.isColliding(endboss, 0, 0, 0, 0)) {
                 this.character.hit();
                 this.statusBarCharacter.setPercentage(this.character.energy);
-                console.log(
-                    'Treffer'
-                )
             }
         });
     }

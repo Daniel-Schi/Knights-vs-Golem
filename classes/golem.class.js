@@ -2,6 +2,7 @@ class Golem extends MovableObject {
     width = 120;
     height = 100;
     y= 325;
+    energy = 100;
     offset_x = 10; // verschieben nach rechts
     offset_y = 0; // verschieben nach unten
     offset_width = 80; // verschieben der Box nach links
@@ -56,6 +57,7 @@ class Golem extends MovableObject {
     constructor() {
         super().loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png');
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_DEAD);
 
         this.x = 200 + Math.random() * 3000;
         this.speed = 0.15 + Math.random() * 0.2;

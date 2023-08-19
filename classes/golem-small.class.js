@@ -1,7 +1,8 @@
 class GolemSmall extends MovableObject {
     width = 60;
     height = 60;
-    y= 355;
+    y = 355;
+    energy = 100;
     offset_x = -50; // verschieben nach rechts
     offset_y = 0; // verschieben nach unten
     offset_width = 0; // verschieben der Box nach links
@@ -31,12 +32,31 @@ class GolemSmall extends MovableObject {
         'img/golems-sprites/Golem_1/PNG/PNG Sequences/Walking/0_Golem_Walking_020.png',
         'img/golems-sprites/Golem_1/PNG/PNG Sequences/Walking/0_Golem_Walking_021.png',
         'img/golems-sprites/Golem_1/PNG/PNG Sequences/Walking/0_Golem_Walking_022.png',
-        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Walking/0_Golem_Walking_023.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Walking/0_Golem_Walking_023.png'
     ];
+    IMAGES_DAED = [
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_000.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_001.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_002.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_003.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_004.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_005.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_006.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_007.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_008.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_009.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_010.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_011.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_012.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_013.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png'
+    ];
+
 
     constructor() {
         super().loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png');
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_DAED);
         this.x = 200 + Math.random() * 3000;
         this.speed = 0.15 + Math.random() * 0.2;
         this.animate();
