@@ -1,11 +1,11 @@
 class Endboss extends MovableObject {
-    width = 350;
-    height = 400;
-    y = 65;
-    offset_x = 180; // verschieben nach rechts
-    offset_y = 50; // verschieben nach unten
-    offset_width = 360; // verschieben der Box nach links
-    offset_height = 50; //verschieben der Box nach oben
+    width = 300;
+    height = 350;
+    y = 120;
+    offset_x = 50; // verschieben nach rechts
+    offset_y = 0; // verschieben nach unten
+    offset_width = 100; // verschieben der Box nach links
+    offset_height = 0; //verschieben der Box nach oben
 
     IMAGES_WALKING = [
         'img/golems-sprites/Golem_3/PNG/PNG Sequences/Run Throwing/0_Golem_Run Throwing_000.png',

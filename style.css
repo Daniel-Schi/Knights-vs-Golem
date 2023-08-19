@@ -20,9 +20,9 @@ h1 {
     display: flex;
     position: relative;
     top: -10px;
-    color: rgb(50, 66, 16);
+    color: rgb(160, 0, 0);
     font-size: 40px;
     justify-content: space-between;
     width: 400px;
-    filter: drop-shadow(8px 8px 3px rgb(186, 194, 95));
+    filter: drop-shadow(8px 8px 3px rgb(234, 236, 202));
 }

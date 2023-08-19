@@ -10,8 +10,11 @@ class World {
     statusBarCharacter = new StatusBarCharacter();
     statusBarSword = new StatusBarSword();
     statusBarEndboss = new StatusBarEndboss();
+    statusBarMagicDrank = new StatusBarMagicDrank();
+    
     throwableObjects = [];
     collectedSwords = [];
+    collectedMagicDrank = [];
 
 
 
@@ -33,11 +36,16 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisionToEnemies();
-            this.checkThrowObjects();
-            this.checkCollisionToCollectSwords();
-            this.checkCollisionToEndboss();
+            this.checkCollisions();
         }, 100);
+    }
+
+    checkCollisions() {
+        this.checkCollisionToEnemies();
+        this.checkThrowObjects();
+        this.checkCollisionToCollectSwords();
+        this.checkCollisionToCollectMagicDrank();
+        this.checkCollisionToEndboss();
     }
 
     checkThrowObjects() {
@@ -49,20 +57,23 @@ class World {
         }
     }
 
-    checkCollisionToEndboss() {
-        this.level.endboss.forEach((endboss) => {
-            if (this.character.isColliding(endboss, 100, 0, 300, 0)) {
+    checkCollisionToEnemies() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy, 0, 0, 0, 0)) {
                 this.character.hit();
                 this.statusBarCharacter.setPercentage(this.character.energy);
             }
         });
     }
 
-    checkCollisionToEnemies() {
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy, 0, 0, 0, 0)) {
+    checkCollisionToEndboss() {
+        this.level.endboss.forEach((endboss) => {
+            if (this.character.isColliding(endboss, 0, 0, 0, 0)) {
                 this.character.hit();
                 this.statusBarCharacter.setPercentage(this.character.energy);
+                console.log(
+                    'Treffer'
+                )
             }
         });
     }
@@ -73,12 +84,25 @@ class World {
                 if (!this.collectedSwords.includes(sword)) { // wird nur ausgeführt, wenn Wert noch nicht vorhanden
                     this.collectedSwords.push(sword);
                     this.statusBarSword.setSwords(this.collectedSwords.length);
-                    this.level.swords.splice(index, 1); // Entferne die kollidierte Flasche aus dem Array und entferne Bild
+                    this.level.swords.splice(index, 1); // Entferne die kollidierte Schwert aus dem Array und entferne Bild
                 }
-
             }
         })
     }
+
+    checkCollisionToCollectMagicDrank() {
+        this.level.magicDrank.forEach((magicDrank, index) => {
+            if (this.character.isColliding(magicDrank, 0, 0, 0, 0)) {
+                if (!this.collectedMagicDrank.includes(magicDrank)) { // wird nur ausgeführt, wenn Wert noch nicht vorhanden
+                    this.collectedMagicDrank.push(magicDrank);
+                    this.statusBarMagicDrank.setMagicDrank(this.collectedMagicDrank.length);
+                    this.level.magicDrank.splice(index, 1); // Entferne die kollidierte Flasche aus dem Array und entferne Bild
+                }
+            }
+        })
+    }
+
+  
 
 
     draw() {
@@ -135,6 +159,7 @@ class World {
     addToFixedObjects() {
         this.addToMap(this.statusBarCharacter);
         this.addToMap(this.statusBarSword);
+        this.addToMap(this.statusBarMagicDrank);
         this.addToMap(this.statusBarEndboss);
     }
 
@@ -147,6 +172,7 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.level.swords);
+        this.addObjectsToMap(this.level.magicDrank);
         this.addObjectsToMap(this.level.snow);
         this.addObjectsToMap(this.throwableObjects);
     }

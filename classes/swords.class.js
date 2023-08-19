@@ -8,11 +8,10 @@ class Swords extends MovableObject {
     offset_width = 0;
     offset_height = 0;
 
-    IMAGE = ['img/icons-weapons/PNG/daggers (5).png']
+    IMAGE = ['img/icons-weapons/PNG/daggers (5).png',]
 
     constructor() {
         super().loadImage('img/icons-weapons/PNG/daggers (5).png');
         this.loadImage(this.IMAGE);
-
     }
 } 

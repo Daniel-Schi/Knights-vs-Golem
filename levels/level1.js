@@ -94,6 +94,13 @@ const level1 = new Level(
 
     ],
     [
+        new MagicDrank(),
+        new MagicDrank(),
+        new MagicDrank(),
+        new MagicDrank(),
+        new MagicDrank()
+    ],
+    [
         new Endboss()
     ],
 );
