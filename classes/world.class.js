@@ -33,10 +33,10 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisions();
+            this.checkCollisionToEnemies();
             this.checkThrowObjects();
             this.checkCollisionToCollectSwords();
-            this.checkCollisionsWithEndboss();
+            this.checkCollisionToEndboss();
         }, 100);
     }
 
@@ -49,7 +49,7 @@ class World {
         }
     }
 
-    checkCollisionsWithEndboss() {
+    checkCollisionToEndboss() {
         this.level.endboss.forEach((endboss) => {
             if (this.character.isColliding(endboss, 100, 0, 300, 0)) {
                 this.character.hit();
@@ -58,7 +58,7 @@ class World {
         });
     }
 
-    checkCollisions() {
+    checkCollisionToEnemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy, 0, 0, 0, 0)) {
                 this.character.hit();
@@ -159,7 +159,6 @@ class World {
             this.ctx.lineWidth = 3;
             this.ctx.strokeStyle = 'blue';
             this.ctx.stroke();
-
         }
     }
 }

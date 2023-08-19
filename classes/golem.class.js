@@ -34,6 +34,24 @@ class Golem extends MovableObject {
         'img/golems-sprites/Golem_2/PNG/PNG Sequences/Walking/0_Golem_Walking_023.png',
     ];
 
+    IMAGES_DEAD = [
+        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_000.png',
+        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_001.png',
+        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_002.png',
+        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_003.png',
+        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_004.png',
+        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_005.png',
+        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_006.png',
+        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_007.png',
+        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_008.png',
+        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_009.png',
+        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_010.png',
+        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_011.png',
+        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_012.png',
+        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_013.png',
+        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png'
+    ];
+
  
     constructor() {
         super().loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png');
@@ -54,6 +72,7 @@ class Golem extends MovableObject {
 
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
+            // this.playAnimation(this.IMAGES_DEAD);
             this.otherDirection = true;
         }, 200);
     }
