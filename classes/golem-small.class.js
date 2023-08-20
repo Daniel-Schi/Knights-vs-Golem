@@ -2,7 +2,7 @@ class GolemSmall extends MovableObject {
     width = 60;
     height = 60;
     y = 355;
-    energy = 100;
+    golemSmallDead = false;
     offset_x = -50; // verschieben nach rechts
     offset_y = 0; // verschieben nach unten
     offset_width = 0; // verschieben der Box nach links
@@ -34,7 +34,7 @@ class GolemSmall extends MovableObject {
         'img/golems-sprites/Golem_1/PNG/PNG Sequences/Walking/0_Golem_Walking_022.png',
         'img/golems-sprites/Golem_1/PNG/PNG Sequences/Walking/0_Golem_Walking_023.png'
     ];
-    IMAGES_DAED = [
+    IMAGES_DEAD = [
         'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_000.png',
         'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_001.png',
         'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_002.png',
@@ -56,7 +56,7 @@ class GolemSmall extends MovableObject {
     constructor() {
         super().loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png');
         this.loadImages(this.IMAGES_WALKING);
-        this.loadImages(this.IMAGES_DAED);
+        this.loadImages(this.IMAGES_DEAD);
         this.x = 200 + Math.random() * 3000;
         this.speed = 0.15 + Math.random() * 0.2;
         this.animate();
@@ -71,7 +71,11 @@ class GolemSmall extends MovableObject {
 
 
         setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
+            if (this.golemSmallDead) {
+                this.loadImages(this.IMAGES_DEAD);
+            } else {
+                this.playAnimation(this.IMAGES_WALKING);
+            }
             this.otherDirection = true;
         }, 200);
     }

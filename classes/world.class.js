@@ -11,7 +11,7 @@ class World {
     statusBarSword = new StatusBarSword();
     statusBarEndboss = new StatusBarEndboss();
     statusBarMagicDrank = new StatusBarMagicDrank();
-    
+
     throwableObjects = [];
     collectedSwords = [];
     collectedMagicDrank = [];
@@ -58,26 +58,30 @@ class World {
     }
 
     checkCollisionToEnemies() {
-        this.level.enemies.forEach((enemy) => {
+        this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy, 0, 0, 0, 0)) {
-                if (this.character.isAboveGround()) {
-                    if (!this.character.isDead()) {
-                        enemy.hit(100);
-                        this.character.jump();
+                if (this.character.isAboveGround() && this.character.speedY < 0) {
+                    this.character.jumpOnGolem = true;
+                    if (enemy instanceof Golem) {
+                        enemy.golemDead = true;
+                    } else if (enemy instanceof GolemSmall) {
+                        enemy.golemSmallDead = true;
                     }
-                } else {
-                    if (!enemy.isDead() && !this.character.isHurt()) {
-                        this.character.hit(5);
-                    }
+                    setTimeout(() => {
+                        this.level.enemies.splice(index, 1);
+                        this.character.jumpOnGolem = false;
+                    }, 1000);
+                } else if (!this.character.jumpOnGolem) {
+                    this.character.hit();
+                    this.statusBarCharacter.setPercentage(this.character.energy);
                 }
-                this.statusBarCharacter.setPercentage(this.character.energy);
             }
         });
     }
 
     checkCollisionToEndboss() {
         this.level.endboss.forEach((endboss) => {
-            if (this.character.isColliding(endboss, 0, 0, 0, 0)) {
+            if (this.character.isColliding(endboss, 50, 0, 100, 0)) {
                 this.character.hit();
                 this.statusBarCharacter.setPercentage(this.character.energy);
             }
@@ -108,7 +112,7 @@ class World {
         })
     }
 
-  
+
 
 
     draw() {

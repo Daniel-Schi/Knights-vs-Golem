@@ -1,8 +1,8 @@
 class Golem extends MovableObject {
     width = 120;
     height = 100;
-    y= 325;
-    energy = 100;
+    y = 325;
+    golemDead = false;
     offset_x = 10; // verschieben nach rechts
     offset_y = 0; // verschieben nach unten
     offset_width = 80; // verschieben der Box nach links
@@ -53,7 +53,7 @@ class Golem extends MovableObject {
         'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png'
     ];
 
- 
+
     constructor() {
         super().loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -68,13 +68,18 @@ class Golem extends MovableObject {
 
     animate() {
         setInterval(() => {
-            this.moveLeft();
+            if (!this.golemDead) {
+                this.moveLeft();
+            }
         }, 1000 / 60);
 
 
         setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-            // this.playAnimation(this.IMAGES_DEAD);
+            if (this.golemDead) {
+                this.loadImages(this.IMAGES_DEAD);
+            } else {
+                this.playAnimation(this.IMAGES_WALKING);
+            }
             this.otherDirection = true;
         }, 200);
     }

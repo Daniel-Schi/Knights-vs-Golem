@@ -3,10 +3,11 @@ class Character extends MovableObject {
     width = 170;
     height = 150;
     speed = 5;
+    jumpOnGolem = false;
     offset_x = 70; // verschieben nach rechts
-    offset_y = 10; // verschieben nach unten
+    offset_y = 20; // verschieben nach unten
     offset_width = 70; // verschieben der Box nach links
-    offset_height = 20; //verschieben der Box nach oben
+    offset_height = 40; //verschieben der Box nach oben
 
     IMAGES_WALKING = [
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_000.png',
