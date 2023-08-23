@@ -1,6 +1,6 @@
 class DrawableObject {
-    x = 30;
-    y = 334;
+    x = 100;
+    y = 150;
     img;
     width = 70;
     height = 70;
@@ -28,5 +28,13 @@ class DrawableObject {
     }
 
 
-   
+    drawFrame(ctx) {
+        if (this instanceof Character || this instanceof Golem || this instanceof GolemSmall || this instanceof Endboss) {
+            ctx.beginPath();
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = 'blue';
+            ctx.stroke();
+        }
+    }
 }

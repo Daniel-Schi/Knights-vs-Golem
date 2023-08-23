@@ -6,14 +6,15 @@ class Snow extends MovableObject {
     constructor(imagePath, x,y) {
         super().loadImage('img/background-Winter/BG_01/Layers/Snow.png');
         this.loadImage(imagePath);
-        this.y = -400 ;
+        this.y = y;
+        this.x = x;
         this.animate();
     }
 
     animate() {
         setInterval(() => {
-            this.moveUp();
-            this.speed = 0.15;
+            this.moveDown();
+            this.speed = 0.5;
         }, 1000 / 60);
     }
 }

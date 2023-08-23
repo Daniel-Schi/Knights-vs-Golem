@@ -14,7 +14,6 @@ class MovableObject extends DrawableObject {
     };
 
 
-
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -23,13 +22,14 @@ class MovableObject extends DrawableObject {
             }
         }, 1000 / 25);
     }
-
+    
+    // Pulls off energy from character when colliding.
     hit() {
         this.energy -= 2;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
-            this.lastHit = new Date().getTime();
+            this.lastHit = new Date().getTime(); // Time since 1.1.1970
         }
     }
 
@@ -89,16 +89,14 @@ class MovableObject extends DrawableObject {
 
     moveRight() {
         this.x += this.speed;
-        this.otherDirection = false;
     }
 
 
     moveLeft() {
         this.x -= this.speed;
-        this.otherDirection = true;
     }
 
-    moveUp() {
+    moveDown() {
         this.y += this.speed;
         this.otherDirection = true;
     }

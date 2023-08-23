@@ -1,13 +1,13 @@
 class Character extends MovableObject {
-    y = 190;
+    y = 80;
     width = 170;
     height = 150;
     speed = 5;
     jumpOnGolem = false;
     offset_x = 70; // verschieben nach rechts
-    offset_y = 20; // verschieben nach unten
+    offset_y = 0; // verschieben nach unten
     offset_width = 70; // verschieben der Box nach links
-    offset_height = 40; //verschieben der Box nach oben
+    offset_height = 0; //verschieben der Box nach oben
 
     IMAGES_WALKING = [
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_000.png',
@@ -48,7 +48,7 @@ class Character extends MovableObject {
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__DIE_009.png'
     ];
 
-    IMAGES_REALLYDEAD = [
+    IMAGE_REALLYDEAD = [
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__DIE_009.png'
     ];
 
@@ -74,7 +74,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
-        this.loadImages(this.IMAGES_REALLYDEAD);
+        this.loadImages(this.IMAGE_REALLYDEAD);
         this.loadImages(this.IMAGES_HURT);
         this.applyGravity();
         this.animate();
@@ -86,10 +86,12 @@ class Character extends MovableObject {
             this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
+                this.otherDirection = false;
                 this.walking_sound.play();
             }
             if (this.world.keyboard.LEFT && this.x > -500) {
                 this.moveLeft();
+                this.otherDirection = true;
                 this.walking_sound.play();
             }
             this.world.camera_x = -this.x + 50;
@@ -102,7 +104,7 @@ class Character extends MovableObject {
 
         setInterval(() => {
             if (this.isReallyDead()) {
-                this.playSingleAnimation(this.IMAGES_REALLYDEAD);
+                this.playSingleAnimation(this.IMAGE_REALLYDEAD);
             } else if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {

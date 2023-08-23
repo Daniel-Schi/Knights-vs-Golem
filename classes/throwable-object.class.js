@@ -1,53 +1,65 @@
 class ThrowableObject extends MovableObject {
-    throwInterval;
 
+    IMAGE_SWORD = ['img/icons-weapons/PNG/daggers (5).png'];
+    IMAGE_BLOOD = ['img/blood-icon/blood.png'];
     throw_sound = new Audio('audio/throw.wav');
-
+    isThrowing = false;
+    checkCollisionToEnemies;
 
     constructor(x, y, otherDirection) {
-        super().loadImage('img/icons-weapons/PNG/daggers (5).png');
+        super();
+        this.loadImage(this.IMAGE_BLOOD);
+        this.loadImage(this.IMAGE_SWORD);
         this.x = x;
         this.y = y;
         this.height = 60;
         this.width = 50;
         this.throw();
+        this.animate();
         this.otherDirection = otherDirection;
     }
 
     throw() {
-        this.speedY = 25;
+        this.isThrowing = true;
+        this.speedY = 20;
         this.applyGravity();
-        this.animate();
+        this.throw_sound.play();
+        this.throwIntervalFunction();
     }
 
-    animate(otherDirection) {
-        if (!this.isThrowing) {
-            this.isThrowing = true;
-            this.throw_sound.play();
-            this.throwInterval = this.throwIntervalFunction(otherDirection);
-            this.setTimeout = this.setTimeoutFunction();
-        }
-    }
-
-    throwIntervalFunction(otherDirection) {
+    throwIntervalFunction() {
         setInterval(() => {
-            otherDirection = world.character.otherDirection;
-            if (!otherDirection) {
+            const characterOtherDirection = world.character.otherDirection;
+            if (!characterOtherDirection) {
                 this.x += 10;
-            } 
-            if (otherDirection) {
-                this.x -= 10;             
+            }
+            if (characterOtherDirection) { 
+                this.x -= 10;
             }
         }, 25);
     }
 
-    setTimeoutFunction() {
-        setTimeout(() => {
-            clearInterval(this.throwInterval);
-            this.isThrowing = false;
-        }, 1000);
+
+    animate() {
+        setInterval(() => {
+            if (!this.isThrowing) {
+                if (this.y < 350) {
+                    this.loadImage(this.IMAGE_SWORD);
+                } else if (this.y > 350) {
+                    this.loadImage(this.IMAGE_BLOOD);
+                    // this.setTimeout = this.setTimeoutFunction();
+                }
+            }
+        }, 200)
     }
 
+
+    // setTimeoutFunction() {
+    //     setTimeout(() => {
+    //         clearInterval(this.throwInterval);
+    //         this.isThrowing = false;
+    //     }, 1000);
+    // }
 }
 
 

@@ -1,12 +1,11 @@
 let canvas;
 let world; 
 let keyboard = new Keyboard();
-
+let character = new MovableObject();
 
 function init(){
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    
 }
 
 

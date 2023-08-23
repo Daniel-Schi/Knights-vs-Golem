@@ -1,7 +1,7 @@
 class GolemSmall extends MovableObject {
     width = 60;
     height = 60;
-    y = 355;
+    y = 360;
     golemSmallDead = false;
     offset_x = -50; // verschieben nach rechts
     offset_y = 0; // verschieben nach unten
@@ -52,6 +52,7 @@ class GolemSmall extends MovableObject {
         'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png'
     ];
 
+    dead_sound = new Audio('audio/monster-dead.wav');
 
     constructor() {
         super().loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png');
@@ -73,6 +74,7 @@ class GolemSmall extends MovableObject {
         setInterval(() => {
             if (this.golemSmallDead) {
                 this.loadImages(this.IMAGES_DEAD);
+                this.dead_sound.play();
             } else {
                 this.playAnimation(this.IMAGES_WALKING);
             }

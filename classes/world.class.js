@@ -11,7 +11,6 @@ class World {
     statusBarSword = new StatusBarSword();
     statusBarEndboss = new StatusBarEndboss();
     statusBarMagicDrank = new StatusBarMagicDrank();
-
     throwableObjects = [];
     collectedSwords = [];
     collectedMagicDrank = [];
@@ -41,11 +40,11 @@ class World {
     }
 
     checkCollisions() {
-        this.checkCollisionToEnemies();
         this.checkThrowObjects();
+        this.checkCollisionToEnemies(); 
+        this.checkCollisionToEndboss();
         this.checkCollisionToCollectSwords();
         this.checkCollisionToCollectMagicDrank();
-        this.checkCollisionToEndboss();
     }
 
     checkThrowObjects() {
@@ -62,15 +61,15 @@ class World {
             if (this.character.isColliding(enemy, 0, 0, 0, 0)) {
                 if (this.character.isAboveGround() && this.character.speedY < 0) {
                     this.character.jumpOnGolem = true;
-                    if (enemy instanceof Golem) {
+                    if (enemy.Golem) {
                         enemy.golemDead = true;
-                    } else if (enemy instanceof GolemSmall) {
+                    } else if (enemy.GolemSmall) {
                         enemy.golemSmallDead = true;
                     }
                     setTimeout(() => {
                         this.level.enemies.splice(index, 1);
                         this.character.jumpOnGolem = false;
-                    }, 1000);
+                    }, 500);
                 } else if (!this.character.jumpOnGolem) {
                     this.character.hit();
                     this.statusBarCharacter.setPercentage(this.character.energy);
@@ -113,8 +112,6 @@ class World {
     }
 
 
-
-
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
@@ -124,8 +121,6 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
-
-
         // Draw wird immer wieder aufgerufen.
         let self = this;
         requestAnimationFrame(function () {
@@ -138,13 +133,11 @@ class World {
             this.addToMap(o)
         });
     }
-
     addToMap(mo) {
         if (mo.otherDirection) {
-            this.flipImage(mo);
-        }
+            this.flipImage(mo)}
         mo.draw(this.ctx);
-        this.drawFrame(mo);
+        mo.drawFrame(this.ctx)
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
@@ -188,13 +181,5 @@ class World {
     }
 
 
-    drawFrame(mo) {
-        if (mo instanceof Character || mo instanceof Golem || mo instanceof GolemSmall || mo instanceof Endboss) {
-            this.ctx.beginPath();
-            this.ctx.rect(mo.x, mo.y, mo.width, mo.height);
-            this.ctx.lineWidth = 3;
-            this.ctx.strokeStyle = 'blue';
-            this.ctx.stroke();
-        }
-    }
+    
 }
