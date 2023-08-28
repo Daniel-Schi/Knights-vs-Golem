@@ -22,7 +22,7 @@ class MovableObject extends DrawableObject {
             }
         }, 1000 / 25);
     }
-    
+
     // Pulls off energy from character when colliding.
     hit() {
         this.energy -= 2;
@@ -63,20 +63,22 @@ class MovableObject extends DrawableObject {
             const img = new Image();
             img.src = path;
             return img;
-        });
-        let frame = 0;
-        const animateFrame = () => {
-            this.img = animationImages[frame];
-            frame = (frame + 1) % animationImages.length;
-        };
-        const animationInterval = setInterval(animateFrame, 100);
-        setTimeout(() => {
-            clearInterval(animationInterval);
-            // Nur das letzte Bild der Animation beibehalten
-            this.img = this.imageCache[images[images.length - 1]];
-        }, 1000);
+        });   
+        this.singleAnimationSetTimeout(animationImages, images);
     }
 
+    singleAnimationSetTimeout(animationImages, images) {
+        let currentIndex  = 0;
+        const animateIndex = () => {
+            this.img = animationImages[currentIndex ];
+            currentIndex  = (currentIndex  + 1) % animationImages.length;
+        };
+        const animationInterval = setInterval(animateIndex, 100);
+        setTimeout(() => {
+            clearInterval(animationInterval);      
+            this.img = this.imageCache[images[images.length - 1]];  // Nur das letzte Bild der Animation beibehalten
+        }, 1000);
+    }
 
     isColliding(obj, reduceLeftDistance, reduceRightDistance, reduceUpperDistance, reduceLowerDistance) {
         return (

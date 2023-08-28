@@ -4,7 +4,7 @@ class ThrowableObject extends MovableObject {
     IMAGE_BLOOD = ['img/blood-icon/blood.png'];
     throw_sound = new Audio('audio/throw.wav');
     isThrowing = false;
-    checkCollisionToEnemies;
+    
 
     constructor(x, y, otherDirection) {
         super();
