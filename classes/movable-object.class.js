@@ -23,8 +23,16 @@ class MovableObject extends DrawableObject {
         }, 1000 / 25);
     }
 
+    isAboveGround() {
+        if (this instanceof ThrowableObject) { // Throwable Object should always fall
+            return this.y < 350;  
+        } else {
+            return this.y < 290;
+        }
+    }
+
     // Pulls off energy from character when colliding.
-    hit() {
+    characterHit() {
         this.energy -= 2;
         if (this.energy < 0) {
             this.energy = 0;
@@ -33,52 +41,23 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    
     isHurt() {
-        let timepassed = new Date().getTime() - this.lastHit;
+        let timepassed = new Date().getTime() - this.lastHit; 
         timepassed = timepassed / 1000;
-        return timepassed < 0.5;
+        return timepassed < 0.3;
     }
 
 
     isDead() {
-        return this.energy == 0;
+        return this.energy <= 0;
     }
 
+//durch die neue playSingleAnmitation nicht mehr notwendig
+    // isReallyDead() {
+    //     return this.energy === 0;
+    // } 
 
-    isReallyDead() {
-        return this.energy === 0;
-    }
-
-    isAboveGround() {
-        if (this instanceof ThrowableObject) { // Throwable Object should always fall
-            return true;
-        } else {
-            return this.y < 290;
-        }
-    }
-
-
-    playSingleAnimation(images) {
-        let animationImages = images.map((path) => {
-            const img = new Image();
-            img.src = path;
-            return img;
-        });   
-        this.singleAnimationSetTimeout(animationImages, images);
-    }
-
-    singleAnimationSetTimeout(animationImages, images) {
-        let currentIndex  = 0;
-        const animateIndex = () => {
-            this.img = animationImages[currentIndex ];
-            currentIndex  = (currentIndex  + 1) % animationImages.length;
-        };
-        const animationInterval = setInterval(animateIndex, 100);
-        setTimeout(() => {
-            clearInterval(animationInterval);      
-            this.img = this.imageCache[images[images.length - 1]];  // Nur das letzte Bild der Animation beibehalten
-        }, 1000);
-    }
 
     isColliding(obj, reduceLeftDistance, reduceRightDistance, reduceUpperDistance, reduceLowerDistance) {
         return (
@@ -91,16 +70,22 @@ class MovableObject extends DrawableObject {
 
     moveRight() {
         this.x += this.speed;
+        this.otherDirection = false;
     }
 
 
     moveLeft() {
         this.x -= this.speed;
+        this.otherDirection = true;
     }
 
     moveDown() {
         this.y += this.speed;
         this.otherDirection = true;
+    }
+
+    jump() {
+        this.speedY = 30;
     }
 
 
@@ -110,4 +95,45 @@ class MovableObject extends DrawableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
+    
+    playSingleAnimation(images) {
+        if (!this.currentImage) {
+            // Wenn es das erste Mal ist, dass die Animation gestartet wird,
+            // setzen Sie currentImage auf 0.
+            this.currentImage = 0;
+        }
+    
+        if (this.currentImage < images.length) {
+            let i = this.currentImage;
+            let path = images[i];
+            this.img = this.imageCache[path];
+            this.currentImage++;
+        } else {
+            // Wenn alle Bilder durchlaufen wurden, behalten Sie das letzte Bild bei.
+            let lastIndex = images.length - 1;
+            let lastImagePath = images[lastIndex];
+            this.img = this.imageCache[lastImagePath];
+        }
+    }
+    // playSingleAnimation(images) {
+    //     let animationImages = images.map((path) => {
+    //         const img = new Image();
+    //         img.src = path;
+    //         return img;
+    //     });   
+    //     this.setTimeoutAndCurrentIndex(animationImages, images);
+    // }
+
+    // setTimeoutAndCurrentIndex(animationImages, images) {
+    //     let currentIndex  = 0;
+    //     const animateIndex = () => {
+    //         this.img = animationImages[currentIndex ];
+    //         currentIndex  = (currentIndex  + 1) % animationImages.length;
+    //     };
+    //     const animationInterval = setInterval(animateIndex, 100);
+    //     setTimeout(() => {
+    //         clearInterval(animationInterval);      
+    //         this.img = this.imageCache[images[images.length - 1]];  // Nur das letzte Bild der Animation beibehalten
+    //     }, 1000);
+    // }
 }

@@ -2,12 +2,37 @@ let canvas;
 let world; 
 let keyboard = new Keyboard();
 let character = new MovableObject();
+win_Sound = new Audio('audio/win.wav');
 
 function init(){
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    // soundEffects();
 }
 
+// /**
+//  * Displays the game won screen and plays the corresponding audio.
+//  * Stops the game.
+//  */
+// function gameWon() {
+//     // document.getElementById('game-over-screen').classList.remove('d-none');
+//     win_Sound.play();
+//     stopGame();
+// }
+
+// /**
+//  * Stops the game by clearing all intervals.
+//  */
+// function stopGame() {
+//     clearAllIntervals();
+// }
+
+// /**
+//  * Clears all intervals (timeouts) that were set in the window.
+//  */
+// function clearAllIntervals() {
+//     for (let i = 1; i < 9999; i++) window.clearInterval(i);
+// }
 
 window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39) { // Arrow Right

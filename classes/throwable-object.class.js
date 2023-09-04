@@ -3,8 +3,8 @@ class ThrowableObject extends MovableObject {
     IMAGE_SWORD = ['img/icons-weapons/PNG/daggers (5).png'];
     IMAGE_BLOOD = ['img/blood-icon/blood.png'];
     throw_sound = new Audio('audio/throw.wav');
-    isThrowing = false;
-    
+    blood_sound = new Audio('audio/blood_splatter.mp3');
+    animationThrowingSword;
 
     constructor(x, y, otherDirection) {
         super();
@@ -20,7 +20,6 @@ class ThrowableObject extends MovableObject {
     }
 
     throw() {
-        this.isThrowing = true;
         this.speedY = 20;
         this.applyGravity();
         this.throw_sound.play();
@@ -33,7 +32,7 @@ class ThrowableObject extends MovableObject {
             if (!characterOtherDirection) {
                 this.x += 10;
             }
-            if (characterOtherDirection) { 
+            if (characterOtherDirection) {
                 this.x -= 10;
             }
         }, 25);
@@ -41,25 +40,30 @@ class ThrowableObject extends MovableObject {
 
 
     animate() {
-        setInterval(() => {
-            if (!this.isThrowing) {
-                if (this.y < 350) {
-                    this.loadImage(this.IMAGE_SWORD);
-                } else if (this.y > 350) {
-                    this.loadImage(this.IMAGE_BLOOD);
-                    // this.setTimeout = this.setTimeoutFunction();
-                }
+        this.animationThrowingSword = setInterval(() => {
+            if (world.endbossWasHit) {
+                this.splashBlood();
+            } else if (this.y < 300) {
+                this.loadImage(this.IMAGE_SWORD);   
+            } else {
+                this.splashBlood();
             }
-        }, 200)
+        }, 100)
     }
 
+    splashBlood() {
+        this.blood_sound.play();
+        this.loadImage(this.IMAGE_BLOOD);
+        this.stopImage(this.animationThrowingSword);
+    }
 
-    // setTimeoutFunction() {
-    //     setTimeout(() => {
-    //         clearInterval(this.throwInterval);
-    //         this.isThrowing = false;
-    //     }, 1000);
-    // }
+    stopImage(IMAGE_SWORD) {
+        clearInterval(IMAGE_SWORD);
+        setTimeout(() => {
+            this.loadImage('');
+        }, 100);
+    }
+  
 }
 
 

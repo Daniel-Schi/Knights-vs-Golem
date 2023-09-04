@@ -1,25 +1,31 @@
 class Endboss extends MovableObject {
-    width = 300;
-    height = 350;
-    y = 120;
-    offset_x = 50; // verschieben nach rechts
-    offset_y = 0; // verschieben nach unten
-    offset_width = 100; // verschieben der Box nach links
-    offset_height = 0; //verschieben der Box nach oben
 
     IMAGES_WALKING = [
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Run Throwing/0_Golem_Run Throwing_000.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Run Throwing/0_Golem_Run Throwing_001.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Run Throwing/0_Golem_Run Throwing_002.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Run Throwing/0_Golem_Run Throwing_003.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Run Throwing/0_Golem_Run Throwing_004.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Run Throwing/0_Golem_Run Throwing_005.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Run Throwing/0_Golem_Run Throwing_006.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Run Throwing/0_Golem_Run Throwing_007.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Run Throwing/0_Golem_Run Throwing_008.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Run Throwing/0_Golem_Run Throwing_009.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Run Throwing/0_Golem_Run Throwing_010.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Run Throwing/0_Golem_Run Throwing_011.png'
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_001.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_002.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_003.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_004.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_005.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_006.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_007.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_008.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_009.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_010.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_011.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_012.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_013.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_014.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_015.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_016.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_017.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_018.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_019.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_020.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_021.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_022.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_023.png'
+
     ];
 
     IMAGES_HURT = [
@@ -70,24 +76,154 @@ class Endboss extends MovableObject {
         'img/golems-sprites/Golem_3/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png'
     ];
 
+    IMAGES_IDLE = [
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_000.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_001.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_002.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_003.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_004.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_005.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_006.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_007.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_008.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_009.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_010.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_011.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_012.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_013.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_014.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_015.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_016.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_017.png'
+    ];
+
+    width = 300;
+    height = 350;
+    y = 120;
+    offset_x = 50; // verschieben nach rechts
+    offset_y = 0; // verschieben nach unten
+    offset_width = 100; // verschieben der Box nach links
+    offset_height = 0; //verschieben der Box nach oben
+    energy = 100;
+    world;
+    enemieDirection = 0;
+    toClose = false;
+
+    dead_Sound = new Audio('audio/monster-dead.wav');
+    
+
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_SPLASHING);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 3500;
+        this.loadImages(this.IMAGES_IDLE);
+        this.x = 500;
         this.animate();
+        this.direction;
+        this.otherDirection = true;
+    }
+
+    direction() {
+        setInterval(() => {
+            if (this.toClose == false) {
+                this.enemieDirection = Math.random();
+            }
+            this.speed = 0.4 + Math.random() * 0.2;
+        }, 2000);
     }
 
     animate() {
         setInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60);
- 
+            this.animateEnemies();
+        }, 160);
+
         setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-            this.otherDirection = true;
-        }, 200);
+            this.moveEnemies();
+        }, 1000 / 60);
     }
+
+    animateEnemies() {
+        if (this.isDead) {
+            this.playSingleAnimation(this.IMAGES_DEAD);
+        } else if (this.isHurt) {
+            this.playAnimation(this.IMAGES_HURT);
+        } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.8) {
+            this.playAnimation(this.IMAGES_WALKING);
+        } else {
+            this.playAnimation(this.IMAGES_IDLE);
+        }
+        // this.otherDirection = true;
+    }
+
+    moveEnemies() {
+        if (!this.isDead()) {
+            if (this.enemieDirection <= 0.2) {
+                this.moveRight();
+            } else if (this.enemieDirection >= 0.8) {
+                this.moveLeft();
+            } else {
+            }
+        }
+    }
+
+    // animate() {
+    //     setInterval(() => {
+    //         if (this.isDead) {
+    //             this.playAnimation(this.IMAGES_DEAD);
+    //         } else if (this.hurtEndboss) {
+    //             this.playAnimation(this.IMAGES_HURT);
+    //         } else if (this.isSplashing) {
+    //             this.playAnimation(this.IMAGES_SPLASHING);
+    //              this.isSplashing();
+    //         } else {
+    //             this.moveLeftEndboss();
+    //             this.playAnimation(this.IMAGES_WALKING);
+
+    //         }
+    //     }, 100);
+    // }
+    // // || this.moveRightEndboss()
+    // endbossHit() {
+    //     this.energy -= 20;
+    //     if (this.energy < 0) {
+    //         this.energy = 0;
+    //     } else {
+    //         this.lastHit = new Date().getTime();
+    //     }
+    // }
+
+    // hurtEndboss() {
+    //     this.hurtEndboss = true;
+    //     let timepassed = new Date().getTime() - this.lastHit;
+    //     timepassed = timepassed / 1000;
+    //     return timepassed < 0.3;
+    // }
+
+    // // isSplashing() {
+    // //     this.playAnimation(this.IMAGES_SPLASHING);
+    // // }
+
+    // isSplashing() {
+    //     this.isSplashing = true;
+    //     if(this.x < world.character.x + 200 && !this.isDead()) {
+    //         setTimeout(() => {
+    //             this.playAnimation(this.IMAGES_SPLASHING);
+    //         }, 1000);
+    //     }
+    // }
+
+    // // moveRightEndboss() {
+    // //     this.x < world.character.x + 100;
+    // //     this.otherDirection = false;
+    // //     this.isWalking = true;
+    // //     this.x += this.speed;
+    // // }
+
+    // moveLeftEndboss() {
+    //     this.otherDirection = true;
+    //     this.isWalking = true;
+    //     this.x -= this.speed;
+    // }
 }

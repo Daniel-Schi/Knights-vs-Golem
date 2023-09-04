@@ -1,13 +1,4 @@
 class GolemSmall extends MovableObject {
-    width = 60;
-    height = 60;
-    y = 360;
-    golemSmallDead = false;
-    offset_x = -50; // verschieben nach rechts
-    offset_y = 0; // verschieben nach unten
-    offset_width = 0; // verschieben der Box nach links
-    offset_height = 0; //verschieben der Box nach oben
-
     IMAGES_WALKING = [
         'img/golems-sprites/Golem_1/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png',
         'img/golems-sprites/Golem_1/PNG/PNG Sequences/Walking/0_Golem_Walking_001.png',
@@ -51,34 +42,106 @@ class GolemSmall extends MovableObject {
         'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_013.png',
         'img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png'
     ];
+    IMAGES_HURT = [
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Hurt/0_Golem_Hurt_000.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Hurt/0_Golem_Hurt_001.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Hurt/0_Golem_Hurt_002.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Hurt/0_Golem_Hurt_003.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Hurt/0_Golem_Hurt_004.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Hurt/0_Golem_Hurt_005.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Hurt/0_Golem_Hurt_006.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Hurt/0_Golem_Hurt_007.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Hurt/0_Golem_Hurt_008.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Hurt/0_Golem_Hurt_009.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Hurt/0_Golem_Hurt_010.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Hurt/0_Golem_Hurt_011.png'
+    ];
+    IMAGES_IDLE = [
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_000.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_001.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_002.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_003.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_004.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_005.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_006.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_007.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_008.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_009.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_010.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_011.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_012.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_013.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_014.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_015.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_016.png',
+        'img/golems-sprites/Golem_1/PNG/PNG Sequences/Idle/0_Golem_Idle_017.png'
+    ];
 
+    width = 60;
+    height = 60;
+    y = 360;
+    // enemyIsDead = false;
+    offset_x = -50; // verschieben nach rechts
+    offset_y = 0; // verschieben nach unten
+    offset_width = 0; // verschieben der Box nach links
+    offset_height = 0; //verschieben der Box nach oben
+    enemieDirection = 0;
+    toClose = false;
     dead_sound = new Audio('audio/monster-dead.wav');
 
     constructor() {
         super().loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 200 + Math.random() * 3000;
-        this.speed = 0.15 + Math.random() * 0.2;
+        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_IDLE);
+        this.x = 250 + Math.random() * 3000;
+        // this.speed = 0.15 + Math.random() * 0.2;
         this.animate();
+        this.direction;
     }
 
-
+    direction() {
+        setInterval(() => {
+            if (this.toClose == false) {
+                this.enemieDirection = Math.random();
+            }
+            this.speed = 0.5 + Math.random() * 0.9;
+        }, 2000);
+    }
 
     animate() {
         setInterval(() => {
-            this.moveLeft();
+            this.animateEnemies();
+        }, 100);
+        setInterval(() => {
+            this.moveEnemies();
         }, 1000 / 60);
 
+       
+    }
 
-        setInterval(() => {
-            if (this.golemSmallDead) {
-                this.loadImages(this.IMAGES_DEAD);
-                this.dead_sound.play();
+    animateEnemies() {
+        if (this.enemyIsDead) {
+            this.playSingleAnimation(this.IMAGES_DEAD);
+        } else if (this.isHurt) {
+            this.playAnimation(this.IMAGES_HURT);
+        } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.8) {
+            this.playAnimation(this.IMAGES_WALKING);
+        } else {
+            this.playAnimation(this.IMAGES_IDLE);
+        }
+        // this.otherDirection = true;
+    }
+
+    moveEnemies() {
+        if (!this.isDead()) {
+            if (this.enemieDirection <= 0.2) {
+                this.moveRight();
+            } else if (this.enemieDirection >= 0.8) {
+                this.moveLeft();
             } else {
-                this.playAnimation(this.IMAGES_WALKING);
             }
-            this.otherDirection = true;
-        }, 200);
+        }
     }
 }
