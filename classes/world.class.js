@@ -16,8 +16,8 @@ class World {
     throwableObjects = [];
     collectedSwords = [];
     collectedMagicDrank = [];
-    endbossWasHit = false;
-    endbossCollision = false;
+    // endbossWasHit = false;
+    // endbossCollision = false;
     swordIsThrown = false;
     endboss = this.level.endboss[0];
     gameMusic = new Audio('audio/music.wav');
@@ -85,9 +85,10 @@ class World {
             if (this.character.isColliding(enemy, 0, 0, 0, 0)) {
                 if (this.character.isAboveGround() && !this.character.isHurt() && this.character.speedY < 0)
                     enemy.enemyIsDead = true;
+                    this.level.enemies.splice(index, 1);
                 this.character.characterHit();
                 this.statusBarCharacter.setPercentage(this.character.energy);
-            } 
+            }
         });
     }
 
@@ -138,17 +139,17 @@ class World {
         enemy.enemieDirection = direction;
     }
 
-    checkWhoIsHurt(enemy) {
-        if (!enemy.isDead()) {
-            if (enemy instanceof Golem && enemy instanceof GolemSmall) {
-                // ratHurtSound.play();
-                enemy.hit(50);
-            } else if (enemy instanceof Endboss) {
-                // bossHurtSound.play();
-                enemy.hit(20);
-            }
-        }
-    }
+    // checkWhoIsHurt(enemy) {
+    //     if (!enemy.isDead()) {
+    //         if (enemy instanceof Golem && enemy instanceof GolemSmall) {
+    //             // ratHurtSound.play();
+    //             enemy.hit(50);
+    //         } else if (enemy instanceof Endboss) {
+    //             // bossHurtSound.play();
+    //             enemy.hit(20);
+    //         }
+    //     }
+    // }
 
     // checkCollisionToEnemies() {
     //     this.level.enemies.forEach((enemy, index) => {
@@ -190,19 +191,18 @@ class World {
                     if (!endboss.isHurt()) {
                         endboss.endbossHit();
                     }
-
-                    this.statusBarEndboss.setPercentage(this.endboss.energy);
+                    this.throwableObjects.forEach((object) => {
+                        if (object.isColliding(endboss) && !endboss.isDead) {
+                            object.setCollidedWithEnemy(true);
+                            this.endboss.endbossHit();
+                            this.statusBarEndboss.setPercentage(this.endboss.energy);
+                        }
+                    });
                 }
             })
         })
     }
-    // this.throwableObjects.forEach((object) => {
-    //     if (object.isColliding(endboss) && !endboss.isDead) {
-    //         object.setCollidedWithEnemy(true);
-    //         this.endboss.endbossHit();
-    //         this.statusBarEndboss.setPercentage(this.endboss.energy);
-    //     }
-    // });
+
 
 
     // checkCollisionToEndbossToThrowWithSword() {

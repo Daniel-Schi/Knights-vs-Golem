@@ -110,7 +110,7 @@ class Endboss extends MovableObject {
     toClose = false;
 
     dead_Sound = new Audio('audio/monster-dead.wav');
-    
+
 
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
@@ -146,9 +146,13 @@ class Endboss extends MovableObject {
 
     animateEnemies() {
         if (this.isDead) {
-            this.playSingleAnimation(this.IMAGES_DEAD);
-        } else if (this.isHurt) {
+            this.loadImage('img/golems-sprites/Golem_3/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
+        } else 
+        if (this.isHurt) {
             this.playAnimation(this.IMAGES_HURT);
+        } else if (this.isSplashing) {
+            this.playAnimation(this.IMAGES_SPLASHING);
+            this.isSplashing();
         } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.8) {
             this.playAnimation(this.IMAGES_WALKING);
         } else {
@@ -165,6 +169,15 @@ class Endboss extends MovableObject {
                 this.moveLeft();
             } else {
             }
+        }
+    }
+
+    isSplashing() {
+        this.isSplashing = true;
+        if(this.x < world.character.x + 200 && !this.isDead()) {
+            setTimeout(() => {
+                this.playAnimation(this.IMAGES_SPLASHING);
+            }, 1000);
         }
     }
 
@@ -205,14 +218,7 @@ class Endboss extends MovableObject {
     // //     this.playAnimation(this.IMAGES_SPLASHING);
     // // }
 
-    // isSplashing() {
-    //     this.isSplashing = true;
-    //     if(this.x < world.character.x + 200 && !this.isDead()) {
-    //         setTimeout(() => {
-    //             this.playAnimation(this.IMAGES_SPLASHING);
-    //         }, 1000);
-    //     }
-    // }
+  
 
     // // moveRightEndboss() {
     // //     this.x < world.character.x + 100;

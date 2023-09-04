@@ -97,25 +97,22 @@ class MovableObject extends DrawableObject {
     }
     
     playSingleAnimation(images) {
-        if (!this.currentImage) {
-            // Wenn es das erste Mal ist, dass die Animation gestartet wird,
-            // setzen Sie currentImage auf 0.
-            this.currentImage = 0;
+        if (!this.currentImage) {   // Wenn es das erste Mal ist, dass die Animation gestartet wird,                       
+            this.currentImage = 0;  // setzen Sie currentImage auf 0.
         }
-    
         if (this.currentImage < images.length) {
             let i = this.currentImage;
             let path = images[i];
             this.img = this.imageCache[path];
             this.currentImage++;
-        } else {
-            // Wenn alle Bilder durchlaufen wurden, behalten Sie das letzte Bild bei.
+        } else {  // Wenn alle Bilder durchlaufen wurden, behalten Sie das letzte Bild bei.
             let lastIndex = images.length - 1;
             let lastImagePath = images[lastIndex];
             this.img = this.imageCache[lastImagePath];
         }
     }
-    // playSingleAnimation(images) {
+
+    // playEndbossAnimation(images) {
     //     let animationImages = images.map((path) => {
     //         const img = new Image();
     //         img.src = path;

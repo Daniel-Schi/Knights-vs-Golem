@@ -96,7 +96,6 @@ class GolemSmall extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_IDLE);
         this.x = 250 + Math.random() * 3000;
-        // this.speed = 0.15 + Math.random() * 0.2;
         this.animate();
         this.direction;
     }
