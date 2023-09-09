@@ -84,13 +84,15 @@ class Golem extends MovableObject {
     height = 100;
     x;
     y = 325;
-    // enemyIsDead = false;
-    offset_x = 10; // verschieben nach rechts
+    enemyIsDead = false;
+    offset_x = 20; // verschieben nach rechts
     offset_y = 0; // verschieben nach unten
-    offset_width = 80; // verschieben der Box nach links
+    offset_width = 40; // verschieben der Box nach links
     offset_height = 0; //verschieben der Box nach oben
     enemieDirection = 0;
     toClose = false;
+    energy = 100;
+
 
     constructor() {
         super().loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png');
@@ -127,26 +129,23 @@ class Golem extends MovableObject {
 
     animateEnemies() {
         if (this.enemyIsDead) {
-            this.playSingleAnimation(this.IMAGES_DEAD);
-        } else if (this.isHurt) {
+            this.loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
+        } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
-        } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.8) {
+        } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.6) {
             this.playAnimation(this.IMAGES_WALKING);
         } else {
             this.playAnimation(this.IMAGES_IDLE);
         }
-        // this.otherDirection = true;
     }
 
     moveEnemies() {
-        if (!this.isDead()) {
+        if (!this.enemyIsDead) {
             if (this.enemieDirection <= 0.2) {
                 this.moveRight();
-            } else if (this.enemieDirection >= 0.8) {
+            } else if (this.enemieDirection >= 0.6) {
                 this.moveLeft();
-            } else {
             }
         }
     }
-
 }    

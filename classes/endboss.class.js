@@ -1,4 +1,24 @@
 class Endboss extends MovableObject {
+    IMAGES_IDLE = [
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_000.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_001.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_002.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_003.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_004.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_005.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_006.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_007.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_008.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_009.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_010.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_011.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_012.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_013.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_014.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_015.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_016.png',
+        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_017.png'
+    ];
 
     IMAGES_WALKING = [
         'img/golems-sprites/Golem_3/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png',
@@ -76,26 +96,7 @@ class Endboss extends MovableObject {
         'img/golems-sprites/Golem_3/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png'
     ];
 
-    IMAGES_IDLE = [
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_000.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_001.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_002.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_003.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_004.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_005.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_006.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_007.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_008.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_009.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_010.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_011.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_012.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_013.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_014.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_015.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_016.png',
-        'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_017.png'
-    ];
+   
 
     width = 300;
     height = 350;
@@ -108,6 +109,7 @@ class Endboss extends MovableObject {
     world;
     enemieDirection = 0;
     toClose = false;
+    isSplashing = false;
 
     dead_Sound = new Audio('audio/monster-dead.wav');
 
@@ -122,7 +124,7 @@ class Endboss extends MovableObject {
         this.x = 500;
         this.animate();
         this.direction;
-        this.otherDirection = true;
+        this.otherDirection = false;
     }
 
     direction() {
@@ -130,7 +132,7 @@ class Endboss extends MovableObject {
             if (this.toClose == false) {
                 this.enemieDirection = Math.random();
             }
-            this.speed = 0.4 + Math.random() * 0.2;
+            this.speed = 0.4 + Math.random() * 0.9;
         }, 2000);
     }
 
@@ -145,41 +147,38 @@ class Endboss extends MovableObject {
     }
 
     animateEnemies() {
-        if (this.isDead) {
+        if (this.isDead()) {
             this.loadImage('img/golems-sprites/Golem_3/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
-        } else 
-        if (this.isHurt) {
+        } else if (this.isHurt(0.3)) {
             this.playAnimation(this.IMAGES_HURT);
         } else if (this.isSplashing) {
             this.playAnimation(this.IMAGES_SPLASHING);
-            this.isSplashing();
-        } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.8) {
+        } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.6) {
             this.playAnimation(this.IMAGES_WALKING);
         } else {
             this.playAnimation(this.IMAGES_IDLE);
         }
-        // this.otherDirection = true;
     }
 
     moveEnemies() {
         if (!this.isDead()) {
             if (this.enemieDirection <= 0.2) {
                 this.moveRight();
-            } else if (this.enemieDirection >= 0.8) {
+            } else if (this.enemieDirection >= 0.6) {
                 this.moveLeft();
             } else {
             }
         }
     }
 
-    isSplashing() {
-        this.isSplashing = true;
-        if(this.x < world.character.x + 200 && !this.isDead()) {
-            setTimeout(() => {
-                this.playAnimation(this.IMAGES_SPLASHING);
-            }, 1000);
-        }
-    }
+    // isSplashing() {
+    //     this.isSplashing = true;
+    //     if(this.x < world.character.x + 200 && !this.isDead()) {
+    //         setTimeout(() => {
+    //             this.playAnimation(this.IMAGES_SPLASHING);
+    //         }, 1000);
+    //     }
+    // }
 
     // animate() {
     //     setInterval(() => {
@@ -214,9 +213,7 @@ class Endboss extends MovableObject {
     //     return timepassed < 0.3;
     // }
 
-    // // isSplashing() {
-    // //     this.playAnimation(this.IMAGES_SPLASHING);
-    // // }
+ 
 
   
 

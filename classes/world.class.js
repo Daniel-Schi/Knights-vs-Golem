@@ -16,10 +16,11 @@ class World {
     throwableObjects = [];
     collectedSwords = [];
     collectedMagicDrank = [];
-    // endbossWasHit = false;
-    // endbossCollision = false;
     swordIsThrown = false;
+    jumpOnGolem = false;
     endboss = this.level.endboss[0];
+    isImune = false;
+
     gameMusic = new Audio('audio/music.wav');
     endbossMusic = new Audio('audio/endboss-music.wav');
 
@@ -31,12 +32,12 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        // this.endboss = this.level.endboss[0];
     }
 
 
     setWorld() {
         this.character.world = this;
+        this.endboss.world = this;
     }
 
 
@@ -55,7 +56,8 @@ class World {
         this.checkCollisionToCollectSwords();
         this.checkCollisionToCollectMagicDrank();
         this.checkCollisonSwordWithEndboss();
-        this.checkPositions();
+        this.checkPositions(this.level.enemies);
+        this.checkPositions(this.level.endboss);
         this.checkEndboss();
         // this.checkCollisionToEndbossToThrowWithSword();
     }
@@ -80,20 +82,30 @@ class World {
         }
     }
 
+
     checkCollisionToEnemies() {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy, 0, 0, 0, 0)) {
-                if (this.character.isAboveGround() && !this.character.isHurt() && this.character.speedY < 0)
+                if (this.character.isAboveGround() && !this.character.isHurt() && this.character.speedY < 0) {
+                    this.character.jumpOnGolem = true;
                     enemy.enemyIsDead = true;
-                    this.level.enemies.splice(index, 1);
-                this.character.characterHit();
-                this.statusBarCharacter.setPercentage(this.character.energy);
+                    this.character.speedY = 20;
+                } else {
+                    this.character.hit(2);
+                    this.statusBarCharacter.setPercentage(this.character.energy);
+                }
+                if (enemy.enemyIsDead) {
+                    setTimeout(() => {
+                        this.level.enemies.splice(index, 1);
+                    }, 1000);
+                }
             }
         });
     }
 
-    checkPositions() {
-        this.level.enemies.forEach(enemy => {
+
+    checkPositions(enemies) {
+        enemies.forEach(enemy => {
             let distance = enemy.x - this.character.x;
             setTimeout(() => {
                 if (distance <= 400 && !(distance <= 200)) {
@@ -135,49 +147,16 @@ class World {
     }
 
     setDirection(enemy, direction, boolValue) {
-        enemy.attackCharacter = boolValue;
+        enemy.isSplashing = boolValue;
         enemy.enemieDirection = direction;
     }
 
-    // checkWhoIsHurt(enemy) {
-    //     if (!enemy.isDead()) {
-    //         if (enemy instanceof Golem && enemy instanceof GolemSmall) {
-    //             // ratHurtSound.play();
-    //             enemy.hit(50);
-    //         } else if (enemy instanceof Endboss) {
-    //             // bossHurtSound.play();
-    //             enemy.hit(20);
-    //         }
-    //     }
-    // }
-
-    // checkCollisionToEnemies() {
-    //     this.level.enemies.forEach((enemy, index) => {
-    //         if (this.character.isColliding(enemy, 0, 0, 0, 0)) {
-    //             if (this.character.isAboveGround() && this.character.speedY < 0) {
-    //                 this.character.jumpOnGolem = true;
-    //                 if (Golem) {
-    //                     enemy.golemDead = true;
-    //                 } else if (enemy.GolemSmall) {
-    //                     enemy.golemSmallDead = true;
-    //                 }enemy.
-    //                 setTimeout(() => {
-    //                     this.level.enemies.splice(index, 1);
-    //                     this.character.jumpOnGolem = false;
-    //                 }, 500);
-    //             } else if (!this.character.jumpOnGolem) {
-    //                 this.character.hit();
-    //                 this.statusBarCharacter.setPercentage(this.character.energy);
-    //             }
-    //         }
-    //     });
-    // }
 
 
     checkCollisionToEndboss() {
         this.level.endboss.forEach((endboss) => {
             if (this.character.isColliding(endboss, 30, 0, 130, 0)) {
-                this.character.characterHit();
+                this.character.hit(2);
                 this.statusBarCharacter.setPercentage(this.character.energy);
             }
         })
@@ -185,22 +164,33 @@ class World {
 
     checkCollisonSwordWithEndboss() {
         this.level.endboss.forEach((endboss) => {
-            this.throwableObjects.forEach((sword, index) => {
-                if (sword.isColliding(endboss)) {
-                    this.level.swords.splice(index, 1);
-                    if (!endboss.isHurt()) {
-                        endboss.endbossHit();
-                    }
-                    this.throwableObjects.forEach((object) => {
-                        if (object.isColliding(endboss) && !endboss.isDead) {
-                            object.setCollidedWithEnemy(true);
-                            this.endboss.endbossHit();
-                            this.statusBarEndboss.setPercentage(this.endboss.energy);
-                        }
-                    });
+            this.throwableObjects.forEach((sword) => {
+                if (this.endboss.isColliding(sword, 0, 0, 0, 0) && !this.isImune) {
+                    this.getImune(500)
+                    this.endboss.hit(20);
+                    console.log('hit', this.endboss.energy);
+
+                    this.stopGameIfEndbossIsDead(endboss);
+                    this.statusBarEndboss.setPercentage(this.endboss.energy);
                 }
-            })
+            });
         })
+    }
+
+    getImune(time) {
+        this.isImune = true;
+        setTimeout(() => {
+            this.isImune = false;
+        }, time);
+    }
+
+    stopGameIfEndbossIsDead(endboss) {
+        if (endboss.isDead()) {
+            this.endboss.speed = 0;
+            setTimeout(() => {
+                clearAllIntervals();
+            }, 500);
+        }
     }
 
 

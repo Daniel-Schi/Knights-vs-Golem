@@ -20,20 +20,23 @@ class MovableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             }
+            if (!this.isAboveGround()) {
+                this.y = 305;
+            }
         }, 1000 / 25);
     }
 
     isAboveGround() {
         if (this instanceof ThrowableObject) { // Throwable Object should always fall
-            return this.y < 350;  
+            return this.y < 350;
         } else {
             return this.y < 290;
         }
     }
 
     // Pulls off energy from character when colliding.
-    characterHit() {
-        this.energy -= 2;
+    hit(damage) {
+        this.energy -= damage;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
@@ -41,11 +44,11 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    
-    isHurt() {
-        let timepassed = new Date().getTime() - this.lastHit; 
+
+    isHurt(time) {
+        let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
-        return timepassed < 0.3;
+        return timepassed < time;
     }
 
 
@@ -53,7 +56,7 @@ class MovableObject extends DrawableObject {
         return this.energy <= 0;
     }
 
-//durch die neue playSingleAnmitation nicht mehr notwendig
+    //durch die neue playSingleAnmitation nicht mehr notwendig
     // isReallyDead() {
     //     return this.energy === 0;
     // } 
@@ -95,7 +98,7 @@ class MovableObject extends DrawableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
-    
+
     playSingleAnimation(images) {
         if (!this.currentImage) {   // Wenn es das erste Mal ist, dass die Animation gestartet wird,                       
             this.currentImage = 0;  // setzen Sie currentImage auf 0.

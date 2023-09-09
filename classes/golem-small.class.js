@@ -80,11 +80,11 @@ class GolemSmall extends MovableObject {
     width = 60;
     height = 60;
     y = 360;
-    // enemyIsDead = false;
-    offset_x = -50; // verschieben nach rechts
+    enemyIsDead = false;
+    offset_x = 0; // verschieben nach rechts
     offset_y = 0; // verschieben nach unten
     offset_width = 0; // verschieben der Box nach links
-    offset_height = 0; //verschieben der Box nach oben
+    offset_height = 50; //verschieben der Box nach oben
     enemieDirection = 0;
     toClose = false;
     dead_sound = new Audio('audio/monster-dead.wav');
@@ -117,29 +117,27 @@ class GolemSmall extends MovableObject {
             this.moveEnemies();
         }, 1000 / 60);
 
-       
+
     }
 
     animateEnemies() {
         if (this.enemyIsDead) {
-            this.playSingleAnimation(this.IMAGES_DEAD);
-        } else if (this.isHurt) {
+            this.loadImage('img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
+        } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
-        } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.8) {
+        } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.3) {
             this.playAnimation(this.IMAGES_WALKING);
         } else {
             this.playAnimation(this.IMAGES_IDLE);
         }
-        // this.otherDirection = true;
     }
 
     moveEnemies() {
-        if (!this.isDead()) {
+        if (!this.enemyIsDead) {
             if (this.enemieDirection <= 0.2) {
                 this.moveRight();
-            } else if (this.enemieDirection >= 0.8) {
+            } else if (this.enemieDirection >= 0.3) {
                 this.moveLeft();
-            } else {
             }
         }
     }

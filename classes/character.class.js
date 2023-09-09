@@ -61,9 +61,9 @@ class Character extends MovableObject {
     height = 150;
     speed = 15;
     jumpOnGolem = false;
-    offset_x = 70; // verschieben nach rechts
+    offset_x = 60; // verschieben nach rechts
     offset_y = 0; // verschieben nach unten
-    offset_width = 100; // verschieben der Box nach links
+    offset_width = 80; // verschieben der Box nach links
     offset_height = 0; //verschieben der Box nach oben
     world;
     
@@ -83,6 +83,8 @@ class Character extends MovableObject {
         // this.isJumping = false;
     }
 
+
+
     animate() {
         setInterval(() => {
             this.movesCharacter();
@@ -95,7 +97,9 @@ class Character extends MovableObject {
 
     movesCharacter() {
         this.walking_sound.pause();
+       
         if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+           
             this.moveRight();
             this.otherDirection = false;
             this.walking_sound.play();
@@ -112,13 +116,10 @@ class Character extends MovableObject {
         this.world.camera_x = -this.x + 50;
     }
 
-    animationsCharacter() {
-        // if (this.isReallyDead()) {
-        //     this.playSingleAnimation(this.IMAGE_REALLYDEAD);    <==== durch die neue playSingleAnmitation nicht mehr notwendig
-        // } else  
+    animationsCharacter() { 
          if (this.isDead()) {
             this.playSingleAnimation(this.IMAGES_DEAD);
-        } else if (this.isHurt()) {
+        } else if (this.isHurt(0.3)) {
             this.playAnimation(this.IMAGES_HURT);
             this.hurt_sound.play();
         } else if (this.isAboveGround()) {

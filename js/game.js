@@ -27,12 +27,12 @@ function init(){
 //     clearAllIntervals();
 // }
 
-// /**
-//  * Clears all intervals (timeouts) that were set in the window.
-//  */
-// function clearAllIntervals() {
-//     for (let i = 1; i < 9999; i++) window.clearInterval(i);
-// }
+/**
+ * Clears all intervals (timeouts) that were set in the window.
+ */
+function clearAllIntervals() {
+    for (let i = 1; i < 9999; i++) window.clearInterval(i);
+}
 
 window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39) { // Arrow Right
