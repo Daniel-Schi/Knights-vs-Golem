@@ -121,7 +121,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_SPLASHING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_IDLE);
-        this.x = 500;
+        this.x = 3500;
         this.animate();
         this.direction;
         this.otherDirection = false;
@@ -132,7 +132,7 @@ class Endboss extends MovableObject {
             if (this.toClose == false) {
                 this.enemieDirection = Math.random();
             }
-            this.speed = 0.4 + Math.random() * 0.9;
+            this.speed = 0.8 + Math.random() * 0.9;
         }, 2000);
     }
 
@@ -149,10 +149,11 @@ class Endboss extends MovableObject {
     animateEnemies() {
         if (this.isDead()) {
             this.loadImage('img/golems-sprites/Golem_3/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
-        } else if (this.isHurt(0.3)) {
+        } else if (this.isHurt) {
             this.playAnimation(this.IMAGES_HURT);
         } else if (this.isSplashing) {
             this.playAnimation(this.IMAGES_SPLASHING);
+            this.speed = 2;
         } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.6) {
             this.playAnimation(this.IMAGES_WALKING);
         } else {
@@ -170,63 +171,4 @@ class Endboss extends MovableObject {
             }
         }
     }
-
-    // isSplashing() {
-    //     this.isSplashing = true;
-    //     if(this.x < world.character.x + 200 && !this.isDead()) {
-    //         setTimeout(() => {
-    //             this.playAnimation(this.IMAGES_SPLASHING);
-    //         }, 1000);
-    //     }
-    // }
-
-    // animate() {
-    //     setInterval(() => {
-    //         if (this.isDead) {
-    //             this.playAnimation(this.IMAGES_DEAD);
-    //         } else if (this.hurtEndboss) {
-    //             this.playAnimation(this.IMAGES_HURT);
-    //         } else if (this.isSplashing) {
-    //             this.playAnimation(this.IMAGES_SPLASHING);
-    //              this.isSplashing();
-    //         } else {
-    //             this.moveLeftEndboss();
-    //             this.playAnimation(this.IMAGES_WALKING);
-
-    //         }
-    //     }, 100);
-    // }
-    // // || this.moveRightEndboss()
-    // endbossHit() {
-    //     this.energy -= 20;
-    //     if (this.energy < 0) {
-    //         this.energy = 0;
-    //     } else {
-    //         this.lastHit = new Date().getTime();
-    //     }
-    // }
-
-    // hurtEndboss() {
-    //     this.hurtEndboss = true;
-    //     let timepassed = new Date().getTime() - this.lastHit;
-    //     timepassed = timepassed / 1000;
-    //     return timepassed < 0.3;
-    // }
-
- 
-
-  
-
-    // // moveRightEndboss() {
-    // //     this.x < world.character.x + 100;
-    // //     this.otherDirection = false;
-    // //     this.isWalking = true;
-    // //     this.x += this.speed;
-    // // }
-
-    // moveLeftEndboss() {
-    //     this.otherDirection = true;
-    //     this.isWalking = true;
-    //     this.x -= this.speed;
-    // }
 }

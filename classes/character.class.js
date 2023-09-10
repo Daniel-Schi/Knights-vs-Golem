@@ -62,11 +62,11 @@ class Character extends MovableObject {
     speed = 15;
     jumpOnGolem = false;
     offset_x = 60; // verschieben nach rechts
-    offset_y = 0; // verschieben nach unten
+    offset_y = 5; // verschieben nach unten
     offset_width = 80; // verschieben der Box nach links
-    offset_height = 0; //verschieben der Box nach oben
+    offset_height = 10; //verschieben der Box nach oben
     world;
-    
+
     walking_sound = new Audio('audio/walking-snow.wav');
     hurt_sound = new Audio('audio/hurt1.wav');
     jump_sound = new Audio('audio/jump.wav');
@@ -76,14 +76,14 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
-        // this.loadImages(this.IMAGE_REALLYDEAD);  <=== durch die neue playSingleAnmitation nicht mehr notwendig
         this.loadImages(this.IMAGES_HURT);
         this.applyGravity();
         this.animate();
-        // this.isJumping = false;
     }
 
-
+    isFalling() {
+        return this.isAboveGround() && this.speedY < 0;
+    }
 
     animate() {
         setInterval(() => {
@@ -97,9 +97,9 @@ class Character extends MovableObject {
 
     movesCharacter() {
         this.walking_sound.pause();
-       
+
         if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-           
+
             this.moveRight();
             this.otherDirection = false;
             this.walking_sound.play();
@@ -116,10 +116,10 @@ class Character extends MovableObject {
         this.world.camera_x = -this.x + 50;
     }
 
-    animationsCharacter() { 
-         if (this.isDead()) {
+    animationsCharacter() {
+        if (this.isDead()) {
             this.playSingleAnimation(this.IMAGES_DEAD);
-        } else if (this.isHurt(0.3)) {
+        } else if (this.isHurt) {
             this.playAnimation(this.IMAGES_HURT);
             this.hurt_sound.play();
         } else if (this.isAboveGround()) {

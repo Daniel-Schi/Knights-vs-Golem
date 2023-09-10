@@ -25,6 +25,8 @@ class World {
     endbossMusic = new Audio('audio/endboss-music.wav');
 
 
+
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -50,6 +52,7 @@ class World {
         }, 300);
     }
 
+
     checkCollisions() {
         this.checkCollisionToEnemies();
         this.checkCollisionToEndboss();
@@ -59,18 +62,9 @@ class World {
         this.checkPositions(this.level.enemies);
         this.checkPositions(this.level.endboss);
         this.checkEndboss();
-        // this.checkCollisionToEndbossToThrowWithSword();
     }
 
-    checkEndboss() {
-        if (this.character.x <= 300 || this.endboss.isDead()) {
-            // this.gameMusic.play();
-            // this.endbossMusic.pause();
-        } else {
-            this.gameMusic.pause();
-            // this.endbossMusic.play();
-        }
-    }
+
 
     checkThrowObjects() {
         if (this.keyboard.F && this.collectedSwords.length > 0) {
@@ -80,27 +74,6 @@ class World {
             this.statusBarSword.setSwords(this.collectedSwords.length); // Wert an StatusBarBottles übergeben
             this.swordIsThrown = true;
         }
-    }
-
-
-    checkCollisionToEnemies() {
-        this.level.enemies.forEach((enemy, index) => {
-            if (this.character.isColliding(enemy, 0, 0, 0, 0)) {
-                if (this.character.isAboveGround() && !this.character.isHurt() && this.character.speedY < 0) {
-                    this.character.jumpOnGolem = true;
-                    enemy.enemyIsDead = true;
-                    this.character.speedY = 20;
-                } else {
-                    this.character.hit(2);
-                    this.statusBarCharacter.setPercentage(this.character.energy);
-                }
-                if (enemy.enemyIsDead) {
-                    setTimeout(() => {
-                        this.level.enemies.splice(index, 1);
-                    }, 1000);
-                }
-            }
-        });
     }
 
 
@@ -126,6 +99,7 @@ class World {
         })
     }
 
+
     checkEnemyAhead(enemy) {
         if (enemy instanceof Endboss) {
             enemy.toClose = true;
@@ -135,6 +109,7 @@ class World {
             enemy.enemieDirection = 0.1;
         }
     }
+
 
     checkEnemyBack(enemy) {
         if (enemy instanceof Endboss) {
@@ -152,12 +127,57 @@ class World {
     }
 
 
+    checkCollisionToEnemies() {
+        this.level.enemies.forEach((enemy, index) => {
+            if (this.character.isColliding(enemy, 0, 0, 0, 0) && !this.character.isFalling() && !enemy.enemyisDead && !this.isAttackable) {
+                this.character.jumpOnGolem = true;
+                this.character.isHurt = true;
+                this.character.hit(10);
+                this.statusBarCharacter.setPercentage(this.character.energy);
+                this.notAttackable(500);             
+                setTimeout(() => {
+                    this.character.isHurt = false;
+                }, 1000);
+            } else if (this.character.isColliding(enemy, 0, 0, 0, 0) && this.character.isFalling()) {
+                enemy.isHurt = true;
+                enemy.enemyIsDead = true;
+                this.character.speedY = 20;
+                this.notAttackable(1000);
+                setTimeout(() => {
+                    enemy.isHurt = false;
+                }, 1000);
+            }
+            if (enemy.enemyIsDead) {
+                setTimeout(() => {
+                    this.level.enemies.splice(index, 1);
+                }, 1000);
+
+            }
+        });
+    }
+
+
+    checkEndboss() {
+        if (this.character.x <= 300 || this.endboss.isDead()) {
+            // this.gameMusic.play();
+            // this.endbossMusic.pause();
+        } else {
+            this.gameMusic.pause();
+            // this.endbossMusic.play();
+        }
+    }
+
 
     checkCollisionToEndboss() {
         this.level.endboss.forEach((endboss) => {
-            if (this.character.isColliding(endboss, 30, 0, 130, 0)) {
-                this.character.hit(2);
+            if (this.character.isColliding(endboss, 0, 0, 0, 0) && !this.isAttackable) {
+                this.character.isHurt = true;
+                this.character.hit(10);
                 this.statusBarCharacter.setPercentage(this.character.energy);
+                this.notAttackable(500);
+                setTimeout(() => {
+                    this.character.isHurt = false;
+                }, 1000);
             }
         })
     }
@@ -165,22 +185,21 @@ class World {
     checkCollisonSwordWithEndboss() {
         this.level.endboss.forEach((endboss) => {
             this.throwableObjects.forEach((sword) => {
-                if (this.endboss.isColliding(sword, 0, 0, 0, 0) && !this.isImune) {
-                    this.getImune(500)
+                if (this.endboss.isColliding(sword, 0, 0, 0, 0) && !this.isAttackable) {
+                    this.notAttackable(500)
                     this.endboss.hit(20);
-                    console.log('hit', this.endboss.energy);
-
                     this.stopGameIfEndbossIsDead(endboss);
                     this.statusBarEndboss.setPercentage(this.endboss.energy);
+                    console.log('hit', endboss.energy);
                 }
             });
         })
     }
 
-    getImune(time) {
-        this.isImune = true;
+    notAttackable(time) {
+        this.isAttackable = true;
         setTimeout(() => {
-            this.isImune = false;
+            this.isAttackable = false;
         }, time);
     }
 
@@ -192,23 +211,6 @@ class World {
             }, 500);
         }
     }
-
-
-
-    // checkCollisionToEndbossToThrowWithSword() {
-    //     let collisionEndboss = false;
-    //     this.throwableObjects.forEach((sword) => {
-    //         if (sword.isColliding(this.level.endboss)) {
-    //             collisionEndboss = true;
-    //         }
-    //     });
-    //     if (collisionEndboss && !this.endbossWasHit) {
-    //         this.level.endboss.endbossHit;
-    //         this.statusBarEndboss.setPercentage(this.level.endboss.energy);
-    //         this.endbossWasHit = true;
-    //     }
-    //     return collisionEndboss;
-    // }
 
 
     checkCollisionToCollectSwords() {

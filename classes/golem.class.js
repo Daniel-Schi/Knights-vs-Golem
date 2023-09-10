@@ -130,7 +130,7 @@ class Golem extends MovableObject {
     animateEnemies() {
         if (this.enemyIsDead) {
             this.loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
-        } else if (this.isHurt()) {
+        } else if (this.isHurt) {
             this.playAnimation(this.IMAGES_HURT);
         } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.6) {
             this.playAnimation(this.IMAGES_WALKING);
