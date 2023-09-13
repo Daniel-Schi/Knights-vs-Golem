@@ -61,7 +61,7 @@ class Character extends MovableObject {
     height = 150;
     speed = 15;
     jumpOnGolem = false;
-    offset_x = 60; // verschieben nach rechts
+    offset_x = 50; // verschieben nach rechts
     offset_y = 5; // verschieben nach unten
     offset_width = 80; // verschieben der Box nach links
     offset_height = 10; //verschieben der Box nach oben

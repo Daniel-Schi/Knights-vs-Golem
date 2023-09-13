@@ -103,7 +103,7 @@ class Endboss extends MovableObject {
     y = 120;
     offset_x = 50; // verschieben nach rechts
     offset_y = 0; // verschieben nach unten
-    offset_width = 100; // verschieben der Box nach links
+    offset_width = 80; // verschieben der Box nach links
     offset_height = 0; //verschieben der Box nach oben
     energy = 100;
     world;
@@ -121,10 +121,9 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_SPLASHING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_IDLE);
-        this.x = 3500;
+        this.x = 3300;
         this.animate();
-        this.direction;
-        this.otherDirection = false;
+        this.direction;      
     }
 
     direction() {
@@ -132,7 +131,7 @@ class Endboss extends MovableObject {
             if (this.toClose == false) {
                 this.enemieDirection = Math.random();
             }
-            this.speed = 0.8 + Math.random() * 0.9;
+            this.speed = 0.2 + Math.random() * 0.9;
         }, 2000);
     }
 
@@ -149,12 +148,13 @@ class Endboss extends MovableObject {
     animateEnemies() {
         if (this.isDead()) {
             this.loadImage('img/golems-sprites/Golem_3/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
+            this.dead_Sound.play();
         } else if (this.isHurt) {
             this.playAnimation(this.IMAGES_HURT);
         } else if (this.isSplashing) {
             this.playAnimation(this.IMAGES_SPLASHING);
             this.speed = 2;
-        } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.6) {
+        } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.5) {
             this.playAnimation(this.IMAGES_WALKING);
         } else {
             this.playAnimation(this.IMAGES_IDLE);
@@ -165,7 +165,7 @@ class Endboss extends MovableObject {
         if (!this.isDead()) {
             if (this.enemieDirection <= 0.2) {
                 this.moveRight();
-            } else if (this.enemieDirection >= 0.6) {
+            } else if (this.enemieDirection >= 0.5) {
                 this.moveLeft();
             } else {
             }

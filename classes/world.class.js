@@ -19,7 +19,7 @@ class World {
     swordIsThrown = false;
     jumpOnGolem = false;
     endboss = this.level.endboss[0];
-    isImune = false;
+    isAttackable = false;
 
     gameMusic = new Audio('audio/music.wav');
     endbossMusic = new Audio('audio/endboss-music.wav');
@@ -128,33 +128,50 @@ class World {
 
 
     checkCollisionToEnemies() {
-        this.level.enemies.forEach((enemy, index) => {
-            if (this.character.isColliding(enemy, 0, 0, 0, 0) && !this.character.isFalling() && !enemy.enemyisDead && !this.isAttackable) {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy, 0, 0, 50, 0) && !this.character.isFalling() && !enemy.enemyisDead && !this.isAttackable) {
                 this.character.jumpOnGolem = true;
                 this.character.isHurt = true;
                 this.character.hit(10);
                 this.statusBarCharacter.setPercentage(this.character.energy);
-                this.notAttackable(500);             
+                this.notAttackable(500);
                 setTimeout(() => {
                     this.character.isHurt = false;
                 }, 1000);
-            } else if (this.character.isColliding(enemy, 0, 0, 0, 0) && this.character.isFalling()) {
+            } else if (this.character.isColliding(enemy, 0, 0, 50, 0) && this.character.isFalling()) {
                 enemy.isHurt = true;
                 enemy.enemyIsDead = true;
-                this.character.speedY = 20;
-                this.notAttackable(1000);
+                this.checkWhoIsHurt(enemy);
+                
                 setTimeout(() => {
                     enemy.isHurt = false;
                 }, 1000);
             }
-            if (enemy.enemyIsDead) {
-                setTimeout(() => {
-                    this.level.enemies.splice(index, 1);
-                }, 1000);
-
-            }
         });
     }
+
+
+    notAttackable(ms) {
+        this.isAttackable = true;
+        setTimeout(() => {
+            this.isAttackable = false;
+        }, ms);
+    }
+
+
+    checkWhoIsHurt(enemy) {
+        if (!enemy.enemyisDead) {
+            this.character.speedY = 20;
+            if (enemy instanceof Golem && enemy instanceof GolemSmall) {
+                enemy.enemyIsDead = true;
+                this.notAttackable(99999);
+                // enemy.enemyIsDead = true;
+            } else if (enemy instanceof Endboss) {
+                enemy.hit(20);
+            }
+        }
+    }
+
 
 
     checkEndboss() {
@@ -196,12 +213,6 @@ class World {
         })
     }
 
-    notAttackable(time) {
-        this.isAttackable = true;
-        setTimeout(() => {
-            this.isAttackable = false;
-        }, time);
-    }
 
     stopGameIfEndbossIsDead(endboss) {
         if (endboss.isDead()) {

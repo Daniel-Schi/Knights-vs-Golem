@@ -84,7 +84,7 @@ class GolemSmall extends MovableObject {
     offset_x = 0; // verschieben nach rechts
     offset_y = 0; // verschieben nach unten
     offset_width = 0; // verschieben der Box nach links
-    offset_height = 50; //verschieben der Box nach oben
+    offset_height = 30; //verschieben der Box nach oben
     enemieDirection = 0;
     toClose = false;
     dead_sound = new Audio('audio/monster-dead.wav');
@@ -97,7 +97,7 @@ class GolemSmall extends MovableObject {
         this.loadImages(this.IMAGES_IDLE);
         this.x = 250 + Math.random() * 3000;
         this.animate();
-        this.direction;
+        this.direction;       
     }
 
     direction() {
@@ -105,7 +105,7 @@ class GolemSmall extends MovableObject {
             if (this.toClose == false) {
                 this.enemieDirection = Math.random();
             }
-            this.speed = 0.5 + Math.random() * 0.9;
+            this.speed = 0.2 + Math.random() * 0.9;
         }, 2000);
     }
 
@@ -113,6 +113,7 @@ class GolemSmall extends MovableObject {
         setInterval(() => {
             this.animateEnemies();
         }, 100);
+
         setInterval(() => {
             this.moveEnemies();
         }, 1000 / 60);
@@ -125,7 +126,7 @@ class GolemSmall extends MovableObject {
             this.loadImage('img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
         } else if (this.isHurt) {
             this.playAnimation(this.IMAGES_HURT);
-        } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.3) {
+        } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.2) {
             this.playAnimation(this.IMAGES_WALKING);
         } else {
             this.playAnimation(this.IMAGES_IDLE);
@@ -138,6 +139,7 @@ class GolemSmall extends MovableObject {
                 this.moveRight();
             } else if (this.enemieDirection >= 0.3) {
                 this.moveLeft();
+            }else {
             }
         }
     }

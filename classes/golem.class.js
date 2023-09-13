@@ -101,9 +101,9 @@ class Golem extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_IDLE);
         this.direction;
-        this.x = 200 + Math.random() * 3000;
-        // this.speed = 0.15 + Math.random() * 0.2;
+        this.x = 250 + Math.random() * 3000;
         this.animate();
+        this.direction;  
     }
 
 
@@ -112,7 +112,6 @@ class Golem extends MovableObject {
             if (this.toClose == false) {
                 this.enemieDirection = Math.random();
             }
-
             this.speed = 0.4 + Math.random() * 0.9;
         }, 2000);
     }
@@ -132,7 +131,7 @@ class Golem extends MovableObject {
             this.loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
         } else if (this.isHurt) {
             this.playAnimation(this.IMAGES_HURT);
-        } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.6) {
+        } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.5) {
             this.playAnimation(this.IMAGES_WALKING);
         } else {
             this.playAnimation(this.IMAGES_IDLE);
@@ -143,8 +142,9 @@ class Golem extends MovableObject {
         if (!this.enemyIsDead) {
             if (this.enemieDirection <= 0.2) {
                 this.moveRight();
-            } else if (this.enemieDirection >= 0.6) {
+            } else if (this.enemieDirection >= 0.5) {
                 this.moveLeft();
+            }else {
             }
         }
     }
