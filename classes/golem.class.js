@@ -86,13 +86,17 @@ class Golem extends MovableObject {
     y = 325;
     enemyIsDead = false;
     offset_x = 20; // verschieben nach rechts
-    offset_y = 0; // verschieben nach unten
+    offset_y = 30; // verschieben nach unten
     offset_width = 40; // verschieben der Box nach links
-    offset_height = 0; //verschieben der Box nach oben
+    offset_height = 50; //verschieben der Box nach oben
     enemieDirection = 0;
     toClose = false;
     energy = 100;
+    currentImage = 0;
 
+    enemyDead_sound = new Audio('audio/hurt.wav');
+
+    
 
     constructor() {
         super().loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png');
@@ -129,8 +133,11 @@ class Golem extends MovableObject {
     animateEnemies() {
         if (this.enemyIsDead) {
             this.loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
+            // setTimeout(() => {
+            //     this.enemyDead_sound.play();
+            // }, 500);
         } else if (this.isHurt) {
-            this.playAnimation(this.IMAGES_HURT);
+            this.playEnemyAnimation(this.IMAGES_HURT);
         } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.5) {
             this.playAnimation(this.IMAGES_WALKING);
         } else {

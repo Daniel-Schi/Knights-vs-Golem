@@ -141,8 +141,8 @@ class World {
             } else if (this.character.isColliding(enemy, 0, 0, 50, 0) && this.character.isFalling()) {
                 enemy.isHurt = true;
                 enemy.enemyIsDead = true;
-                this.checkWhoIsHurt(enemy);
-                
+                this.character.speedY = 20;
+                // this.checkWhoIsHurt(enemy); 
                 setTimeout(() => {
                     enemy.isHurt = false;
                 }, 1000);
@@ -159,18 +159,18 @@ class World {
     }
 
 
-    checkWhoIsHurt(enemy) {
-        if (!enemy.enemyisDead) {
-            this.character.speedY = 20;
-            if (enemy instanceof Golem && enemy instanceof GolemSmall) {
-                enemy.enemyIsDead = true;
-                this.notAttackable(99999);
-                // enemy.enemyIsDead = true;
-            } else if (enemy instanceof Endboss) {
-                enemy.hit(20);
-            }
-        }
-    }
+    // checkWhoIsHurt(enemy) {
+    //     if (!enemy.enemyisDead) {
+    //         this.character.speedY = 20;
+    //         if (enemy instanceof Golem && enemy instanceof GolemSmall) {
+    //             enemy.enemyIsDead = true;
+    //             this.notAttackable(99999);
+    //         // } else if (enemy instanceof Endboss) {
+    //         //     endboss.hit(20);
+    //         // 
+    //     }
+    //     }
+    // }
 
 
 

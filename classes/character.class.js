@@ -38,11 +38,6 @@ class Character extends MovableObject {
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__DIE_009.png'
     ];
 
-    //durch die neue playSingleAnmitation nicht mehr notwendig
-    // IMAGE_REALLYDEAD = [
-    //     'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__DIE_009.png'
-    // ];
-
     IMAGES_HURT = [
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__HURT_000.png',
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__HURT_001.png',
@@ -56,6 +51,19 @@ class Character extends MovableObject {
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__HURT_009.png'
     ];
 
+    IMAGES_ATTACK = [
+        'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__ATTACK_000.png',
+        'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__ATTACK_001.png',
+        'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__ATTACK_002.png',
+        'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__ATTACK_003.png',
+        'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__ATTACK_004.png',
+        'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__ATTACK_005.png',
+        'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__ATTACK_006.png',
+        'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__ATTACK_007.png',
+        'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__ATTACK_008.png',
+        'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__ATTACK_009.png'
+    ];
+
     y = 80;
     width = 170;
     height = 150;
@@ -66,10 +74,13 @@ class Character extends MovableObject {
     offset_width = 80; // verschieben der Box nach links
     offset_height = 10; //verschieben der Box nach oben
     world;
+    triggert = false;
 
     walking_sound = new Audio('audio/walking-snow.wav');
     hurt_sound = new Audio('audio/hurt1.wav');
     jump_sound = new Audio('audio/jump.wav');
+
+    
 
     constructor() {
         super().loadImage('img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_000.png');
@@ -77,6 +88,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_ATTACK);
         this.applyGravity();
         this.animate();
     }
@@ -113,12 +125,16 @@ class Character extends MovableObject {
             this.jump();
             this.jump_sound.play();
         }
+        if (this.world.keyboard.F && !this.isDead()) {
+            this.triggert = true;
+        }
         this.world.camera_x = -this.x + 50;
+        this.triggerAnimation();
     }
 
     animationsCharacter() {
         if (this.isDead()) {
-            this.playSingleAnimation(this.IMAGES_DEAD);
+            this.playCharacterAnimation(this.IMAGES_DEAD);
         } else if (this.isHurt) {
             this.playAnimation(this.IMAGES_HURT);
             this.hurt_sound.play();
@@ -131,5 +147,9 @@ class Character extends MovableObject {
         }
     }
 
-
+    triggerAnimation() {
+        if (this.triggert) {
+            this.playEnemyAnimation(this.IMAGES_ATTACK);
+        }
+    };
 }

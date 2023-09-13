@@ -7,12 +7,13 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
     isHurt = false;
-    offset = {
-        x: 0,
-        y: 0,
-        width: 0,
-        height: 0
-    };
+    animationCounter = 0;
+    // offset = {
+    //     x: 0,
+    //     y: 0,
+    //     width: 0,
+    //     height: 0
+    // };
 
 
     applyGravity() {
@@ -29,26 +30,26 @@ class MovableObject extends DrawableObject {
 
     isAboveGround() {
         if (this instanceof ThrowableObject) { // Throwable Object should always fall
-            return this.y < 350;
+            return this.y < 1350;
         } else {
             return this.y < 290;
         }
     }
 
     // Pulls off energy from character when colliding.
-    hit(damage) {
-        if (this.energy != 0) {
-            this.energy -= damage;
-        }
-    }
     // hit(damage) {
-    //     this.energy -= damage;
-    //     if (this.energy < 0) {
-    //         this.energy = 0;
-    //     } else {
-    //         this.lastHit = new Date().getTime(); // Time since 1.1.1970
+    //     if (this.energy != 0) {
+    //         this.energy -= damage;
     //     }
     // }
+    hit(damage) {
+        this.energy -= damage;
+        if (this.energy < 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime(); // Time since 1.1.1970
+        }
+    }
 
 
     // isHurt(time) {
@@ -100,7 +101,7 @@ class MovableObject extends DrawableObject {
         this.currentImage++;
     }
 
-    playSingleAnimation(images) {
+    playCharacterAnimation(images) {
         if (!this.currentImage) {   // Wenn es das erste Mal ist, dass die Animation gestartet wird,                       
             this.currentImage = 0;  // setzen Sie currentImage auf 0.
         }
@@ -113,6 +114,21 @@ class MovableObject extends DrawableObject {
             let lastIndex = images.length - 1;
             let lastImagePath = images[lastIndex];
             this.img = this.imageCache[lastImagePath];
+        }
+    }
+
+    playEnemyAnimation(images) {
+        if (this.animationCounter < images.length) {
+            let i = this.animationCounter;
+            let path = images[i];
+            this.img = this.imageCache[path];
+            this.animationCounter++;
+        } else {
+            this.animationCounter = 0;
+            if (this instanceof Character) {
+                this.world.character.triggert = false;
+            }
+
         }
     }
 }
