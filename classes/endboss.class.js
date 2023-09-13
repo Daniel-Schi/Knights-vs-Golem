@@ -101,9 +101,9 @@ class Endboss extends MovableObject {
     width = 300;
     height = 350;
     y = 120;
-    offset_x = 50; // verschieben nach rechts
+    offset_x = 70; // verschieben nach rechts
     offset_y = 0; // verschieben nach unten
-    offset_width = 80; // verschieben der Box nach links
+    offset_width = 140; // verschieben der Box nach links
     offset_height = 0; //verschieben der Box nach oben
     energy = 100;
     world;
@@ -131,7 +131,7 @@ class Endboss extends MovableObject {
             if (this.toClose == false) {
                 this.enemieDirection = Math.random();
             }
-            this.speed = 0.2 + Math.random() * 0.9;
+            this.speed = 0.1 + Math.random() * 0.9;
         }, 2000);
     }
 

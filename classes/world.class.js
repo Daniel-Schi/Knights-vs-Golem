@@ -1,6 +1,7 @@
 class World {
     character = new Character();
     enemies = level1.enemies;
+    sword = level1.sword;
     level = level1;
     canvas;
     ctx;
@@ -62,6 +63,7 @@ class World {
         this.checkPositions(this.level.enemies);
         this.checkPositions(this.level.endboss);
         this.checkEndboss();
+        this.checkIfSwordIsOutOfLevel();
     }
 
 
@@ -76,6 +78,14 @@ class World {
         }
     }
 
+    checkIfSwordIsOutOfLevel() {
+        this.throwableObjects.forEach((index, throwableObjects) => {
+            if (throwableObjects.y >= 400) {
+                this.throwableObjects.splice(index, 1);
+            }
+        })
+    }
+ 
 
     checkPositions(enemies) {
         enemies.forEach(enemy => {
@@ -128,8 +138,8 @@ class World {
 
 
     checkCollisionToEnemies() {
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy, 0, 0, 50, 0) && !this.character.isFalling() && !enemy.enemyisDead && !this.isAttackable) {
+        this.level.enemies.forEach((enemy, index) => {
+            if (this.character.isColliding(enemy, 0, 0, 0, 0) && !this.character.isFalling() && !enemy.enemyisDead && !this.isAttackable) {
                 this.character.jumpOnGolem = true;
                 this.character.isHurt = true;
                 this.character.hit(10);
@@ -138,17 +148,19 @@ class World {
                 setTimeout(() => {
                     this.character.isHurt = false;
                 }, 1000);
-            } else if (this.character.isColliding(enemy, 0, 0, 50, 0) && this.character.isFalling()) {
+            } else if (this.character.isColliding(enemy, 0, 0, 0, 0) && this.character.isFalling()) {
                 enemy.isHurt = true;
                 enemy.enemyIsDead = true;
                 this.character.speedY = 20;
-                // this.checkWhoIsHurt(enemy); 
+                this.notAttackable(1000);                
                 setTimeout(() => {
                     enemy.isHurt = false;
+                    this.enemies.splice(index, 1);
                 }, 1000);
             }
         });
     }
+
 
 
     notAttackable(ms) {
