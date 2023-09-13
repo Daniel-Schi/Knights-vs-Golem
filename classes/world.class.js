@@ -24,7 +24,7 @@ class World {
 
     gameMusic = new Audio('audio/music.wav');
     endbossMusic = new Audio('audio/endboss-music.wav');
-
+    winSound = new Audio('audio/win.wav');
 
 
 
@@ -64,6 +64,7 @@ class World {
         this.checkPositions(this.level.endboss);
         this.checkEndboss();
         this.checkIfSwordIsOutOfLevel();
+        this.checkWinGame();
     }
 
 
@@ -85,7 +86,7 @@ class World {
             }
         })
     }
- 
+
 
     checkPositions(enemies) {
         enemies.forEach(enemy => {
@@ -152,7 +153,7 @@ class World {
                 enemy.isHurt = true;
                 enemy.enemyIsDead = true;
                 this.character.speedY = 20;
-                this.notAttackable(1000);                
+                this.notAttackable(1000);
                 setTimeout(() => {
                     enemy.isHurt = false;
                     this.enemies.splice(index, 1);
@@ -171,28 +172,29 @@ class World {
     }
 
 
-    // checkWhoIsHurt(enemy) {
-    //     if (!enemy.enemyisDead) {
-    //         this.character.speedY = 20;
-    //         if (enemy instanceof Golem && enemy instanceof GolemSmall) {
-    //             enemy.enemyIsDead = true;
-    //             this.notAttackable(99999);
-    //         // } else if (enemy instanceof Endboss) {
-    //         //     endboss.hit(20);
-    //         // 
-    //     }
-    //     }
-    // }
-
-
-
     checkEndboss() {
-        if (this.character.x <= 300 || this.endboss.isDead()) {
-            // this.gameMusic.play();
-            // this.endbossMusic.pause();
+        let distance = this.character.x - this.endboss.x;
+        if (distance <= -700 || this.endboss.isDead()) {
+            this.gameMusic.play();
+            this.endbossMusic.pause();
         } else {
             this.gameMusic.pause();
-            // this.endbossMusic.play();
+            this.endbossMusic.play();
+        }
+    }
+
+    checkWinGame() {
+        if (this.endboss.isDead()) {
+            this.gameMusic.pause();
+            this.endbossMusic.pause();
+            this.winSound.play();
+            setTimeout(() => {
+                this.winSound.pause();
+            }, 3000);
+        } else if (this.character.isDead()) {
+            this.gameMusic.pause();
+            this.endbossMusic.pause();
+
         }
     }
 
