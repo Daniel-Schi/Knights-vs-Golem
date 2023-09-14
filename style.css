@@ -6,24 +6,38 @@ body {
     min-height: 100vh;
     margin: 0;
     background-size: cover;
+    background-position: center;
     background-image: url('img/background-Winter/background-img.jpg');
     font-family: 'Pacifico', cursive;
 }
 
 canvas {
     background-color: black;
-    border-radius: 25px;
-    border-style: groove;
-    /* box-shadow: 0px 0px 30px rgb(233, 24, 24); */
+    border-radius: 15px;
+    display: block;
 }
 
 h1 {
     display: flex;
     position: relative;
-    top: -10px;
-    color: rgb(160, 0, 0);
+    top: -30px;
+    color: rgb(0, 0, 0);
     font-size: 40px;
     justify-content: space-between;
     width: 400px;
-    filter: drop-shadow(8px 8px 3px rgb(234, 236, 202));
+    filter: drop-shadow(5px 5px 3px rgb(199, 231, 231));
+}
+
+/* Smartphones -------*/
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+}
+
+/* Smartphones -------*/
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
 }

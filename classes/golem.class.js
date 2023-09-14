@@ -94,7 +94,6 @@ class Golem extends MovableObject {
     energy = 100;
     currentImage = 0;
 
-    enemyDead_sound = new Audio('audio/hurt.wav');
 
     
 
@@ -133,9 +132,6 @@ class Golem extends MovableObject {
     animateEnemies() {
         if (this.enemyIsDead) {
             this.loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
-            // setTimeout(() => {
-            //     this.enemyDead_sound.play();
-            // }, 500);
         } else if (this.isHurt) {
             this.playEnemyAnimation(this.IMAGES_HURT);
         } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.5) {

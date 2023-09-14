@@ -25,7 +25,8 @@ class World {
     gameMusic = new Audio('audio/music.wav');
     endbossMusic = new Audio('audio/endboss-music.wav');
     winSound = new Audio('audio/win.wav');
-
+    enemyDead_sound = new Audio('audio/hurt.wav');
+    gameOverMusic = new Audio('audio/gameOversMusic.wav');
 
 
     constructor(canvas, keyboard) {
@@ -152,6 +153,7 @@ class World {
             } else if (this.character.isColliding(enemy, 0, 0, 0, 0) && this.character.isFalling()) {
                 enemy.isHurt = true;
                 enemy.enemyIsDead = true;
+                this.enemyDead_sound.play();
                 this.character.speedY = 20;
                 this.notAttackable(1000);
                 setTimeout(() => {
@@ -194,7 +196,7 @@ class World {
         } else if (this.character.isDead()) {
             this.gameMusic.pause();
             this.endbossMusic.pause();
-
+            this.gameOverMusic.play();
         }
     }
 
@@ -221,7 +223,6 @@ class World {
                     this.endboss.hit(20);
                     this.stopGameIfEndbossIsDead(endboss);
                     this.statusBarEndboss.setPercentage(this.endboss.energy);
-                    console.log('hit', endboss.energy);
                 }
             });
         })
