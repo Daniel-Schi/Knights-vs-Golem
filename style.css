@@ -123,19 +123,67 @@ h1 {
 
 .golemEndboss {
     position: relative;
-    left: 570px;
-    bottom: 28px;
+    left: 510px;
+    bottom: 72px;
 }
 
 .golemEndboss img {
-    width: 170px;
-    height: 200px;
+    width: 200px;
+    height: 250px;
+}
+
+.rotationView {
+    display: none;
+}
+
+.rotationView h2 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 45px;
+    filter: drop-shadow(5px 5px 3px rgb(64, 115, 224));
+}
+
+.rotatePhone {
+    height: 250px;
+    width: 250px;
+    rotate: 135deg;
+    -webkit-animation: rotate 5s linear infinite;
+    -moz-animation: rotate 5s linear infinite;
+    animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+
+    0%,
+    100% {
+        -webkit-transform: rotate(-0deg);
+        transform: rotate(-0deg);
+    }
+
+    50% {
+        -webkit-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
 }
 
 /* Smartphones -------*/
 @media only screen and (max-width: 720px) {
     canvas {
         width: 100%;
+    }
+
+    .rotationView {
+        display: flex;
+        position: absolute;
+        z-index: 999;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(4px);
     }
 }
 
