@@ -39,8 +39,36 @@
 <body onload="init()">
 
     <h1> <span>Knights</span> <span>vs.</span> <span>Golem</span></h1>
+    <div id="content" class="d-none">
+        <div id="startscreen" class="startscreen">
+            <img class="startscreen-img" src="img/background-Winter/background-img.jpg">
+            <div class="menuList">
+                <div class="info" id="info" onclick="infoDescription()">
+                    <img src="img/start-icons/info.png" alt="info">
+                </div>
+                <div class="controller" id="controller" onclick="controllerDescription()">
+                    <img src="img/start-icons/controller.png" alt="controller">
+                </div>
+                <div class="mute" id="mute" onclick="muteOnOff()">
+                    <img src="img/start-icons/volume.png" alt="mute">
+                </div>
+                <div class="fullscreen" id="fullscreen" onclick="fullscreen()">
+                    <img src="img/start-icons/fullscreenIcon.png" alt="fullscreen">
+                </div>
+            </div>
+            <div class="startGame" id="startGame" onclick="startGame()">
+                <img src="img/start-icons/startGame1.png" alt="startGame">
+            </div>
+            <div class="knigthCharacter">
+                <img src="img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__IDLE_000.png" alt="character">
+            </div>
+            <div class="golemEndboss">
+                <img src="img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_000.png" alt="endboss">
+            </div>
+        </div>
+        <canvas id="canvas" width="720" height="480"></canvas>
+    </div>
 
-    <canvas id="canvas" width="720" height="480"></canvas>
 </body>
 
 </html>

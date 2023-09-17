@@ -7,6 +7,8 @@ body {
     margin: 0;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
     background-image: url('img/background-Winter/background-img.jpg');
     font-family: 'Pacifico', cursive;
 }
@@ -25,7 +27,109 @@ h1 {
     font-size: 40px;
     justify-content: space-between;
     width: 400px;
-    filter: drop-shadow(5px 5px 3px rgb(199, 231, 231));
+    filter: drop-shadow(5px 5px 3px rgb(64, 115, 224));
+}
+
+.content {
+    position: relative;
+    width: 720px;
+    height: 480px;
+}
+
+.startscreen {
+    position: absolute;
+    width: 720px;
+    height: 480px;
+}
+
+.startscreen-img {
+    position: absolute;
+    width: 720px;
+    height: 480px;
+    border-radius: 15px;
+}
+
+.menuList {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    top: 20px;
+    left: 20px;
+    gap: 15px;
+}
+
+.info img {
+    width: 35px;
+    height: 35px;
+    background-color: rgb(64, 115, 224);
+    border-radius: 50%;
+    border: 2px solid rgb(15, 0, 153);
+    padding: 5px;
+}
+
+.controller img {
+    width: 35px;
+    height: 35px;
+    background-color: rgb(64, 115, 224);
+    border-radius: 50%;
+    border: 2px solid rgb(15, 0, 153);
+    padding: 5px;
+}
+
+.mute img {
+    width: 35px;
+    height: 35px;
+    background-color: rgb(64, 115, 224);
+    border-radius: 50%;
+    border: 2px solid rgb(15, 0, 153);
+    padding: 5px;
+}
+
+.fullscreen img {
+    width: 35px;
+    height: 35px;
+    background-color: #4073e0;
+    border-radius: 50%;
+    border: 2px solid rgb(15, 0, 153);
+    padding: 5px;
+}
+
+.startGame {
+    position: relative;
+    top: 185px;
+    justify-content: center;
+    display: flex;
+}
+
+.startGame img {
+    width: 90px;
+    height: 90px;
+    border-radius: 20%;
+    background-color: #4073e0;
+    border: 2px solid rgb(15, 0, 153);
+}
+
+.knigthCharacter {
+    position: relative;
+    top: 170px;
+    left: 30px;
+}
+
+.knigthCharacter img {
+    width: 160px;
+    height: 150px;
+}
+
+.golemEndboss {
+    position: relative;
+    left: 570px;
+    bottom: 28px;
+}
+
+.golemEndboss img {
+    width: 170px;
+    height: 200px;
 }
 
 /* Smartphones -------*/
