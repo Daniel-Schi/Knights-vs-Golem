@@ -4,10 +4,23 @@ let keyboard = new Keyboard();
 let character = new MovableObject();
 win_Sound = new Audio('audio/win.wav');
 
+
+function startGame() {
+    document.getElementById('startscreen').classList.add('d-none');
+    init();
+}
+
 function init(){
+    levelInit();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     // soundEffects();
+}
+
+function restartGame() {
+    document.getElementById('startscreen').classList.remove('d-none');
+    document.getElementById('youLoseGame').classList.add('d-none');
+    document.getElementById('youWinGame').classList.add('d-none');
 }
 
 // /**

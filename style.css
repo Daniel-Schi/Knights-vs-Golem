@@ -30,6 +30,10 @@ h1 {
     filter: drop-shadow(5px 5px 3px rgb(64, 115, 224));
 }
 
+.d-none {
+    display: none;
+}
+
 .content {
     position: relative;
     width: 720px;
@@ -132,9 +136,6 @@ h1 {
     height: 250px;
 }
 
-.rotationView {
-    display: none;
-}
 
 .rotationView h2 {
     display: flex;
@@ -151,6 +152,49 @@ h1 {
     -webkit-animation: rotate 5s linear infinite;
     -moz-animation: rotate 5s linear infinite;
     animation: rotate 5s linear infinite;
+}
+
+.youWinGame {
+    position: absolute;
+    width: 720px;
+    height: 480px;
+    top: 0;
+}
+
+.youWinGame img {
+    width: 720px;
+    height: 480px;
+    border-radius: 15px;
+}
+
+.youLoseGame {
+    position: absolute;
+    width: 720px;
+    height: 480px;
+    top: 0;
+}
+
+.youLoseGame img {
+    width: 720px;
+    height: 480px;
+    border-radius: 15px;
+}
+
+.restartGame {
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    bottom: 300px;
+    color: blue;
+    text-align: center;
+    width: 720px;
+}
+
+.btn {
+    padding: 5px;
+    border-radius: 15px;
+    background-color: #4073e06e ;
+    cursor: pointer;
 }
 
 @keyframes rotate {

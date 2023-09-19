@@ -40,7 +40,7 @@
 <body onload="init()">
 
     <h1> <span>Knights</span> <span>vs.</span> <span>Golem</span></h1>
-    <div class="rotationView">
+    <div class="rotationView d-none">
         <div>
             <h2>Please rotate your device!</h2>
         </div>
@@ -48,8 +48,8 @@
             <img class="rotatePhone" src="img/start-icons/rotatePhone.png" alt="rotatePhone">
         </div>
     </div>
-    <div id="content" class="d-none">
-        <div id="startscreen" class="startscreen">
+    <div id="content" class="content">
+        <div id="startscreen" class="startscreen d-none">
             <img class="startscreen-img" src="img/background-Winter/background-img.jpg">
             <div class="menuList">
                 <div class="info" id="info" onclick="infoDescription()">
@@ -65,7 +65,7 @@
                     <img src="img/start-icons/fullscreenIcon.png" alt="fullscreen">
                 </div>
             </div>
-            <div class="startGame" id="startGame" onclick="startGame()">
+            <div class="startGame" id="startGame" onclick="levelInit()">
                 <img src="img/start-icons/startGame1.png" alt="startGame">
             </div>
             <div class="knigthCharacter">
@@ -76,6 +76,18 @@
             </div>
         </div>
         <canvas id="canvas" width="720" height="480"></canvas>
+        <div id="youWinGame" class="youWinGame d-none">
+            <div class="restartGame btn" onclick="restartGame()">
+                <h2>Restart Game</h2>
+            </div>
+            <img src="img/start-icons/youwin.png" alt="youWon">
+        </div>
+        <div id="youLoseGame" class="youLoseGame ">
+            <div class="restartGame" onclick="restartGame()">
+                <h2 class="btn">Restart Game</h2>
+            </div>
+            <img src="img/start-icons/gameOver1.png" alt="youLose">
+        </div>
     </div>
 
 </body>
