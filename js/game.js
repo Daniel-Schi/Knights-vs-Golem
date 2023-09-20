@@ -23,22 +23,22 @@ function restartGame() {
     document.getElementById('youWinGame').classList.add('d-none');
 }
 
-// /**
-//  * Displays the game won screen and plays the corresponding audio.
-//  * Stops the game.
-//  */
-// function gameWon() {
-//     // document.getElementById('game-over-screen').classList.remove('d-none');
-//     win_Sound.play();
-//     stopGame();
-// }
+function youWinGame() {
+    document.getElementById('youWinGame').classList.remove('d-none');
+    stopGame();
+}
 
-// /**
-//  * Stops the game by clearing all intervals.
-//  */
-// function stopGame() {
-//     clearAllIntervals();
-// }
+function youLoseGame() {
+    document.getElementById('youLoseGame').classList.remove.apply('d-none');
+    stopGame();
+}
+
+/**
+ * Stops the game by clearing all intervals.
+ */
+function stopGame() {
+    clearAllIntervals();
+}
 
 /**
  * Clears all intervals (timeouts) that were set in the window.
