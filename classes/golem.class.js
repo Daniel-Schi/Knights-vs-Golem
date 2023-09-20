@@ -86,9 +86,9 @@ class Golem extends MovableObject {
     y = 325;
     enemyIsDead = false;
     offset_x = 20; // verschieben nach rechts
-    offset_y = 30; // verschieben nach unten
+    offset_y = 80; // verschieben nach unten
     offset_width = 40; // verschieben der Box nach links
-    offset_height = 50; //verschieben der Box nach oben
+    offset_height = 100; //verschieben der Box nach oben
     enemieDirection = 0;
     toClose = false;
     energy = 100;
