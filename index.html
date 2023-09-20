@@ -55,7 +55,7 @@
                 <div class="info" onclick="infoDescription()">
                     <img src="img/start-icons/info.png" alt="info">
                 </div>
-                <div class="controller" id="controller" onclick="controllerDescription()">
+                <div class="controller" onclick="controllerDescription()">
                     <img src="img/start-icons/controller.png" alt="controller">
                 </div>
                 <div class="mute" id="mute" onclick="muteOnOff()">
@@ -85,6 +85,30 @@
                 You have to collect swords and magic bottles with your knight while keeping an eye out for your enemies.
                 You can destroy the enemies by jumping on them.
                 In the end, you'll face the final boss, whom you can defeat by throwing the collected swords at them.
+            </div>
+        </div>
+        <div class="closeController d-none" id="controller" onclick="closeController()">
+            <div class="headerInfo">
+                <img class="closeBtn" src="img/start-icons/delete-x.png" alt="closeController">
+            </div>
+            <h2 class="headlineController">Gameplay</h2>
+            <div class="controllerContent">
+                <div class="buttonLayout">
+                    <div>Move Left</div>
+                    <img class="controller-btn" src="img/start-icons/icon-left.png" alt="left">
+                </div>
+                <div class="buttonLayout">
+                    <div>Move Right</div>
+                    <img class="controller-btn" src="img/start-icons/icon-right.png" alt="right">
+                </div>
+                <div class="buttonLayout">
+                    <div>Jump</div>
+                    <img class="controller-btn" src="img/start-icons/space-keyboard.png" alt="jump">
+                </div>
+                <div class="buttonLayout">
+                    <div>Throw</div>
+                    <div class="controller-btn">F</div>
+                </div>
             </div>
         </div>
         <canvas id="canvas" width="720" height="480"></canvas>

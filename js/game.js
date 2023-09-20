@@ -1,5 +1,5 @@
 let canvas;
-let world; 
+let world;
 let keyboard = new Keyboard();
 let character = new MovableObject();
 win_Sound = new Audio('audio/win.wav');
@@ -10,7 +10,7 @@ function startGame() {
     init();
 }
 
-function init(){
+function init() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
@@ -18,11 +18,19 @@ function init(){
 }
 
 function infoDescription() {
-document.getElementById('info').classList.remove('d-none');
+    document.getElementById('info').classList.remove('d-none');
 }
 
 function closeInfo() {
     document.getElementById('info').classList.add('d-none');
+}
+
+function controllerDescription() {
+    document.getElementById('controller').classList.remove('d-none');
+}
+
+function closeController() {
+    document.getElementById('controller').classList.add('d-none');
 }
 
 function restartGame() {

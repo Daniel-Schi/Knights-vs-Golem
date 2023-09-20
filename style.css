@@ -123,21 +123,13 @@ h1 {
     cursor: pointer;
 }
 
-.closeInfo{
+.closeInfo {
     position: absolute;
     width: 720px;
     height: 480px;
     background-color: #4073e0;
     border-radius: 15px;
 }
-
-/* .headerInfo {
-    display: flex;
-    justify-content: center;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-} */
 
 .closeBtn {
     position: absolute;
@@ -152,7 +144,7 @@ h1 {
 
 .headlineGameInfo {
     position: absolute;
-   top: -15px;
+    top: -15px;
     text-align: center;
     width: 720px;
 }
@@ -162,6 +154,46 @@ h1 {
     top: 130px;
     padding: 20px;
     font-size: 26px;
+}
+
+.closeController {
+    position: absolute;
+    width: 720px;
+    height: 480px;
+    background-color: #4073e0;
+    border-radius: 15px;
+}
+
+.headlineController {
+    position: absolute;
+    top: -15px;
+    text-align: center;
+    width: 720px;
+}
+
+.controllerContent {
+    position: absolute;
+    top: 140px;
+    font-size: 26px;
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    align-items: flex-end;
+}
+
+.buttonLayout {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.controller-btn {
+    width: 50px;
+    height: 50px;
+    border: 2px solid black;
+    margin-left: 50px;
+    border-radius: 50px;
+    text-align: center;
 }
 
 .knigthCharacter {
@@ -246,7 +278,7 @@ h1 {
     padding-left: 5px;
     padding-right: 5px;
     border-radius: 15px;
-    background-color: #4073e0b4 ;
+    background-color: #4073e0b4;
     cursor: pointer;
 }
 
