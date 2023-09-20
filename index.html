@@ -49,10 +49,10 @@
         </div>
     </div>
     <div id="content" class="content">
-        <div id="startscreen" class="startscreen d-none">
+        <div id="startscreen" class="startscreen">
             <img class="startscreen-img" src="img/background-Winter/background-img.jpg">
             <div class="menuList">
-                <div class="info" id="info" onclick="infoDescription()">
+                <div class="info" onclick="infoDescription()">
                     <img src="img/start-icons/info.png" alt="info">
                 </div>
                 <div class="controller" id="controller" onclick="controllerDescription()">
@@ -65,7 +65,7 @@
                     <img src="img/start-icons/fullscreenIcon.png" alt="fullscreen">
                 </div>
             </div>
-            <div class="startGame" id="startGame" onclick="levelInit()">
+            <div class="startGame" id="startGame" onclick="startGame()">
                 <img src="img/start-icons/startGame1.png" alt="startGame">
             </div>
             <div class="knigthCharacter">
@@ -75,6 +75,18 @@
                 <img src="img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_000.png" alt="endboss">
             </div>
         </div>
+        <div class="closeInfo d-none" id="info" onclick="closeInfo()">
+            <div class="headerInfo">
+                <img class="closeBtn" src="img/start-icons/delete-x.png" alt="closeInfo">
+            </div>
+            <h2 class="headlineGameInfo">Game Info</h2>
+            <div class="infoContent">
+                "Knights vs. Golem" is a simple jump and ran game.
+                You have to collect swords and magic bottles with your knight while keeping an eye out for your enemies.
+                You can destroy the enemies by jumping on them.
+                In the end, you'll face the final boss, whom you can defeat by throwing the collected swords at them.
+            </div>
+        </div>
         <canvas id="canvas" width="720" height="480"></canvas>
         <div id="youWinGame" class="youWinGame d-none">
             <div class="restartGame btn" onclick="restartGame()">
@@ -82,7 +94,7 @@
             </div>
             <img src="img/start-icons/youwin.png" alt="youWon">
         </div>
-        <div id="youLoseGame" class="youLoseGame ">
+        <div id="youLoseGame" class="youLoseGame d-none">
             <div class="restartGame" onclick="restartGame()">
                 <h2 class="btn">Restart Game</h2>
             </div>

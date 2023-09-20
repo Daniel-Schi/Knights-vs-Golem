@@ -11,10 +11,18 @@ function startGame() {
 }
 
 function init(){
-    levelInit();
+    initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     // soundEffects();
+}
+
+function infoDescription() {
+document.getElementById('info').classList.remove('d-none');
+}
+
+function closeInfo() {
+    document.getElementById('info').classList.add('d-none');
 }
 
 function restartGame() {

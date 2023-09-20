@@ -3,7 +3,7 @@
 let level1;
 
 
-function levelInit() {
+function initLevel() {
     level1 = new Level(
         [
             new Golem(),
