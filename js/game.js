@@ -2,19 +2,18 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let character = new MovableObject();
-win_Sound = new Audio('audio/win.wav');
+
 
 
 function startGame() {
     document.getElementById('startscreen').classList.add('d-none');
-    init();
-}
-
-function init() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    // soundEffects();
+}
+
+function init() {
+    soundEffects(0.3);
 }
 
 function infoDescription() {
@@ -34,9 +33,9 @@ function closeController() {
 }
 
 function restartGame() {
-    document.getElementById('startscreen').classList.remove('d-none');
     document.getElementById('youLoseGame').classList.add('d-none');
     document.getElementById('youWinGame').classList.add('d-none');
+    document.getElementById('startscreen').classList.remove('d-none');
 }
 
 function youWinGame() {
@@ -45,7 +44,7 @@ function youWinGame() {
 }
 
 function youLoseGame() {
-    document.getElementById('youLoseGame').classList.remove.apply('d-none');
+    document.getElementById('youLoseGame').classList.remove('d-none');
     stopGame();
 }
 
@@ -62,6 +61,47 @@ function stopGame() {
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
+
+/**
+ * Toggles the fullscreen mode of the game.
+ */
+function toggleFullScreen() {
+    if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+        closeFullscreen();
+    } else {
+        openFullscreen();
+    }
+}
+
+/**
+ * Requests to open fullscreen mode.
+ */
+function openFullscreen() {
+    let content = document.getElementById('content');
+    if (content.requestFullscreen) {
+        content.requestFullscreen();
+    } else if (content.webkitRequestFullscreen) { /* Safari */
+        content.webkitRequestFullscreen();
+    } else if (content.msRequestFullscreen) { /* IE11 */
+        content.msRequestFullscreen();
+    }
+    document.getElementById('fullscreen').src = "img/start-icons/fullscreenIcon.png";
+}
+
+/**
+ * Exits the fullscreen mode.
+ */
+function closeFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+        document.msExitFullscreen();
+    }
+    document.getElementById('fullscreen').src = "img/start-icons/fullscreenIcon.png";
+}
+
 
 window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39) { // Arrow Right

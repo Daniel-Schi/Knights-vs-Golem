@@ -134,7 +134,7 @@ class Character extends MovableObject {
 
     animationsCharacter() {
         if (this.isDead()) {
-            this.playCharacterAnimation(this.IMAGES_DEAD);
+            this.characterDead();
         } else if (this.isHurt) {
             this.playAnimation(this.IMAGES_HURT);
             this.hurt_sound.play();
@@ -152,4 +152,12 @@ class Character extends MovableObject {
             this.playEnemyAnimation(this.IMAGES_ATTACK);
         }
     };
+
+    characterDead() {
+        this.playCharacterAnimation(this.IMAGES_DEAD);
+        this.walking_sound.pause();
+        setTimeout(() => {
+            youLoseGame();
+        }, 2000);
+    }
 }

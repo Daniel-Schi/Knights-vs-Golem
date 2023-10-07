@@ -35,6 +35,7 @@
     <script src="classes/endboss.class.js"></script>
     <script src="levels/level1.js"></script>
     <script src="js/game.js"></script>
+    <script src="js/audio.js"></script>
 </head>
 
 <body onload="init()">
@@ -50,7 +51,7 @@
     </div>
     <div id="content" class="content">
         <div id="startscreen" class="startscreen">
-            <img class="startscreen-img" src="img/background-Winter/background-img.jpg">
+            <img class="startscreen-img" src="img/start-icons/background-img-startscreen.png">
             <div class="menuList">
                 <div class="info" onclick="infoDescription()">
                     <img src="img/start-icons/info.png" alt="info">
@@ -58,26 +59,20 @@
                 <div class="controller" onclick="controllerDescription()">
                     <img src="img/start-icons/controller.png" alt="controller">
                 </div>
-                <div class="mute" id="mute" onclick="muteOnOff()">
-                    <img src="img/start-icons/volume.png" alt="mute">
+                <div class="mute"  onclick="muteOnOff()">
+                    <img id="mute" src="img/start-icons/volume (2).png" alt="mute">
                 </div>
-                <div class="fullscreen" id="fullscreen" onclick="fullscreen()">
+                <div class="fullscreen" id="fullscreen" onclick="toggleFullScreen()">
                     <img src="img/start-icons/fullscreenIcon.png" alt="fullscreen">
                 </div>
             </div>
             <div class="startGame" id="startGame" onclick="startGame()">
                 <img src="img/start-icons/startGame1.png" alt="startGame">
             </div>
-            <div class="knigthCharacter">
-                <img src="img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__IDLE_000.png" alt="character">
-            </div>
-            <div class="golemEndboss">
-                <img src="img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_000.png" alt="endboss">
-            </div>
         </div>
-        <div class="closeInfo d-none" id="info" onclick="closeInfo()">
+        <div class="closeInfo d-none" id="info">
             <div class="headerInfo">
-                <img class="closeBtn" src="img/start-icons/delete-x.png" alt="closeInfo">
+                <img class="closeBtn" onclick="closeInfo()" src="img/start-icons/delete-x.png" alt="closeInfo">
             </div>
             <h2 class="headlineGameInfo">Game Info</h2>
             <div class="infoContent">
@@ -87,9 +82,9 @@
                 In the end, you'll face the final boss, whom you can defeat by throwing the collected swords at them.
             </div>
         </div>
-        <div class="closeController d-none" id="controller" onclick="closeController()">
+        <div class="closeController d-none" id="controller">
             <div class="headerInfo">
-                <img class="closeBtn" src="img/start-icons/delete-x.png" alt="closeController">
+                <img class="closeBtn" onclick="closeController()" src="img/start-icons/delete-x.png" alt="closeController">
             </div>
             <h2 class="headlineController">Gameplay</h2>
             <div class="controllerContent">
@@ -111,18 +106,22 @@
                 </div>
             </div>
         </div>
+
+         <!--- Canvas --->
         <canvas id="canvas" width="720" height="480"></canvas>
-        <div id="youWinGame" class="youWinGame d-none">
-            <div class="restartGame btn" onclick="restartGame()">
-                <h2>Restart Game</h2>
-            </div>
-            <img src="img/start-icons/youwin.png" alt="youWon">
-        </div>
-        <div id="youLoseGame" class="youLoseGame d-none">
+
+        <!--- End of Game Content --->
+        <div id="youWinGame" class="endOfGame d-none">
             <div class="restartGame" onclick="restartGame()">
-                <h2 class="btn">Restart Game</h2>
+                <h2 class="btn-win">Restart Game</h2>
             </div>
-            <img src="img/start-icons/gameOver1.png" alt="youLose">
+            <img class="youWinGame-img" src="img/start-icons/win-game-knight.jpg" alt="youWin">
+        </div>
+        <div id="youLoseGame" class="endOfGame d-none">
+            <div class="restartGame" onclick="restartGame()">
+                <h2 class="btn-lose">Restart Game</h2>
+            </div>
+            <img class="youLoseGame-img" src="img/start-icons/gameOver1.png" alt="youLose">
         </div>
     </div>
 

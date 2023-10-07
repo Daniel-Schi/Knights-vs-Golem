@@ -22,11 +22,11 @@ class World {
     endboss = this.level.endboss[0];
     isAttackable = false;
 
-    gameMusic = new Audio('audio/music.wav');
-    endbossMusic = new Audio('audio/endboss-music.wav');
-    winSound = new Audio('audio/win.wav');
-    enemyDead_sound = new Audio('audio/hurt.wav');
-    gameOverMusic = new Audio('audio/gameOversMusic.wav');
+    // gameMusic = new Audio('audio/music.wav');
+    // endbossMusic = new Audio('audio/endboss-music.wav');
+    // winSound = new Audio('audio/win.wav');
+    // enemyDead_sound = new Audio('audio/hurt.wav');
+    // gameOverMusic = new Audio('audio/gameOversMusic.wav');
 
 
     constructor(canvas, keyboard) {
@@ -153,7 +153,7 @@ class World {
             } else if (this.character.isColliding(enemy, 0, 0, 0, 0) && this.character.isFalling()) {
                 enemy.isHurt = true;
                 enemy.enemyIsDead = true;
-                this.enemyDead_sound.play();
+                enemyDead_sound.play();
                 this.character.speedY = 20;
                 this.notAttackable(1000);
                 setTimeout(() => {
@@ -177,26 +177,26 @@ class World {
     checkEndboss() {
         let distance = this.character.x - this.endboss.x;
         if (distance <= -700 || this.endboss.isDead()) {
-            this.gameMusic.play();
-            this.endbossMusic.pause();
+            gameMusic.play();
+            endbossMusic.pause();
         } else {
-            this.gameMusic.pause();
-            this.endbossMusic.play();
+            gameMusic.pause();
+            endbossMusic.play();
         }
     }
 
     checkWinGame() {
         if (this.endboss.isDead()) {
-            this.gameMusic.pause();
-            this.endbossMusic.pause();
-            this.winSound.play();
+            gameMusic.pause();
+            endbossMusic.pause();
+            winSound.play();
             setTimeout(() => {
                 this.winSound.pause();
             }, 3000);
         } else if (this.character.isDead()) {
-            this.gameMusic.pause();
-            this.endbossMusic.pause();
-            this.gameOverMusic.play();
+            gameMusic.pause();
+            endbossMusic.pause();
+            gameOverMusic.play();
         }
     }
 
