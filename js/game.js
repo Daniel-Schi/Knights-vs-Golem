@@ -13,7 +13,7 @@ function startGame() {
 }
 
 function init() {
-    soundEffects(0.3);
+    soundEffects(0.1);
 }
 
 function infoDescription() {

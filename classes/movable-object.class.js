@@ -36,12 +36,7 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    // Pulls off energy from character when colliding.
-    // hit(damage) {
-    //     if (this.energy != 0) {
-    //         this.energy -= damage;
-    //     }
-    // }
+  
     hit(damage) {
         this.energy -= damage;
         if (this.energy < 0) {
@@ -50,13 +45,6 @@ class MovableObject extends DrawableObject {
             this.lastHit = new Date().getTime(); // Time since 1.1.1970
         }
     }
-
-
-    // isHurt(time) {
-    //     let timepassed = new Date().getTime() - this.lastHit;
-    //     timepassed = timepassed / 1000;
-    //     return timepassed < time;
-    // }
 
 
     isDead() {

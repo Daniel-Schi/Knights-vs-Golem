@@ -122,6 +122,10 @@ function initLevel() {
             new Swords(),
             new Swords(),
             new Swords(),
+            new Swords(),
+            new Swords(),
+            new Swords(),
+            new Swords(),
             new Swords()
         ],
         [

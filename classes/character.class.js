@@ -67,7 +67,7 @@ class Character extends MovableObject {
     y = 80;
     width = 170;
     height = 150;
-    speed = 15;
+    speed = 8;
     jumpOnGolem = false;
     offset_x = 50; // verschieben nach rechts
     offset_y = 15; // verschieben nach unten

@@ -6,6 +6,7 @@ endbossMusic = new Audio('audio/endboss-music.wav');
 winSound = new Audio('audio/win.wav');
 enemyDead_sound = new Audio('audio/hurt.wav');
 gameOverMusic = new Audio('audio/gameOversMusic.wav');
+
 let muteOnOfftoggle = false;
 
 
@@ -18,7 +19,6 @@ function soundEffects(vol) {
     endbossMusic.volume = vol;
     enemyDead_sound.volume = vol;
     gameOverMusic.volume = vol;
-    console.log('test audio');
 }
 
 

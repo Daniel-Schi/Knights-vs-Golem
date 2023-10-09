@@ -22,11 +22,6 @@ class World {
     endboss = this.level.endboss[0];
     isAttackable = false;
 
-    // gameMusic = new Audio('audio/music.wav');
-    // endbossMusic = new Audio('audio/endboss-music.wav');
-    // winSound = new Audio('audio/win.wav');
-    // enemyDead_sound = new Audio('audio/hurt.wav');
-    // gameOverMusic = new Audio('audio/gameOversMusic.wav');
 
 
     constructor(canvas, keyboard) {
@@ -177,11 +172,11 @@ class World {
     checkEndboss() {
         let distance = this.character.x - this.endboss.x;
         if (distance <= -700 || this.endboss.isDead()) {
-            gameMusic.play();
+            gameMusic.play(0.1);
             endbossMusic.pause();
         } else {
             gameMusic.pause();
-            endbossMusic.play();
+            endbossMusic.play(0.1);
         }
     }
 
@@ -197,6 +192,9 @@ class World {
             gameMusic.pause();
             endbossMusic.pause();
             gameOverMusic.play();
+            setTimeout(() => {
+                gameOverMusic.pause();
+            }, 3000);
         }
     }
 
