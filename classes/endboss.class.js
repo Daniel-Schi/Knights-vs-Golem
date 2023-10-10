@@ -174,8 +174,8 @@ class Endboss extends MovableObject {
     endbossDead() {
         this.loadImage('img/golems-sprites/Golem_3/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
         this.dead_Sound.play();
-        setInterval(() => {
-            youWinGame();
+        setTimeout(() => {
+            youWon();
         }, 2000);
     }
 }

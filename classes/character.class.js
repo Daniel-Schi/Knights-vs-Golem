@@ -157,7 +157,7 @@ class Character extends MovableObject {
         this.playCharacterAnimation(this.IMAGES_DEAD);
         this.walking_sound.pause();
         setTimeout(() => {
-            youLoseGame();
+            youLose();
         }, 2000);
     }
 }

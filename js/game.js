@@ -33,18 +33,19 @@ function closeController() {
 }
 
 function restartGame() {
-    document.getElementById('youLoseGame').classList.add('d-none');
-    document.getElementById('youWinGame').classList.add('d-none');
+    document.getElementById('youLose').classList.add('d-none');
+    document.getElementById('youWon').classList.add('d-none');
     document.getElementById('startscreen').classList.remove('d-none');
 }
 
-function youWinGame() {
-    document.getElementById('youWinGame').classList.remove('d-none');
+function youWon() {
+   document.getElementById('youWon').classList.remove('d-none');
+   console.log('testing');
     stopGame();
 }
 
-function youLoseGame() {
-    document.getElementById('youLoseGame').classList.remove('d-none');
+function youLose() {
+    document.getElementById('youLose').classList.remove('d-none');
     stopGame();
 }
 
