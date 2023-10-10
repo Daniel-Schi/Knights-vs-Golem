@@ -191,6 +191,8 @@ h1 {
 
 .buttonLayout {
     display: flex;
+    justify-content: flex-end;
+    width: 260px;
     align-items: center;
     margin-bottom: 8px;
 }
@@ -198,10 +200,12 @@ h1 {
 .controller-btn {
     width: 50px;
     height: 50px;
-    border: 2px solid black;
-    margin-left: 50px;
-    border-radius: 50px;
     text-align: center;
+}
+
+.hyphen { 
+    margin-right: 30px;
+    margin-left: 30px;
 }
 
 /* .knigthCharacter {
@@ -240,13 +244,6 @@ h1 {
     border-radius: 15px;
 }
 
-/* .youLoseGame {
-    position: absolute; 
-    width: 720px;
-    height: 480px;
-    top: 0;
-    z-index: 3;
-} */
 
 .youLoseGame-img {
     width: 720px;
@@ -285,19 +282,33 @@ h1 {
     width: 100% !important;
 }
 
-/* .content:fullscreen .closeInfo {
-    align-items: center;
+.content:fullscreen .closeInfo {
+    position: flex;
     justify-content: center;
-    display: flex;
-    text-align: center;
-    width: 100vw;
-    height: 100vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4073e0;
+    border-radius: 15px;
 }
 
-.content:fullscreen .infoContent {
-    padding-left: 500px;
-    padding-right: 500px;
-} */
+.content:fullscreen .closeController {
+    position: flex;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4073e0;
+    border-radius: 15px;
+}
+
+.content:fullscreen .endOfGame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
 
 .rotationView h2 {
     display: flex;
