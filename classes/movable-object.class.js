@@ -8,12 +8,7 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     isHurt = false;
     animationCounter = 0;
-    // offset = {
-    //     x: 0,
-    //     y: 0,
-    //     width: 0,
-    //     height: 0
-    // };
+   
 
 
     applyGravity() {
