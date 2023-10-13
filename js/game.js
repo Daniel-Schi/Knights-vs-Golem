@@ -10,11 +10,11 @@ function startGame() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    
+
 }
 
 function init() {
-    soundEffects(0.1);
+    muteOnOff();
     bindBtsPressEvents();
 }
 
@@ -34,16 +34,13 @@ function closeController() {
     document.getElementById('controller').classList.add('d-none');
 }
 
-function restartGame() {
-    document.getElementById('youLose').classList.add('d-none');
-    document.getElementById('youWon').classList.add('d-none');
-    document.getElementById('startscreen').classList.remove('d-none');
-}
-
 function youWon() {
-   document.getElementById('youWon').classList.remove('d-none');
-   console.log('testing');
-    stopGame();
+    console.log('endbossDead');
+    setTimeout(() => {
+        console.log('timeout');
+        document.getElementById('youWon').classList.remove('d-none');
+        stopGame();
+    }, 2000);
 }
 
 function youLose() {
@@ -51,11 +48,18 @@ function youLose() {
     stopGame();
 }
 
+function restartGame() {
+    document.getElementById('youLose').classList.add('d-none');
+    document.getElementById('youWon').classList.add('d-none');
+    document.getElementById('startscreen').classList.remove('d-none');
+    gameOverMusic.pause();
+}
+
 /**
  * Stops the game by clearing all intervals.
  */
 function stopGame() {
-    clearAllIntervals();
+     clearAllIntervals();
 }
 
 /**

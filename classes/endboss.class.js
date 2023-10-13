@@ -111,7 +111,7 @@ class Endboss extends MovableObject {
     toClose = false;
     isSplashing = false;
 
-    dead_Sound = new Audio('audio/monster-dead.wav');
+   
 
 
     constructor() {
@@ -173,9 +173,7 @@ class Endboss extends MovableObject {
 
     endbossDead() {
         this.loadImage('img/golems-sprites/Golem_3/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
-        this.dead_Sound.play();
-        setTimeout(() => {
-            youWon();
-        }, 2000);
+        dead_Sound.play();
+        youWon();
     }
 }

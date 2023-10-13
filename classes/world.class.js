@@ -186,7 +186,7 @@ class World {
             endbossMusic.pause();
             winSound.play();
             setTimeout(() => {
-                this.winSound.pause();
+                winSound.pause();
             }, 3000);
         } else if (this.character.isDead()) {
             gameMusic.pause();
@@ -228,12 +228,9 @@ class World {
 
 
     stopGameIfEndbossIsDead(endboss) {
-        if (endboss.isDead()) {
-            this.endboss.speed = 0;
-            setTimeout(() => {
-                clearAllIntervals();
-            }, 500);
-        }
+        // if (endboss.isDead()) {
+        //     this.endboss.speed = 0;
+        // }
     }
 
 

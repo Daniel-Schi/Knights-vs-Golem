@@ -89,7 +89,7 @@ class GolemSmall extends MovableObject {
     toClose = false;
     currentImage = 0;
 
-    enemyDead_sound = new Audio('audio/hurt.wav');
+   
 
     
 

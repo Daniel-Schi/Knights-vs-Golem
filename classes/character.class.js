@@ -76,9 +76,6 @@ class Character extends MovableObject {
     world;
     triggert = false;
 
-    walking_sound = new Audio('audio/walking-snow.wav');
-    hurt_sound = new Audio('audio/hurt1.wav');
-    jump_sound = new Audio('audio/jump.wav');
 
     
 
@@ -108,22 +105,22 @@ class Character extends MovableObject {
     }
 
     movesCharacter() {
-        this.walking_sound.pause();
+        walking_sound.pause();
 
         if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
 
             this.moveRight();
             this.otherDirection = false;
-            this.walking_sound.play();
+            walking_sound.play(1);
         }
         if (this.world.keyboard.LEFT && this.x > -500) {
             this.moveLeft();
             this.otherDirection = true;
-            this.walking_sound.play();
+            walking_sound.play(1);
         }
         if (this.world.keyboard.SPACE && !this.isAboveGround()) {
             this.jump();
-            this.jump_sound.play();
+            jump_sound.play();
         }
         if (this.world.keyboard.F && !this.isDead()) {
             this.triggert = true;
@@ -137,7 +134,7 @@ class Character extends MovableObject {
             this.characterDead();
         } else if (this.isHurt) {
             this.playAnimation(this.IMAGES_HURT);
-            this.hurt_sound.play();
+            hurt_sound.play();
         } else if (this.isAboveGround()) {
             this.playAnimation(this.IMAGES_JUMPING);
         } else {
@@ -155,7 +152,7 @@ class Character extends MovableObject {
 
     characterDead() {
         this.playCharacterAnimation(this.IMAGES_DEAD);
-        this.walking_sound.pause();
+        walking_sound.pause();
         setTimeout(() => {
             youLose();
         }, 2000);

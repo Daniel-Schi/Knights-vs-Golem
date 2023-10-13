@@ -2,8 +2,6 @@ class ThrowableObject extends MovableObject {
 
     IMAGE_SWORD = ['img/icons-weapons/PNG/daggers (5).png'];
     IMAGE_BLOOD = ['img/blood-icon/blood.png'];
-    throw_sound = new Audio('audio/throw.wav');
-    blood_sound = new Audio('audio/blood_splatter.mp3');
     animationThrowingSword;
 
     constructor(x, y, otherDirection) {
@@ -22,7 +20,7 @@ class ThrowableObject extends MovableObject {
     throw() {
         this.speedY = 20;
         this.applyGravity();
-        this.throw_sound.play();
+        throw_sound.play();
         this.throwIntervalFunction();
     }
 
@@ -52,7 +50,7 @@ class ThrowableObject extends MovableObject {
     }
 
     splashBlood() {
-        this.blood_sound.play();
+        blood_sound.play();
         this.loadImage(this.IMAGE_BLOOD);
         this.stopImage(this.animationThrowingSword);
     }
