@@ -4,7 +4,7 @@ jump_sound = new Audio('audio/jump.wav');
 gameMusic = new Audio('audio/music.wav');
 endbossMusic = new Audio('audio/endboss-music.wav');
 winSound = new Audio('audio/win.wav');
-enemyDead_sound = new Audio('audio/hurt.wav');
+enemyDead_sound = new Audio('audio/enemyDeadSound.wav');
 gameOverMusic = new Audio('audio/gameOversMusic.wav');
 dead_Sound = new Audio('audio/monster-dead.wav');
 throw_sound = new Audio('audio/throw.wav');
@@ -30,6 +30,10 @@ function musicEffects(vol) {
     endbossMusic.volume = vol;
 }
 
+
+/**
+ * Toggles the in-game background music on/off.
+ */
 function muteOnOff() {
     const muteImage = document.getElementById('mute');
 
@@ -37,7 +41,7 @@ function muteOnOff() {
         muteOnOfftoggle = false;
         soundEffects(0);
         musicEffects(0);
-        muteImage.src = "img/start-icons/mute.png"; // Ändern Sie das Bild, um den eingeschalteten Ton anzuzeigen.
+        muteImage.src = "img/start-icons/no-volume.png"; // Ändern Sie das Bild, um den eingeschalteten Ton anzuzeigen.
     } else {
         muteOnOfftoggle = true;
         soundEffects(1);

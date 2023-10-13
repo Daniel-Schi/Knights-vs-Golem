@@ -137,26 +137,36 @@ class World {
     checkCollisionToEnemies() {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy, 0, 0, 0, 0) && !this.character.isFalling() && !enemy.enemyisDead && !this.isAttackable) {
-                this.character.jumpOnGolem = true;
-                this.character.isHurt = true;
-                this.character.hit(10);
-                this.statusBarCharacter.setPercentage(this.character.energy);
-                this.notAttackable(500);
-                setTimeout(() => {
-                    this.character.isHurt = false;
-                }, 1000);
+                this.enemyIfBlock();
             } else if (this.character.isColliding(enemy, 0, 0, 0, 0) && this.character.isFalling()) {
-                enemy.isHurt = true;
-                enemy.enemyIsDead = true;
-                enemyDead_sound.play();
-                this.character.speedY = 20;
-                this.notAttackable(1000);
-                setTimeout(() => {
-                    enemy.isHurt = false;
-                    this.enemies.splice(index, 1);
-                }, 1000);
+                this.enemyElseBlock(enemy, index);
             }
         });
+    }
+
+    enemyIfBlock() {
+        this.character.jumpOnGolem = true;
+        this.character.isHurt = true;
+        this.character.hit(10);
+        this.statusBarCharacter.setPercentage(this.character.energy);
+        this.notAttackable(500);
+        setTimeout(() => {
+            this.character.isHurt = false;
+        }, 1000);
+        return;
+    }
+
+    enemyElseBlock(enemy, index) {
+        enemy.isHurt = true;
+        enemy.enemyIsDead = true;
+        enemyDead_sound.play();
+        this.character.speedY = 20;
+        this.notAttackable(1000);
+        setTimeout(() => {
+            enemy.isHurt = false;
+            this.enemies.splice(index, 1);
+        }, 1000);
+        return;
     }
 
 

@@ -4,13 +4,14 @@ let keyboard = new Keyboard();
 let character = new MovableObject();
 
 
-
+/**
+ * Initializes the game.
+ */
 function startGame() {
     document.getElementById('startscreen').classList.add('d-none');
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
 }
 
 function init() {
@@ -18,36 +19,55 @@ function init() {
     bindBtsPressEvents();
 }
 
+/**
+ * Opens the info container.
+ */
 function infoDescription() {
     document.getElementById('info').classList.remove('d-none');
 }
 
+/**
+ * Closes the info container.
+ */
 function closeInfo() {
     document.getElementById('info').classList.add('d-none');
 }
 
+/**
+ * Opens the controller container.
+ */
 function controllerDescription() {
     document.getElementById('controller').classList.remove('d-none');
 }
 
+/**
+ * Closes the controller container.
+ */
 function closeController() {
     document.getElementById('controller').classList.add('d-none');
 }
 
-function youWon() {
-    console.log('endbossDead');
+/**
+ * Opens win the Game.
+ */
+function youWon() { 
     setTimeout(() => {
-        console.log('timeout');
         document.getElementById('youWon').classList.remove('d-none');
         stopGame();
     }, 2000);
 }
 
+/**
+ * Opens lose the Game.
+ */
 function youLose() {
     document.getElementById('youLose').classList.remove('d-none');
     stopGame();
 }
 
+/**
+ * Restarts the game.
+ */
 function restartGame() {
     document.getElementById('youLose').classList.add('d-none');
     document.getElementById('youWon').classList.add('d-none');
