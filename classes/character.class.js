@@ -89,10 +89,12 @@ class Character extends MovableObject {
         this.applyGravity();
         this.animate();
     }
+    
 
     isFalling() {
         return this.isAboveGround() && this.speedY < 0;
     }
+
 
     animate() {
         setInterval(() => {
@@ -103,6 +105,7 @@ class Character extends MovableObject {
             this.animationsCharacter();
         }, 100);
     }
+
 
     movesCharacter() {
         walking_sound.pause();
@@ -129,6 +132,7 @@ class Character extends MovableObject {
         this.triggerAnimation();
     }
 
+
     animationsCharacter() {
         if (this.isDead()) {
             this.characterDead();
@@ -144,11 +148,13 @@ class Character extends MovableObject {
         }
     }
 
+
     triggerAnimation() {
         if (this.triggert) {
             this.playEnemyAnimation(this.IMAGES_ATTACK);
         }
     };
+
 
     characterDead() {
         this.playCharacterAnimation(this.IMAGES_DEAD);

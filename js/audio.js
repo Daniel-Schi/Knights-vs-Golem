@@ -17,11 +17,16 @@ function soundEffects(vol) {
     walking_sound.volume = vol;
     hurt_sound.volume = vol;
     jump_sound.volume = vol;
-    enemyDead_sound.volume = vol;
-    dead_Sound.volume = vol;
     throw_sound.volume = vol;
     blood_sound.volume = vol;
 }
+
+
+function enemySound(vol) {
+    enemyDead_sound.volume = vol;
+    dead_Sound.volume = vol;
+}
+
 
 function musicEffects(vol) {
     gameOverMusic.volume = vol;
@@ -36,15 +41,16 @@ function musicEffects(vol) {
  */
 function muteOnOff() {
     const muteImage = document.getElementById('mute');
-
     if (muteOnOfftoggle) {
         muteOnOfftoggle = false;
         soundEffects(0);
         musicEffects(0);
+        enemySound(0);
         muteImage.src = "img/start-icons/no-volume.png"; // Ändern Sie das Bild, um den eingeschalteten Ton anzuzeigen.
     } else {
         muteOnOfftoggle = true;
         soundEffects(1);
+        enemySound(0.1);
         musicEffects(0.1);
         muteImage.src = "img/start-icons/volume (2).png"; // Ändern Sie das Bild, um den stummen Zustand anzuzeigen.
     }

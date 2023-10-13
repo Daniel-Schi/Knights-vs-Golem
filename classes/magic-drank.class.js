@@ -10,6 +10,7 @@ class MagicDrank extends MovableObject {
 
     IMAGE = ['img/bottle-icons/PNG/without background/7.png',]
 
+    
     constructor() {
         super().loadImage('img/bottle-icons/PNG/without background/7.png');
         this.loadImage(this.IMAGE);

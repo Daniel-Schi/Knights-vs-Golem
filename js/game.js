@@ -50,11 +50,9 @@ function closeController() {
 /**
  * Opens win the Game.
  */
-function youWon() { 
-    setTimeout(() => {
+function youWon() {   
         document.getElementById('youWon').classList.remove('d-none');
         stopGame();
-    }, 2000);
 }
 
 /**

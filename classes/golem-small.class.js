@@ -103,6 +103,7 @@ class GolemSmall extends MovableObject {
         this.animate();
         this.direction;
     }
+    
 
     direction() {
         setInterval(() => {
@@ -112,6 +113,7 @@ class GolemSmall extends MovableObject {
             this.speed = 0.2 + Math.random() * 0.9;
         }, 2000);
     }
+
 
     animate() {
         setInterval(() => {
@@ -136,6 +138,7 @@ class GolemSmall extends MovableObject {
             this.playAnimation(this.IMAGES_IDLE);
         }
     }
+
 
     moveEnemies() {
         if (!this.enemyIsDead) {

@@ -41,5 +41,4 @@ class StatusBarSword extends DrawableObject {
             return 0;
         }
     }
-
 }

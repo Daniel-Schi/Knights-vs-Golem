@@ -22,6 +22,7 @@ class MovableObject extends DrawableObject {
             }
         }, 1000 / 25);
     }
+    
 
     isAboveGround() {
         if (this instanceof ThrowableObject) { // Throwable Object should always fall
@@ -56,6 +57,7 @@ class MovableObject extends DrawableObject {
         );
     }
 
+
     moveRight() {
         this.x += this.speed;
         this.otherDirection = false;
@@ -67,10 +69,12 @@ class MovableObject extends DrawableObject {
         this.otherDirection = true;
     }
 
+
     moveDown() {
         this.y += this.speed;
         this.otherDirection = true;
     }
+
 
     jump() {
         this.speedY = 30;
@@ -83,6 +87,7 @@ class MovableObject extends DrawableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
+
 
     playCharacterAnimation(images) {
         if (!this.currentImage) {   // Wenn es das erste Mal ist, dass die Animation gestartet wird,                       
@@ -100,6 +105,7 @@ class MovableObject extends DrawableObject {
         }
     }
 
+
     playEnemyAnimation(images) {
         if (this.animationCounter < images.length) {
             let i = this.animationCounter;
@@ -111,7 +117,6 @@ class MovableObject extends DrawableObject {
             if (this instanceof Character) {
                 this.world.character.triggert = false;
             }
-
         }
     }
 }

@@ -20,11 +20,13 @@ class StatusBarMagicDrank extends DrawableObject {
         this.setMagicDrank(0);
     }
 
+
     setMagicDrank(magicDrankAmount) {
         this.magicDrankAmount = magicDrankAmount; // Bekommt Wert von Variable bottleAmount, die bei jeder Kollision steigt
         let path = this.IMAGES[this.resolveImageIndex()]; // Zuweisung der URL des gewünschten Bildes (Zahl zwischen 0 und 5) an path
         this.img = this.imageCache[path]; // laden des Pfades aus Array imageCache und zuweisen des Bildes an die Variable "img" in DrawableObjects
     }
+
 
     resolveImageIndex() {
         if (this.magicDrankAmount >= 5) {
@@ -41,5 +43,4 @@ class StatusBarMagicDrank extends DrawableObject {
             return 0;
         }
     }
-
 }

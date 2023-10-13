@@ -1,8 +1,9 @@
 class ThrowableObject extends MovableObject {
-
     IMAGE_SWORD = ['img/icons-weapons/PNG/daggers (5).png'];
     IMAGE_BLOOD = ['img/blood-icon/blood.png'];
     animationThrowingSword;
+
+
 
     constructor(x, y, otherDirection) {
         super();
@@ -17,12 +18,14 @@ class ThrowableObject extends MovableObject {
         this.otherDirection = otherDirection;
     }
 
+
     throw() {
         this.speedY = 20;
         this.applyGravity();
         throw_sound.play();
         this.throwIntervalFunction();
     }
+
 
     throwIntervalFunction() {
         setInterval(() => {
@@ -49,11 +52,13 @@ class ThrowableObject extends MovableObject {
         }, 100)
     }
 
+
     splashBlood() {
         blood_sound.play();
         this.loadImage(this.IMAGE_BLOOD);
         this.stopImage(this.animationThrowingSword);
     }
+
 
     stopImage(IMAGE_SWORD) {
         clearInterval(IMAGE_SWORD);
@@ -61,7 +66,6 @@ class ThrowableObject extends MovableObject {
             this.loadImage('');
         }, 100);
     }
-  
 }
 
 

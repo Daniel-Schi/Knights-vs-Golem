@@ -9,8 +9,8 @@ class StatusBarCharacter extends DrawableObject {
         'img/status-bar/status-knight/progress-bar-5.png',
     ];
 
-
     percentage = 100;
+
 
     constructor() {
         super();
@@ -29,6 +29,7 @@ class StatusBarCharacter extends DrawableObject {
         this.img = this.imageCache[path];
     }
 
+
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;
@@ -44,5 +45,4 @@ class StatusBarCharacter extends DrawableObject {
             return 0;
         }
     }
-
 }

@@ -119,6 +119,7 @@ class Golem extends MovableObject {
         }, 2000);
     }
 
+
     animate() {
         setInterval(() => {
             this.moveEnemies();
@@ -128,6 +129,7 @@ class Golem extends MovableObject {
             this.animateEnemies();
         }, 200);
     }
+
 
     animateEnemies() {
         if (this.enemyIsDead) {
@@ -141,6 +143,7 @@ class Golem extends MovableObject {
         }
     }
 
+    
     moveEnemies() {
         if (!this.enemyIsDead) {
             if (this.enemieDirection <= 0.2) {

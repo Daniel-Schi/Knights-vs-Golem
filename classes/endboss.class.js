@@ -96,7 +96,7 @@ class Endboss extends MovableObject {
         'img/golems-sprites/Golem_3/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png'
     ];
 
-   
+
 
     width = 300;
     height = 350;
@@ -111,7 +111,7 @@ class Endboss extends MovableObject {
     toClose = false;
     isSplashing = false;
 
-   
+
 
 
     constructor() {
@@ -123,8 +123,9 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_IDLE);
         this.x = 3300;
         this.animate();
-        this.direction;      
+        this.direction;
     }
+    
 
     direction() {
         setInterval(() => {
@@ -135,6 +136,7 @@ class Endboss extends MovableObject {
         }, 2000);
     }
 
+
     animate() {
         setInterval(() => {
             this.animateEnemies();
@@ -144,6 +146,7 @@ class Endboss extends MovableObject {
             this.moveEnemies();
         }, 1000 / 60);
     }
+
 
     animateEnemies() {
         if (this.isDead()) {
@@ -160,6 +163,7 @@ class Endboss extends MovableObject {
         }
     }
 
+
     moveEnemies() {
         if (!this.isDead()) {
             if (this.enemieDirection <= 0.2) {
@@ -171,9 +175,12 @@ class Endboss extends MovableObject {
         }
     }
 
+
     endbossDead() {
         this.loadImage('img/golems-sprites/Golem_3/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
         dead_Sound.play();
-        youWon();
+        setTimeout(() => {
+            youWon();
+        }, 2000);
     }
 }

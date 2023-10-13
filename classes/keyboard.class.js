@@ -9,43 +9,43 @@ class Keyboard {
 
 
 window.addEventListener("keydown", (event) => {
-    if (event.keyCode == 39) { // Arrow Right
+    if (event.key === "ArrowRight") { // Arrow Right
         keyboard.RIGHT = true;
     }
-    if (event.keyCode == 37) { // Arrow Left
+    if (event.key === "ArrowLeft") { // Arrow Left
         keyboard.LEFT = true;
     }
-    if (event.keyCode == 38) { // Arrow Up
+    if (event.key === "ArrowUp") { // Arrow Up
         keyboard.UP = true;
     }
-    if (event.keyCode == 40) { // Arrow Down
+    if (event.key === "ArrowDown") { // Arrow Down
         keyboard.DOWN = true;
     }
-    if (event.keyCode == 32) { // Spacebar
+    if (event.key === " ") { // Spacebar
         keyboard.SPACE = true;
     }
-    if (event.keyCode == 70) { // Button F
+    if (event.key === "f") { // Button F
         keyboard.F = true;
     }
 });
 
 window.addEventListener("keyup", (event) => {
-    if (event.keyCode == 39) { // Arrow Right
+    if (event.key === "ArrowRight") { // Arrow Right
         keyboard.RIGHT = false;
     }
-    if (event.keyCode == 37) { // Arrow Left
+    if (event.key === "ArrowLeft") { // Arrow Left
         keyboard.LEFT = false;
     }
-    if (event.keyCode == 38) { // Arrow Up
+    if (event.key === "ArrowUp") { // Arrow Up
         keyboard.UP = false;
     }
-    if (event.keyCode == 40) { // Arrow Down
+    if (event.key === "ArrowDown") { // Arrow Down
         keyboard.DOWN = false;
     }
-    if (event.keyCode == 32) { // Spacebar
+    if (event.key === " ") { // Spacebar
         keyboard.SPACE = false;
     }
-    if (event.keyCode == 70) { // Button F
+    if (event.key === "f") { // Button F
         keyboard.F = false;
     }
 });

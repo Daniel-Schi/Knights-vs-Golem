@@ -64,16 +64,16 @@ class World {
     }
 
 
-
     checkThrowObjects() {
         if (this.keyboard.F && this.collectedSwords.length > 0) {
             let sword = new ThrowableObject(this.character.x + 75, this.character.y + 0);
             this.throwableObjects.push(sword);
-            this.collectedSwords.pop(); // Nach Abwurf einen Wert aus Array entfernen
-            this.statusBarSword.setSwords(this.collectedSwords.length); // Wert an StatusBarBottles übergeben
+            this.collectedSwords.pop(); 
+            this.statusBarSword.setSwords(this.collectedSwords.length); 
             this.swordIsThrown = true;
         }
     }
+
 
     checkIfSwordIsOutOfLevel() {
         this.throwableObjects.forEach((index, throwableObjects) => {
@@ -128,6 +128,7 @@ class World {
         }
     }
 
+
     setDirection(enemy, direction, boolValue) {
         enemy.isSplashing = boolValue;
         enemy.enemieDirection = direction;
@@ -144,6 +145,7 @@ class World {
         });
     }
 
+
     enemyIfBlock() {
         this.character.jumpOnGolem = true;
         this.character.isHurt = true;
@@ -155,6 +157,7 @@ class World {
         }, 1000);
         return;
     }
+
 
     enemyElseBlock(enemy, index) {
         enemy.isHurt = true;
@@ -168,7 +171,6 @@ class World {
         }, 1000);
         return;
     }
-
 
 
     notAttackable(ms) {
@@ -189,6 +191,7 @@ class World {
             endbossMusic.play(0.1);
         }
     }
+
 
     checkWinGame() {
         if (this.endboss.isDead()) {
@@ -223,13 +226,13 @@ class World {
         })
     }
 
+
     checkCollisonSwordWithEndboss() {
         this.level.endboss.forEach((endboss) => {
             this.throwableObjects.forEach((sword) => {
                 if (this.endboss.isColliding(sword, 0, 0, 0, 0) && !this.isAttackable) {
                     this.notAttackable(500)
                     this.endboss.hit(20);
-                    this.stopGameIfEndbossIsDead(endboss);
                     this.statusBarEndboss.setPercentage(this.endboss.energy);
                 }
             });
@@ -237,32 +240,26 @@ class World {
     }
 
 
-    stopGameIfEndbossIsDead(endboss) {
-        // if (endboss.isDead()) {
-        //     this.endboss.speed = 0;
-        // }
-    }
-
-
     checkCollisionToCollectSwords() {
         this.level.swords.forEach((sword, index) => {
             if (this.character.isColliding(sword, 0, 0, 0, 0)) {
-                if (!this.collectedSwords.includes(sword)) { // wird nur ausgeführt, wenn Wert noch nicht vorhanden
+                if (!this.collectedSwords.includes(sword)) { 
                     this.collectedSwords.push(sword);
                     this.statusBarSword.setSwords(this.collectedSwords.length);
-                    this.level.swords.splice(index, 1); // Entferne die kollidierte Schwert aus dem Array und entferne Bild
+                    this.level.swords.splice(index, 1); 
                 }
             }
         })
     }
 
+
     checkCollisionToCollectMagicDrank() {
         this.level.magicDrank.forEach((magicDrank, index) => {
             if (this.character.isColliding(magicDrank, 0, 0, 0, 0)) {
-                if (!this.collectedMagicDrank.includes(magicDrank)) { // wird nur ausgeführt, wenn Wert noch nicht vorhanden
+                if (!this.collectedMagicDrank.includes(magicDrank)) { 
                     this.collectedMagicDrank.push(magicDrank);
                     this.statusBarMagicDrank.setMagicDrank(this.collectedMagicDrank.length);
-                    this.level.magicDrank.splice(index, 1); // Entferne die kollidierte Flasche aus dem Array und entferne Bild
+                    this.level.magicDrank.splice(index, 1); 
                 }
             }
         })
@@ -278,13 +275,13 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
-        // Draw wird immer wieder aufgerufen.
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
         })
     }
 
+    
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o)
