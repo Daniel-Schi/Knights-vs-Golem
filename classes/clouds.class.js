@@ -1,8 +1,8 @@
 class Clouds extends MovableObject {
+
     y = 20;
     width = 400;
     height = 80;
-
 
     constructor() {
         super().loadImage('img/battleground/PNG/Clouds_white/Shape8/clouds_shape8_4.png');

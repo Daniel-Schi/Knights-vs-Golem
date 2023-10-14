@@ -4,7 +4,6 @@ class Snow extends MovableObject {
     height = 480;
 
 
-    
     constructor(imagePath, x,y) {
         super().loadImage('img/background-Winter/BG_01/Layers/Snow.png');
         this.loadImage(imagePath);

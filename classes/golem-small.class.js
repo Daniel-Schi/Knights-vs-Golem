@@ -1,4 +1,5 @@
 class GolemSmall extends MovableObject {
+
     IMAGES_WALKING = [
         'img/golems-sprites/Golem_1/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png',
         'img/golems-sprites/Golem_1/PNG/PNG Sequences/Walking/0_Golem_Walking_001.png',
@@ -89,9 +90,6 @@ class GolemSmall extends MovableObject {
     toClose = false;
     currentImage = 0;
 
-   
-
-    
 
     constructor() {
         super().loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png');
@@ -113,7 +111,6 @@ class GolemSmall extends MovableObject {
             this.speed = 0.2 + Math.random() * 0.9;
         }, 2000);
     }
-
 
     animate() {
         setInterval(() => {
@@ -138,7 +135,6 @@ class GolemSmall extends MovableObject {
             this.playAnimation(this.IMAGES_IDLE);
         }
     }
-
 
     moveEnemies() {
         if (!this.enemyIsDead) {

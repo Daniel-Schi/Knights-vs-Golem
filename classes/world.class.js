@@ -1,4 +1,5 @@
 class World {
+
     character = new Character();
     enemies = level1.enemies;
     sword = level1.sword;
@@ -23,7 +24,6 @@ class World {
     isAttackable = false;
 
 
-
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -33,13 +33,17 @@ class World {
         this.run();
     }
 
-
+    /**
+      * .Sets up the world and assigns the world to the character and endboss.
+      */
     setWorld() {
         this.character.world = this;
         this.endboss.world = this;
     }
 
-
+    /**
+      * Run functions at intervals.
+      */
     run() {
         setInterval(() => {
             this.checkCollisions();
@@ -49,7 +53,9 @@ class World {
         }, 300);
     }
 
-
+    /**
+    * Checks various collision scenarios.
+    */
     checkCollisions() {
         this.checkCollisionToEnemies();
         this.checkCollisionToEndboss();
@@ -68,8 +74,8 @@ class World {
         if (this.keyboard.F && this.collectedSwords.length > 0) {
             let sword = new ThrowableObject(this.character.x + 75, this.character.y + 0);
             this.throwableObjects.push(sword);
-            this.collectedSwords.pop(); 
-            this.statusBarSword.setSwords(this.collectedSwords.length); 
+            this.collectedSwords.pop();
+            this.statusBarSword.setSwords(this.collectedSwords.length);
             this.swordIsThrown = true;
         }
     }
@@ -243,10 +249,10 @@ class World {
     checkCollisionToCollectSwords() {
         this.level.swords.forEach((sword, index) => {
             if (this.character.isColliding(sword, 0, 0, 0, 0)) {
-                if (!this.collectedSwords.includes(sword)) { 
+                if (!this.collectedSwords.includes(sword)) {
                     this.collectedSwords.push(sword);
                     this.statusBarSword.setSwords(this.collectedSwords.length);
-                    this.level.swords.splice(index, 1); 
+                    this.level.swords.splice(index, 1);
                 }
             }
         })
@@ -256,10 +262,10 @@ class World {
     checkCollisionToCollectMagicDrank() {
         this.level.magicDrank.forEach((magicDrank, index) => {
             if (this.character.isColliding(magicDrank, 0, 0, 0, 0)) {
-                if (!this.collectedMagicDrank.includes(magicDrank)) { 
+                if (!this.collectedMagicDrank.includes(magicDrank)) {
                     this.collectedMagicDrank.push(magicDrank);
                     this.statusBarMagicDrank.setMagicDrank(this.collectedMagicDrank.length);
-                    this.level.magicDrank.splice(index, 1); 
+                    this.level.magicDrank.splice(index, 1);
                 }
             }
         })
@@ -281,7 +287,7 @@ class World {
         })
     }
 
-    
+
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o)

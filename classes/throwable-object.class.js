@@ -4,7 +4,6 @@ class ThrowableObject extends MovableObject {
     animationThrowingSword;
 
 
-
     constructor(x, y, otherDirection) {
         super();
         this.loadImage(this.IMAGE_BLOOD);

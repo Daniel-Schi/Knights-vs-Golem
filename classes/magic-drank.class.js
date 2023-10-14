@@ -1,4 +1,5 @@
 class MagicDrank extends MovableObject {
+    
     y = 120 + Math.random() * 120; // setzen der y-Position
     x = 300 + Math.random() * 2000; // Setzen der x-Position zufällig zwischen 300 und 2200
     width = 30;

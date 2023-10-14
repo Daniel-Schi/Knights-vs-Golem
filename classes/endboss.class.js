@@ -111,9 +111,7 @@ class Endboss extends MovableObject {
     toClose = false;
     isSplashing = false;
 
-
-
-
+    
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);

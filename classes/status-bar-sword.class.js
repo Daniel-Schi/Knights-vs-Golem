@@ -1,4 +1,5 @@
 class StatusBarSword extends DrawableObject {
+    
     x = 5;
     y = 30;
     width = 100;
@@ -11,7 +12,6 @@ class StatusBarSword extends DrawableObject {
         'img/status-bar/status-sword/sword-progress-bar-4.png',
         'img/status-bar/status-sword/sword-progress-bar-5.png'
     ];
-
 
 
     constructor() {

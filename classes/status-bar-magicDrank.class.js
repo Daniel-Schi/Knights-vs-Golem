@@ -1,4 +1,5 @@
 class StatusBarMagicDrank extends DrawableObject {
+    
     x = 5;
     y = 70;
     width = 100;
@@ -11,7 +12,6 @@ class StatusBarMagicDrank extends DrawableObject {
         'img/status-bar/magic-drank/magic_drank4.png',
         'img/status-bar/magic-drank/magic_drank5.png',   
     ];
-
 
 
     constructor() {

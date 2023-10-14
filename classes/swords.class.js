@@ -1,4 +1,5 @@
 class Swords extends MovableObject {
+
     y = 100 + Math.random() * 120; // setzen der y-Position
     x = 0 + Math.random() * 2000; // Setzen der x-Position zufällig zwischen 300 und 2000
     width = 60;
@@ -10,6 +11,7 @@ class Swords extends MovableObject {
 
     IMAGE = ['img/icons-weapons/PNG/daggers (5).png',]
 
+    
     constructor() {
         super().loadImage('img/icons-weapons/PNG/daggers (5).png');
         this.loadImage(this.IMAGE);

@@ -1,4 +1,5 @@
 class Character extends MovableObject {
+
     IMAGES_WALKING = [
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_000.png',
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_001.png',
@@ -114,12 +115,12 @@ class Character extends MovableObject {
 
             this.moveRight();
             this.otherDirection = false;
-            walking_sound.play(1);
+            walking_sound.play();
         }
         if (this.world.keyboard.LEFT && this.x > -500) {
             this.moveLeft();
             this.otherDirection = true;
-            walking_sound.play(1);
+            walking_sound.play();
         }
         if (this.world.keyboard.SPACE && !this.isAboveGround()) {
             this.jump();
@@ -140,7 +141,7 @@ class Character extends MovableObject {
             this.playAnimation(this.IMAGES_HURT);
             hurt_sound.play();
         } else if (this.isAboveGround()) {
-            this.playAnimation(this.IMAGES_JUMPING);
+            this.characterIsJumping();
         } else {
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 this.playAnimation(this.IMAGES_WALKING);
@@ -162,5 +163,13 @@ class Character extends MovableObject {
         setTimeout(() => {
             youLose();
         }, 2000);
+    }
+
+    characterIsJumping() {
+        this.playAnimation(this.IMAGES_JUMPING);
+        
+        setTimeout(() => {
+            this.loadImage('img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__IDLE_000.png');
+        }, 600);
     }
 }
