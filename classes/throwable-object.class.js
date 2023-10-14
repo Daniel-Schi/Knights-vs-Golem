@@ -1,4 +1,5 @@
 class ThrowableObject extends MovableObject {
+
     IMAGE_SWORD = ['img/icons-weapons/PNG/daggers (5).png'];
     IMAGE_BLOOD = ['img/blood-icon/blood.png'];
     animationThrowingSword;
@@ -17,7 +18,9 @@ class ThrowableObject extends MovableObject {
         this.otherDirection = otherDirection;
     }
 
-
+     /**
+    * Initiates the throwing motion of the object.
+    */
     throw() {
         this.speedY = 20;
         this.applyGravity();
@@ -25,7 +28,9 @@ class ThrowableObject extends MovableObject {
         this.throwIntervalFunction();
     }
 
-
+    /**
+     * Adjusts the horizontal position of the thrown object based on character direction.
+     */
     throwIntervalFunction() {
         setInterval(() => {
             const characterOtherDirection = world.character.otherDirection;
@@ -38,7 +43,9 @@ class ThrowableObject extends MovableObject {
         }, 25);
     }
 
-
+    /**
+    * Initiates the animation sequence of the object.
+    */
     animate() {
         this.animationThrowingSword = setInterval(() => {
             if (world.endbossWasHit) {
@@ -51,14 +58,18 @@ class ThrowableObject extends MovableObject {
         }, 100)
     }
 
-
+    /**
+    * Function to load sound and images blood.
+    */
     splashBlood() {
         blood_sound.play();
         this.loadImage(this.IMAGE_BLOOD);
         this.stopImage(this.animationThrowingSword);
     }
 
-
+    /**
+    * Interval to clear Image_SWORD and set a Timeout.
+    */
     stopImage(IMAGE_SWORD) {
         clearInterval(IMAGE_SWORD);
         setTimeout(() => {

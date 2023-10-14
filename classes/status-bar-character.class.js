@@ -22,14 +22,20 @@ class StatusBarCharacter extends DrawableObject {
         this.setPercentage(100);
     }
 
-
+    /**
+     * Updates the displayed percentage image based on the current coin amount.
+     * @param {number} percentage - The new percentage amount.
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
-
+     /**
+     * Set the character health percentage and update the displayed image accordingly.
+     * @param {number} percentage - The health percentage of the character.
+     */
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;

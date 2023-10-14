@@ -12,7 +12,9 @@ class Snow extends MovableObject {
         this.animate();
     }
 
-
+    /**
+     * Animate the snow´s movement.
+     */
     animate() {
         setInterval(() => {
             this.moveDown();

@@ -16,21 +16,27 @@ class StatusBarEndboss extends DrawableObject {
 
     percentage = 100;
 
-    
+
     constructor() {
         super();
         this.loadImages(this.IMAGES);
         this.setPercentage(100);
     }
 
-
+    /**
+     * Updates the displayed percentage image based on the current coin amount.
+     * @param {number} percentage - The new percentage amount.
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
-    
+     /**
+     * Set the endboss health percentage and update the displayed image accordingly.
+     * @param {number} percentage - The health percentage of the endboss.
+     */
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;

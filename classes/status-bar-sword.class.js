@@ -1,5 +1,5 @@
 class StatusBarSword extends DrawableObject {
-    
+
     x = 5;
     y = 30;
     width = 100;
@@ -20,12 +20,20 @@ class StatusBarSword extends DrawableObject {
         this.setSwords(0);
     }
 
+    /**
+     * Updates the displayed swordAmount image based on the current coin amount.
+     * @param {number} swordAmount - The new swordAmount amount.
+     */
     setSwords(swordAmount) {
         this.swordAmount = swordAmount; // Bekommt Wert von Variable bottleAmount, die bei jeder Kollision steigt
         let path = this.IMAGES[this.resolveImageIndex()]; // Zuweisung der URL des gewünschten Bildes (Zahl zwischen 0 und 5) an path
         this.img = this.imageCache[path]; // laden des Pfades aus Array imageCache und zuweisen des Bildes an die Variable "img" in DrawableObjects
     }
 
+    /**
+     * Resolves the index of the sword image based on the current sword amount.
+     * @returns {number} The index of the sword image to be displayed.
+     */
     resolveImageIndex() {
         if (this.swordAmount > 8) {
             return 5;

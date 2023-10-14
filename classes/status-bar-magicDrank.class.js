@@ -20,14 +20,20 @@ class StatusBarMagicDrank extends DrawableObject {
         this.setMagicDrank(0);
     }
 
-
+    /**
+     * Updates the displayed magicDrankAmount image based on the current coin amount.
+     * @param {number} magicDrankAmount - The new magicDrankAmount amount.
+     */
     setMagicDrank(magicDrankAmount) {
-        this.magicDrankAmount = magicDrankAmount; // Bekommt Wert von Variable bottleAmount, die bei jeder Kollision steigt
-        let path = this.IMAGES[this.resolveImageIndex()]; // Zuweisung der URL des gewünschten Bildes (Zahl zwischen 0 und 5) an path
-        this.img = this.imageCache[path]; // laden des Pfades aus Array imageCache und zuweisen des Bildes an die Variable "img" in DrawableObjects
+        this.magicDrankAmount = magicDrankAmount; // Gets value from variable bottleAmount, which increases with each collision
+        let path = this.IMAGES[this.resolveImageIndex()]; // Assigning the URL of the desired image (number between 0 and 5) to path
+        this.img = this.imageCache[path]; // loading the path from array imageCache and assigning the image to the "img" variable in DrawableObjects
     }
 
-
+    /**
+     * Resolve the image index based on the current fill percentage.
+     * @returns {number} The index of the image in the IMAGES array.
+     */
     resolveImageIndex() {
         if (this.magicDrankAmount >= 5) {
             return 5;
