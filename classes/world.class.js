@@ -232,7 +232,7 @@ class World {
             dead_Sound.play();
             setTimeout(() => {
                 youWon();
-            }, 2000);
+            }, 1000);
         } else if (this.character.isDead()) {
             gameMusic.pause();
             endbossMusic.pause();

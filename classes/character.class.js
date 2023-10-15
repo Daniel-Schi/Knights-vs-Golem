@@ -115,11 +115,11 @@ class Character extends MovableObject {
     movesCharacter() {
         if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
             this.moveRight();
-            this.otherDirection = false;           
+            this.otherDirection = false;
         }
         if (this.world.keyboard.LEFT && this.x > -500) {
             this.moveLeft();
-            this.otherDirection = true;  
+            this.otherDirection = true;
         }
         if (this.world.keyboard.SPACE && !this.isAboveGround()) {
             this.jump();
@@ -127,7 +127,7 @@ class Character extends MovableObject {
             walking_sound.pause();
         }
         if (this.world.keyboard.F && !this.isDead()) {
-            this.triggert = true;
+            this.characterIsThrowing()
         }
         this.world.camera_x = -this.x + 50;
         this.triggerAnimation();
@@ -149,9 +149,9 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_WALKING);
                 walking_sound.play();
             }
-           else {
-            walking_sound.pause();
-           } 
+            else {
+                walking_sound.pause();
+            }
         }
     }
 
@@ -172,5 +172,15 @@ class Character extends MovableObject {
         setTimeout(() => {
             this.loadImage('img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__IDLE_000.png');
         }, 600);
+    }
+
+    /**
+     * Initializes the throwing animation of the character with an setTimeout for ending the throwing animation
+     */
+    characterIsThrowing() {
+        this.triggert = true;
+        setTimeout(() => {
+            this.loadImage('img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__IDLE_000.png');
+        }, 200);
     }
 }

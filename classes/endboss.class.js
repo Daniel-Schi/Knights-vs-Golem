@@ -142,7 +142,7 @@ class Endboss extends MovableObject {
     animate() {
         setInterval(() => {
             this.animateEnemies();
-        }, 1000 / 5);
+        }, 1000 / 50);
 
         setInterval(() => {
             this.moveEnemies();
@@ -181,14 +181,4 @@ class Endboss extends MovableObject {
             }
         }
     }
-
-
-    // endbossDead() {
-        
-       
-    //     setTimeout(() => {
-    //         this.loadImage('img/golems-sprites/Golem_3/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
-    //         dead_Sound.play();
-    //     }, 200);
-    // }
 }
