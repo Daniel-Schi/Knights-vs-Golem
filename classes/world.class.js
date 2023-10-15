@@ -152,9 +152,9 @@ class World {
         enemy.enemieDirection = direction;
     }
 
-     /**
-   * Checks for collisions between the player character and enemies, and handles the consequences of the collisions.
-   */
+    /**
+    * Checks for collisions between the player character and enemies, and handles the consequences of the collisions.
+    */
     checkCollisionToEnemies() {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy, 0, 0, 0, 0) && !this.character.isFalling() && !enemy.enemyisDead && !this.isAttackable) {
@@ -165,7 +165,9 @@ class World {
         });
     }
 
-
+    /**
+     * Outsourced function of check Collision to enemy.
+     */
     enemyIfBlock() {
         this.character.jumpOnGolem = true;
         this.character.isHurt = true;
@@ -178,7 +180,9 @@ class World {
         return;
     }
 
-
+    /**
+     * Outsourced function of check Collision to enemy.
+     */
     enemyElseBlock(enemy, index) {
         enemy.isHurt = true;
         enemy.enemyIsDead = true;
@@ -192,7 +196,9 @@ class World {
         return;
     }
 
-
+    /**
+     * Decides between is Attackable and not Attackable.
+     */
     notAttackable(ms) {
         this.isAttackable = true;
         setTimeout(() => {
@@ -200,7 +206,9 @@ class World {
         }, ms);
     }
 
-
+    /**
+     * Checks the distance between character and endboss to play the corresponding music.
+     */
     checkEndboss() {
         let distance = this.character.x - this.endboss.x;
         if (distance <= -700 || this.endboss.isDead()) {
@@ -213,7 +221,9 @@ class World {
         }
     }
 
-
+    /**
+     * Checks to win or lose game.
+     */
     checkWinGame() {
         if (this.endboss.isDead() && this.collectedMagicDrank.length >= 3) {
             gameMusic.pause();
@@ -233,7 +243,9 @@ class World {
         }
     }
 
-
+    /**
+    * Checks for collisions between character and endboss, and handles the consequences of the collisions.
+    */
     checkCollisionToEndboss() {
         this.level.endboss.forEach((endboss) => {
             if (this.character.isColliding(endboss, 0, 0, 0, 0) && !this.isAttackable) {
@@ -248,7 +260,9 @@ class World {
         })
     }
 
-
+    /**
+     * Checks for Collisions between sword and endboss, and handles the consequences of the collisions.
+     */
     checkCollisonSwordWithEndboss() {
         this.level.endboss.forEach((endboss) => {
             this.throwableObjects.forEach((sword) => {
@@ -261,7 +275,9 @@ class World {
         })
     }
 
-
+    /**
+     * Checks for collisions between character and sword to collect them.
+     */
     checkCollisionToCollectSwords() {
         this.level.swords.forEach((sword, index) => {
             if (this.character.isColliding(sword, 0, 0, 0, 0)) {
@@ -274,7 +290,9 @@ class World {
         })
     }
 
-
+    /**
+     * Checks for collisions between character and magicdrank to collect them.
+     */
     checkCollisionToCollectMagicDrank() {
         this.level.magicDrank.forEach((magicDrank, index) => {
             if (this.character.isColliding(magicDrank, 0, 0, 0, 0)) {
