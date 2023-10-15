@@ -70,15 +70,13 @@ class Character extends MovableObject {
     height = 150;
     speed = 8;
     jumpOnGolem = false;
-    offset_x = 50; // verschieben nach rechts
-    offset_y = 15; // verschieben nach unten
-    offset_width = 80; // verschieben der Box nach links
-    offset_height = 30; //verschieben der Box nach oben
+    offset_x = 50; // move to the right
+    offset_y = 15; // move down
+    offset_width = 80; // move to the left
+    offset_height = 30; // move up
     world;
     triggert = false;
 
-
-    
 
     constructor() {
         super().loadImage('img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_000.png');
@@ -90,13 +88,17 @@ class Character extends MovableObject {
         this.applyGravity();
         this.animate();
     }
-    
 
+    /**
+    * Says whether you are above the ground and your speed is less than 0
+    */
     isFalling() {
         return this.isAboveGround() && this.speedY < 0;
     }
 
-
+    /**
+    * Initializes the animation intervals for character movements and animations.
+    */
     animate() {
         setInterval(() => {
             this.movesCharacter();
@@ -107,24 +109,22 @@ class Character extends MovableObject {
         }, 100);
     }
 
-
+    /**
+     * Updates character movements based on keyboard input.
+     */
     movesCharacter() {
-        walking_sound.pause();
-
         if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-
             this.moveRight();
-            this.otherDirection = false;
-            walking_sound.play();
+            this.otherDirection = false;           
         }
         if (this.world.keyboard.LEFT && this.x > -500) {
             this.moveLeft();
-            this.otherDirection = true;
-            walking_sound.play();
+            this.otherDirection = true;  
         }
         if (this.world.keyboard.SPACE && !this.isAboveGround()) {
             this.jump();
             jump_sound.play();
+            walking_sound.pause();
         }
         if (this.world.keyboard.F && !this.isDead()) {
             this.triggert = true;
@@ -133,10 +133,12 @@ class Character extends MovableObject {
         this.triggerAnimation();
     }
 
-
+    /**
+    * Handles character animations based on different states.
+    */
     animationsCharacter() {
         if (this.isDead()) {
-            this.characterDead();
+            this.playCharacterAnimation(this.IMAGES_DEAD);
         } else if (this.isHurt) {
             this.playAnimation(this.IMAGES_HURT);
             hurt_sound.play();
@@ -145,29 +147,28 @@ class Character extends MovableObject {
         } else {
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 this.playAnimation(this.IMAGES_WALKING);
+                walking_sound.play();
             }
+           else {
+            walking_sound.pause();
+           } 
         }
     }
 
-
+    /**
+    * When trigger ist true, than play the enemy animation.
+    */
     triggerAnimation() {
         if (this.triggert) {
             this.playEnemyAnimation(this.IMAGES_ATTACK);
         }
     };
 
-
-    characterDead() {
-        this.playCharacterAnimation(this.IMAGES_DEAD);
-        walking_sound.pause();
-        setTimeout(() => {
-            youLose();
-        }, 2000);
-    }
-
+    /**
+    * Initializes the jumping animation of the character with an setTimeout for ending the jumping animation.
+    */
     characterIsJumping() {
         this.playAnimation(this.IMAGES_JUMPING);
-        
         setTimeout(() => {
             this.loadImage('img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__IDLE_000.png');
         }, 600);

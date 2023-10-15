@@ -1,5 +1,5 @@
 class Golem extends MovableObject {
-    
+
     IMAGES_WALKING = [
         'img/golems-sprites/Golem_2/PNG/PNG Sequences/Walking/0_Golem_Walking_000.png',
         'img/golems-sprites/Golem_2/PNG/PNG Sequences/Walking/0_Golem_Walking_001.png',
@@ -86,10 +86,10 @@ class Golem extends MovableObject {
     x;
     y = 325;
     enemyIsDead = false;
-    offset_x = 20; // verschieben nach rechts
-    offset_y = 80; // verschieben nach unten
-    offset_width = 40; // verschieben der Box nach links
-    offset_height = 100; //verschieben der Box nach oben
+    offset_x = 20; 
+    offset_y = 80; 
+    offset_width = 40; 
+    offset_height = 100; 
     enemieDirection = 0;
     toClose = false;
     energy = 100;
@@ -108,7 +108,9 @@ class Golem extends MovableObject {
         this.direction;  
     }
 
-
+    /**
+    * Initializes the interval to determine the direction and speed of the opponents.
+    */
     direction() {
         setInterval(() => {
             if (this.toClose == false) {
@@ -118,7 +120,9 @@ class Golem extends MovableObject {
         }, 2000);
     }
 
-
+    /**
+    * Initializes the animation intervals for golem movements and animations.
+    */
     animate() {
         setInterval(() => {
             this.moveEnemies();
@@ -129,7 +133,9 @@ class Golem extends MovableObject {
         }, 200);
     }
 
-
+     /**
+     * Initializes the animation of the golem.
+     */
     animateEnemies() {
         if (this.enemyIsDead) {
             this.loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
@@ -142,7 +148,9 @@ class Golem extends MovableObject {
         }
     }
 
-    
+    /**
+     * Make the move animation for the golem.
+     */
     moveEnemies() {
         if (!this.enemyIsDead) {
             if (this.enemieDirection <= 0.2) {

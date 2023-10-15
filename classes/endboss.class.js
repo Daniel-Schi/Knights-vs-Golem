@@ -1,4 +1,5 @@
 class Endboss extends MovableObject {
+
     IMAGES_IDLE = [
         'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_000.png',
         'img/golems-sprites/Golem_3/PNG/PNG Sequences/Idle/0_Golem_Idle_001.png',
@@ -101,17 +102,18 @@ class Endboss extends MovableObject {
     width = 300;
     height = 350;
     y = 120;
-    offset_x = 70; // verschieben nach rechts
-    offset_y = 0; // verschieben nach unten
-    offset_width = 140; // verschieben der Box nach links
-    offset_height = 0; //verschieben der Box nach oben
+    offset_x = 70;
+    offset_y = 0;
+    offset_width = 140;
+    offset_height = 0;
     energy = 100;
     world;
     enemieDirection = 0;
     toClose = false;
     isSplashing = false;
+    endzone = false;
 
-    
+
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
@@ -123,8 +125,10 @@ class Endboss extends MovableObject {
         this.animate();
         this.direction;
     }
-    
 
+    /**
+    * Initializes the interval to determine the direction and speed of the opponents.
+    */
     direction() {
         setInterval(() => {
             if (this.toClose == false) {
@@ -134,7 +138,9 @@ class Endboss extends MovableObject {
         }, 2000);
     }
 
-
+    /**
+    * Initializes the animation intervals for endboss movements and animations.
+    */
     animate() {
         setInterval(() => {
             this.animateEnemies();
@@ -145,10 +151,13 @@ class Endboss extends MovableObject {
         }, 1000 / 60);
     }
 
-
+    /**
+     * Initializes the animation of the endboss.
+     */
     animateEnemies() {
         if (this.isDead()) {
-            this.endbossDead();
+            this.loadImage('img/golems-sprites/Golem_3/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
+            dead_Sound.play();
         } else if (this.isHurt) {
             this.playAnimation(this.IMAGES_HURT);
         } else if (this.isSplashing) {
@@ -161,9 +170,11 @@ class Endboss extends MovableObject {
         }
     }
 
-
+    /**
+     * Make the move animation for the endboss.
+     */
     moveEnemies() {
-        if (!this.isDead()) {
+        if (!this.isDead() && this.endzone) {
             if (this.enemieDirection <= 0.2) {
                 this.moveRight();
             } else if (this.enemieDirection >= 0.5) {
@@ -171,14 +182,5 @@ class Endboss extends MovableObject {
             } else {
             }
         }
-    }
-
-
-    endbossDead() {
-        this.loadImage('img/golems-sprites/Golem_3/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
-        dead_Sound.play();
-        setTimeout(() => {
-            youWon();
-        }, 2000);
     }
 }

@@ -82,9 +82,9 @@ class GolemSmall extends MovableObject {
     height = 60;
     y = 360;
     enemyIsDead = false;
-    offset_x = 0; // verschieben nach rechts
+    offset_x = 10; // verschieben nach rechts
     offset_y = 30; // verschieben nach unten
-    offset_width = 0; // verschieben der Box nach links
+    offset_width = 10; // verschieben der Box nach links
     offset_height = 60; //verschieben der Box nach oben
     enemieDirection = 0;
     toClose = false;
@@ -97,33 +97,39 @@ class GolemSmall extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_IDLE);
-        this.x = 250 + Math.random() * 3000;
+        this.x = 220 + Math.random() * 3000;
         this.animate();
         this.direction;
     }
     
-
+    /**
+    * Initializes the interval to determine the direction and speed of the opponents.
+    */
     direction() {
         setInterval(() => {
             if (this.toClose == false) {
                 this.enemieDirection = Math.random();
             }
             this.speed = 0.2 + Math.random() * 0.9;
-        }, 2000);
+        }, 1500);
     }
 
+    /**
+    * Initializes the animation intervals for golem small movements and animations.
+    */
     animate() {
         setInterval(() => {
             this.animateEnemies();
-        }, 100);
+        }, 20);
 
         setInterval(() => {
             this.moveEnemies();
         }, 1000 / 60);
-
-
     }
 
+     /**
+     * Initializes the animation of the golem small.
+     */
     animateEnemies() {
         if (this.enemyIsDead) {
             this.loadImage('img/golems-sprites/Golem_1/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
@@ -136,6 +142,9 @@ class GolemSmall extends MovableObject {
         }
     }
 
+    /**
+     * Make the move animation for the golem small.
+     */
     moveEnemies() {
         if (!this.enemyIsDead) {
             if (this.enemieDirection <= 0.2) {

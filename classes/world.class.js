@@ -192,7 +192,8 @@ class World {
         if (distance <= -700 || this.endboss.isDead()) {
             gameMusic.play(0.1);
             endbossMusic.pause();
-        } else {
+        } else if(!this.endboss.isDead()) {
+            this.endboss.endzone = true
             gameMusic.pause();
             endbossMusic.play(0.1);
         }
@@ -205,15 +206,15 @@ class World {
             endbossMusic.pause();
             winSound.play();
             setTimeout(() => {
-                winSound.pause();
-            }, 3000);
+                youWon();
+            }, 2000);
         } else if (this.character.isDead()) {
             gameMusic.pause();
             endbossMusic.pause();
             gameOverMusic.play();
             setTimeout(() => {
-                gameOverMusic.pause();
-            }, 3000);
+                youLose();
+            }, 2000);
         }
     }
 
@@ -271,7 +272,9 @@ class World {
         })
     }
 
-
+    /**
+     * Executes the entire drawing process.
+     */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
@@ -287,14 +290,20 @@ class World {
         })
     }
 
-
+     /**
+    * Adds an array of objects to the drawing map.
+    * @param {Array} objects - An array of objects to be added to the drawing map.
+    */
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o)
         });
     }
 
-
+    /**
+    * Adds a movable object to the drawing map, potentially flipping the image horizontally.
+    * @param {MovableObject} mo - The movable object to be added to the map.
+    */
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo)
@@ -306,7 +315,10 @@ class World {
         }
     }
 
-
+    /**
+     * Flips the image horizontally for the given movable object.
+     * @param {MovableObject} mo - The movable object whose image needs to be flipped.
+     */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -314,7 +326,10 @@ class World {
         mo.x = mo.x * - 1;
     };
 
-
+    /**
+     * Reverts the image flipping for the given movable object.
+     * @param {MovableObject} mo - The movable object whose image flipping needs to be reverted.
+     */
     flipImageBack(mo) {
         mo.x = mo.x * - 1;
         this.ctx.restore();
