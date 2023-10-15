@@ -32,10 +32,10 @@ class StatusBarCharacter extends DrawableObject {
         this.img = this.imageCache[path];
     }
 
-     /**
-     * Set the character health percentage and update the displayed image accordingly.
-     * @param {number} percentage - The health percentage of the character.
-     */
+    /**
+    * Set the character health percentage and update the displayed image accordingly.
+    * @param {number} percentage - The health percentage of the character.
+    */
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;

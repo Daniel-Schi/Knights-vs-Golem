@@ -18,7 +18,7 @@ class ThrowableObject extends MovableObject {
         this.otherDirection = otherDirection;
     }
 
-     /**
+    /**
     * Initiates the throwing motion of the object.
     */
     throw() {
@@ -29,8 +29,8 @@ class ThrowableObject extends MovableObject {
     }
 
     /**
-     * Adjusts the horizontal position of the thrown object based on character direction.
-     */
+    * Adjusts the horizontal position of the thrown object based on character direction.
+    */
     throwIntervalFunction() {
         setInterval(() => {
             const characterOtherDirection = world.character.otherDirection;

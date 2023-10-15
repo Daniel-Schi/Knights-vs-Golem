@@ -69,7 +69,9 @@ class World {
         this.checkWinGame();
     }
 
-
+    /**
+    * Checks if the character can throw an object and throws the object if possible.
+    */
     checkThrowObjects() {
         if (this.keyboard.F && this.collectedSwords.length > 0) {
             let sword = new ThrowableObject(this.character.x + 75, this.character.y + 0);
@@ -80,7 +82,9 @@ class World {
         }
     }
 
-
+    /**
+     * checks whether the sword can be deleted in the y-axis
+     */
     checkIfSwordIsOutOfLevel() {
         this.throwableObjects.forEach((index, throwableObjects) => {
             if (throwableObjects.y >= 400) {
@@ -89,7 +93,9 @@ class World {
         })
     }
 
-
+    /**
+     * Checks the position distance between character and enemies.
+     */
     checkPositions(enemies) {
         enemies.forEach(enemy => {
             let distance = enemy.x - this.character.x;
@@ -112,7 +118,9 @@ class World {
         })
     }
 
-
+    /**
+     * Checks the direction of the endboss in front.
+     */
     checkEnemyAhead(enemy) {
         if (enemy instanceof Endboss) {
             enemy.toClose = true;
@@ -123,7 +131,9 @@ class World {
         }
     }
 
-
+    /**
+     * Checks the direction of the endboss in back.
+     */
     checkEnemyBack(enemy) {
         if (enemy instanceof Endboss) {
             enemy.toClose = true;
@@ -134,13 +144,17 @@ class World {
         }
     }
 
-
+    /**
+     * Checks the direction of the enemy.
+     */
     setDirection(enemy, direction, boolValue) {
         enemy.isSplashing = boolValue;
         enemy.enemieDirection = direction;
     }
 
-
+     /**
+   * Checks for collisions between the player character and enemies, and handles the consequences of the collisions.
+   */
     checkCollisionToEnemies() {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy, 0, 0, 0, 0) && !this.character.isFalling() && !enemy.enemyisDead && !this.isAttackable) {
@@ -201,10 +215,11 @@ class World {
 
 
     checkWinGame() {
-        if (this.endboss.isDead()) {
+        if (this.endboss.isDead() && this.collectedMagicDrank.length >= 3) {
             gameMusic.pause();
             endbossMusic.pause();
             winSound.play();
+            dead_Sound.play();
             setTimeout(() => {
                 youWon();
             }, 2000);

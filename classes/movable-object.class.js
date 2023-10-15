@@ -9,7 +9,7 @@ class MovableObject extends DrawableObject {
     isHurt = false;
     animationCounter = 0;
    
-      /**
+    /**
      * Applies gravity to the object's vertical movement.
      */
     applyGravity() {
@@ -36,7 +36,7 @@ class MovableObject extends DrawableObject {
         }
     }
 
-     /**
+    /**
      * Reduces the energy of the hit object after a hit.
      */
     hit(damage) {
@@ -48,15 +48,15 @@ class MovableObject extends DrawableObject {
         }
     }
 
-     /**
+    /**
      * Checks if the object is dead.
      * @return {boolean} - True if dead, false otherwise.
      */
     isDead() {
-        return this.energy <= 0;
+        return this.energy === 0;
     }
 
-      /**
+    /**
      * Checks if the object is colliding with another object.
      * @return {boolean} - True if colliding, false otherwise.
      */
@@ -69,7 +69,7 @@ class MovableObject extends DrawableObject {
         );
     }
 
-     /**
+    /**
      * Moves the object to the right.
      */
     moveRight() {
@@ -77,7 +77,7 @@ class MovableObject extends DrawableObject {
         this.otherDirection = false;
     }
 
-     /**
+    /**
      * Moves the object to the left.
      */
     moveLeft() {
@@ -85,7 +85,7 @@ class MovableObject extends DrawableObject {
         this.otherDirection = true;
     }
 
-      /**
+    /**
      * Moves the object to the down.
      */
     moveDown() {
@@ -100,10 +100,10 @@ class MovableObject extends DrawableObject {
         this.speedY = 30;
     }
 
-     /**
-     * Plays animation for the object using provided images.
-     * @param {string[]} images - Array of image paths for the animation.
-     */
+    /**
+    * Plays animation for the object using provided images.
+    * @param {string[]} images - Array of image paths for the animation.
+    */
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];
@@ -111,9 +111,9 @@ class MovableObject extends DrawableObject {
         this.currentImage++;
     }
 
-     /**
-     * Initializes the animation of the character.
-     */
+    /**
+    * Initializes the animation of the character.
+    */
     playCharacterAnimation(images) {
         if (!this.currentImage) {   // If it is the first time the animation is started,                       
             this.currentImage = 0;  // set currentImage to 0.
@@ -130,9 +130,9 @@ class MovableObject extends DrawableObject {
         }
     }
 
-     /**
-     * Initializes the animation of the enemies.
-     */
+    /**
+    * Initializes the animation of the enemies.
+    */
     playEnemyAnimation(images) {
         if (this.animationCounter < images.length) {
             let i = this.animationCounter;

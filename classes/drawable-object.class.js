@@ -29,7 +29,6 @@ class DrawableObject {
         });
     }
 
-
      /**
      * Draws the object on the canvas using the provided context.
      * @param {CanvasRenderingContext2D} ctx - The 2D rendering context of the canvas.

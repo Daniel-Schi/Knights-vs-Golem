@@ -59,37 +59,30 @@ function bindBtsPressEvents() {
       event.preventDefault();
       keyboard.LEFT = true;
     });
-  
     document.getElementById("mobileMoveLeft").addEventListener("touchend", (event) => {
       event.preventDefault();
       keyboard.LEFT = false;
-    });
-  
+    }); 
     document.getElementById("mobileMoveRight").addEventListener("touchstart", (event) => {
       event.preventDefault();
       keyboard.RIGHT = true;
-    });
-  
+    }); 
     document.getElementById("mobileMoveRight").addEventListener("touchend", (event) => {
       event.preventDefault();
       keyboard.RIGHT = false;
-    });
-  
+    }); 
     document.getElementById("mobileJump").addEventListener("touchstart", (event) => {
       event.preventDefault();
       keyboard.SPACE = true;
-    });
-  
+    }); 
     document.getElementById("mobileJump").addEventListener("touchend", (event) => {
       event.preventDefault();
       keyboard.SPACE = false;
-    });
-  
+    }); 
     document.getElementById("mobileThrow").addEventListener("touchstart", (event) => {
       event.preventDefault();
       keyboard.F = true;
     });
-  
     document.getElementById("mobileThrow").addEventListener("touchend", (event) => {
       event.preventDefault();
       keyboard.F = false;

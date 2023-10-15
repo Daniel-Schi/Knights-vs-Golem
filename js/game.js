@@ -14,6 +14,10 @@ function startGame() {
     world = new World(canvas, keyboard);
 }
 
+
+/**
+ * Initializes the game with mute control and touch button.
+ */
 function init() {
     muteOnOff();
     bindBtsPressEvents();
