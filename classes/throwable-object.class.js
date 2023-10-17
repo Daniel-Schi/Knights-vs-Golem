@@ -1,14 +1,14 @@
 class ThrowableObject extends MovableObject {
 
-    IMAGE_SWORD = ['img/icons-weapons/PNG/daggers (5).png'];
-    IMAGE_BLOOD = ['img/blood-icon/blood.png'];
+    IMAGES_SWORD = ['img/icons-weapons/PNG/daggers (5).png'];
+    IMAGES_BLOOD = ['img/blood-icon/blood.png'];
     animationThrowingSword;
 
 
     constructor(x, y, otherDirection) {
         super();
-        this.loadImage(this.IMAGE_BLOOD);
-        this.loadImage(this.IMAGE_SWORD);
+        this.loadImage(this.IMAGES_BLOOD);
+        this.loadImage(this.IMAGES_SWORD);
         this.x = x;
         this.y = y;
         this.height = 60;
@@ -50,7 +50,7 @@ class ThrowableObject extends MovableObject {
             if (world.endbossWasHit) {
                 this.splashBlood();
             } else if (this.y < 300) {
-                this.loadImage(this.IMAGE_SWORD);   
+                this.loadImage(this.IMAGES_SWORD);   
             } else {
                 this.splashBlood();             
             }
@@ -62,15 +62,19 @@ class ThrowableObject extends MovableObject {
     */
     splashBlood() {
         blood_sound.play();
-        this.loadImage(this.IMAGE_BLOOD);
-        this.stopImage(this.animationThrowingSword);
+        this.loadImage(this.IMAGES_BLOOD);
+        this.stopAnimation(this.animationThrowingSword);
     }
 
     /**
     * Interval to clear Image_SWORD.
     */
-    stopImage(IMAGE_SWORD) {
-        clearInterval(IMAGE_SWORD);
+    stopAnimation(animationThrowingSword) {
+        clearInterval(animationThrowingSword);
+        setTimeout(() => {
+            this.loadImage('');
+            blood_sound.pause();
+        }, 300);
     }
 }
 
