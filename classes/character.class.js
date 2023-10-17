@@ -1,5 +1,9 @@
 class Character extends MovableObject {
 
+    IMAGES_IDLE = [
+        'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__IDLE_000.png'
+    ];
+
     IMAGES_WALKING = [
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_000.png',
         'img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__WALK_001.png',
@@ -85,6 +89,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
+        this.loadImages(this.IMAGES_IDLE);
         this.applyGravity();
         this.animate();
     }
@@ -170,7 +175,7 @@ class Character extends MovableObject {
     characterIsJumping() {
         this.playAnimation(this.IMAGES_JUMPING);
         setTimeout(() => {
-            this.loadImage('img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__IDLE_000.png');
+           this.playAnimation(this.IMAGES_IDLE);
         }, 600);
     }
 
@@ -180,7 +185,7 @@ class Character extends MovableObject {
     characterIsThrowing() {
         this.triggert = true;
         setTimeout(() => {
-            this.loadImage('img/fantasy-knight/_PNG/1_KNIGHT/Knight_01__IDLE_000.png');
-        }, 200);
+            this.playAnimation(this.IMAGES_IDLE);
+        }, 1000);
     }
 }

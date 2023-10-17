@@ -31,14 +31,13 @@ class ThrowableObject extends MovableObject {
     /**
     * Adjusts the horizontal position of the thrown object based on character direction.
     */
-    throwIntervalFunction() {
+    throwIntervalFunction() {       
         setInterval(() => {
-            const characterOtherDirection = world.character.otherDirection;
-            if (!characterOtherDirection) {
-                this.x += 10;
+            if (! this.otherDirection) {
+                this.x += 8;
             }
-            if (characterOtherDirection) {
-                this.x -= 10;
+            if ( this.otherDirection) {
+                this.x -= 8;
             }
         }, 25);
     }
@@ -53,7 +52,7 @@ class ThrowableObject extends MovableObject {
             } else if (this.y < 300) {
                 this.loadImage(this.IMAGE_SWORD);   
             } else {
-                this.splashBlood();
+                this.splashBlood();             
             }
         }, 100)
     }
@@ -68,13 +67,10 @@ class ThrowableObject extends MovableObject {
     }
 
     /**
-    * Interval to clear Image_SWORD and set a Timeout.
+    * Interval to clear Image_SWORD.
     */
     stopImage(IMAGE_SWORD) {
         clearInterval(IMAGE_SWORD);
-        setTimeout(() => {
-            this.loadImage('');
-        }, 100);
     }
 }
 

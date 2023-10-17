@@ -28,20 +28,6 @@ class Golem extends MovableObject {
     ];
 
     IMAGES_DEAD = [
-        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_000.png',
-        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_001.png',
-        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_002.png',
-        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_003.png',
-        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_004.png',
-        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_005.png',
-        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_006.png',
-        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_007.png',
-        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_008.png',
-        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_009.png',
-        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_010.png',
-        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_011.png',
-        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_012.png',
-        'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_013.png',
         'img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png'
     ];
 
@@ -131,6 +117,7 @@ class Golem extends MovableObject {
         setInterval(() => {
             this.animateEnemies();
         }, 200);
+        
     }
 
      /**
@@ -138,7 +125,8 @@ class Golem extends MovableObject {
      */
     animateEnemies() {
         if (this.enemyIsDead) {
-            this.loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
+            // this.loadImage('img/golems-sprites/Golem_2/PNG/PNG Sequences/Dying/0_Golem_Dying_014.png');
+            this.playAnimation(this.IMAGES_DEAD);
         } else if (this.isHurt) {
             this.playEnemyAnimation(this.IMAGES_HURT);
         } else if (this.enemieDirection <= 0.2 || this.enemieDirection >= 0.5) {

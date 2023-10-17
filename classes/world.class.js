@@ -46,6 +46,9 @@ class World {
       */
     run() {
         setInterval(() => {
+            this.checkCollisionToEnemies();
+        }, 50);
+        setInterval(() => {
             this.checkCollisions();
         }, 100);
         setInterval(() => {
@@ -56,8 +59,7 @@ class World {
     /**
     * Checks various collision scenarios.
     */
-    checkCollisions() {
-        this.checkCollisionToEnemies();
+    checkCollisions() {        
         this.checkCollisionToEndboss();
         this.checkCollisionToCollectSwords();
         this.checkCollisionToCollectMagicDrank();
@@ -232,7 +234,7 @@ class World {
             dead_Sound.play();
             setTimeout(() => {
                 youWon();
-            }, 500);
+            }, 2000);
         } else if (this.character.isDead()) {
             gameMusic.pause();
             endbossMusic.pause();
