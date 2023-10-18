@@ -6,9 +6,9 @@ class ThrowableObject extends MovableObject {
 
 
     constructor(x, y, otherDirection) {
-        super();
-        this.loadImage(this.IMAGES_BLOOD);
-        this.loadImage(this.IMAGES_SWORD);
+        super().loadImage('img/icons-weapons/PNG/daggers (5).png');
+        this.loadImages(this.IMAGES_BLOOD);
+        this.loadImages(this.IMAGES_SWORD);
         this.x = x;
         this.y = y;
         this.height = 60;
@@ -25,19 +25,20 @@ class ThrowableObject extends MovableObject {
         this.speedY = 20;
         this.applyGravity();
         throw_sound.play();
-        this.throwIntervalFunction();
+        this.throwIntervalFunction();    
     }
 
     /**
     * Adjusts the horizontal position of the thrown object based on character direction.
     */
-    throwIntervalFunction() {       
+    throwIntervalFunction() {  
+        const characterOtherDirection = world.character.otherDirection;     
         setInterval(() => {
-            if (! this.otherDirection) {
-                this.x += 8;
-            }
-            if ( this.otherDirection) {
-                this.x -= 8;
+            if (!characterOtherDirection) {
+                this.x += 9;
+            } 
+            if (characterOtherDirection) {
+                this.x -= 9;
             }
         }, 25);
     }
@@ -47,14 +48,12 @@ class ThrowableObject extends MovableObject {
     */
     animate() {
         this.animationThrowingSword = setInterval(() => {
-            if (world.endbossWasHit) {
+            if (world.isAttackable) {
                 this.splashBlood();
-            } else if (this.y < 300) {
-                this.loadImage(this.IMAGES_SWORD);   
             } else {
-                this.splashBlood();             
-            }
-        }, 100)
+                this.playAnimation(this.IMAGES_SWORD);  
+            }               
+        }, 100);
     }
 
     /**
@@ -62,8 +61,8 @@ class ThrowableObject extends MovableObject {
     */
     splashBlood() {
         blood_sound.play();
-        this.loadImage(this.IMAGES_BLOOD);
-        this.stopAnimation(this.animationThrowingSword);
+        this.playAnimation(this.IMAGES_BLOOD);
+        this.stopAnimation(this.animationThrowingSword); 
     }
 
     /**
@@ -71,8 +70,7 @@ class ThrowableObject extends MovableObject {
     */
     stopAnimation(animationThrowingSword) {
         clearInterval(animationThrowingSword);
-        setTimeout(() => {
-            this.loadImage('');
+        setTimeout(() => {          
             blood_sound.pause();
         }, 300);
     }

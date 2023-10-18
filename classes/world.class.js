@@ -22,6 +22,7 @@ class World {
     jumpOnGolem = false;
     endboss = this.level.endboss[0];
     isAttackable = false;
+    endbossWasHit = false;
 
 
     constructor(canvas, keyboard) {
@@ -88,8 +89,8 @@ class World {
      * checks whether the sword can be deleted in the y-axis
      */
     checkIfSwordIsOutOfLevel() {
-        this.throwableObjects.forEach((index, throwableObjects) => {
-            if (throwableObjects.y >= 400) {
+        this.throwableObjects.forEach((throwableObjects, index) => {
+            if (throwableObjects.y >= 350) {
                 this.throwableObjects.splice(index, 1);
             }
         })
@@ -266,7 +267,7 @@ class World {
      * Checks for Collisions between sword and endboss, and handles the consequences of the collisions.
      */
     checkCollisonSwordWithEndboss() {
-        this.level.endboss.forEach((endboss) => {
+        this.level.endboss.forEach(() => {
             this.throwableObjects.forEach((sword) => {
                 if (this.endboss.isColliding(sword, 0, 0, 0, 0) && !this.isAttackable) {
                     this.notAttackable(500)
