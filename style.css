@@ -384,6 +384,28 @@ h1 {
     align-items: center;
 }
 
+.inGameInfo{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 30px;
+    bottom: 5px;
+    font-weight: 600;
+}
+
+.inGameInfo img {
+    position: relative;
+    top: 7px;
+    width: 35px;
+    height: 25px;
+}
+
+.inGameInfo p {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 0px 10px 0px 10px;
+}
+
 /* Smartphones -------*/
 @media only screen and (max-width: 720px) {
     canvas {
@@ -396,6 +418,10 @@ h1 {
     }
 
     h1 {
+        display: none;
+    }
+
+    .inGameInfo{
         display: none;
     }
 
